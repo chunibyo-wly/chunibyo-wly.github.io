@@ -5,15 +5,15 @@
 # Site
 title: Chunibyo
 subtitle: ""
-description: ""
-keywords: Chunibyo
+description: "先生能否卖我几斤仁义道德?"
+keywords: Chunibyo, chunibyo
 author: Chunibyo
 language: en
-timezone: ""
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://chunibyo-wly.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -47,10 +47,10 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace: ""
   wrap: true
-  hljs: false
+  hljs: true
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
