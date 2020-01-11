@@ -1,10 +1,15 @@
 ---
 title: LeetCode
-date: 2020-01-11 19:10:17
+typora-root-url: ..
+date: 2020-01-12 02:33:08
 tags:
-	- leetcode
 ---
+![LeetCode](/images/v2-15271eede63c6c4bbb5e8fbae0d7a06c_1200x500.jpg)
+
+<!-- more -->
+
 # 001 - 100
+
 ## [001 Two Sum](https://leetcode.com/problems/two-sum/)
 
 1. Mine ($nlogn$)
@@ -48,5 +53,3 @@ tags:
        }
    };
    ```
-
-   
