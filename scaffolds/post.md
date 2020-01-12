@@ -1,7 +1,9 @@
 ---
+typora-root-url: ..
 title: {{ title }}
 date: {{ date }}
+mathjax: true
 tags:
-typora-root-url: ..
+categories:
 ---
 <!-- more -->
