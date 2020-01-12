@@ -6,6 +6,7 @@ tags:
     - LeetCode
 categories:
     - 算法
+mathjax: true
 ---
 ![LeetCode](/images/v2-15271eede63c6c4bbb5e8fbae0d7a06c_1200x500.jpg)
 
