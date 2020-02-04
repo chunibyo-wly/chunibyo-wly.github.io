@@ -496,3 +496,1181 @@ public:
     }
 };
 ```
+
+#### Advanced
+
+```cpp
+class Solution {
+public:
+    bool _isDigit(char x) {return ('0'<=x && x<='9');}
+    
+    int myAtoi(string s) {
+        int flag=1, i=0;
+        long tmp=0;
+        
+        for(; s[i]==' '; ++i) ;
+        
+        if(s[i]=='+' || s[i]=='-') flag = 1 - 2*(s[i++]=='-');
+        
+        for(; _isDigit(s[i]) && i<s.size(); ++i) {
+            tmp = tmp*10 + (s[i]-'0');
+            if(tmp > INT_MAX) return (flag > 0) ? INT_MAX : INT_MIN;
+        }
+        
+        return tmp * flag;
+    }
+};
+```
+
+这个用来判断正负的写法很不错
+
+```cpp
+if(s[i]=='+' || s[i]=='-') flag = 1 - 2*(s[i++]=='-');
+```
+
+### [9\. Palindrome Number](https://leetcode.com/problems/palindrome-number/)
+
+Difficulty: **Easy**
+
+
+Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
+
+**Example 1:**
+
+```
+Input: 121
+Output: true
+```
+
+**Example 2:**
+
+```
+Input: -121
+Output: false
+Explanation: From left to right, it reads -121\. From right to left, it becomes 121-. Therefore it is not a palindrome.
+```
+
+**Example 3:**
+
+```
+Input: 10
+Output: false
+Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
+```
+
+**Follow up:**
+
+Coud you solve it without converting the integer to a string?
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if(x<0) return false;
+        if(x/10 == 0) return true;
+        int i=1, a[12];
+        while(x) a[i++] = x%10, x/=10;
+        for(int j=1; j<=(i-1)/2; ++j) if(a[j] != a[i-j]) return false;
+        return true;
+    }
+};
+```
+
+#### Advanced
+
+```cpp
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if(x<0|| (x!=0 &&x%10==0)) return false;
+        int sum=0;
+        while(x>sum) sum = sum*10+x%10, x /= 10;
+        return (x==sum)||(x==sum/10);
+    }
+};
+```
+
+## 11 - 20
+
+### [11\. Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
+
+Difficulty: **Medium**
+
+
+Given _n_ non-negative integers _a<sub style="display: inline;">1</sub>_, _a<sub style="display: inline;">2</sub>_, ..., _a<sub style="display: inline;">n </sub>_, where each represents a point at coordinate (_i_, _a<sub style="display: inline;">i</sub>_). _n_ vertical lines are drawn such that the two endpoints of line _i_ is at (_i_, _a<sub style="display: inline;">i</sub>_) and (_i_, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.
+
+**Note: **You may not slant the container and _n_ is at least 2.
+
+![](/images/question_11.jpg)
+
+<small style="display: inline;">The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49\.</small>
+
+**Example:**
+
+```
+Input: [1,8,6,2,5,4,8,3,7]
+Output: 49
+```
+
+
+#### Solution
+
+Language: **C++**
+
+Complexity: $O(n)$
+
+> 开始困惑我的地方是为什么可以贪心的选柱子
+>
+> 因为如果未来有更优的情况的下丢弃当前最劣情况是最优策略
+
+```c++
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        if(height.size()==2) return min(height[0], height[1]);
+        
+        int l=0, r=height.size()-1, tmp=0;
+        while(l != r) {
+            tmp = max(tmp, (r-l)*min(height[l], height[r]));
+            if(height[l] <= height[r]) l++;
+            else r--;
+        }
+        return tmp;
+    }
+};
+```
+
+### [12\. Integer to Roman](https://leetcode.com/problems/integer-to-roman/)
+
+Difficulty: **Medium**
+
+
+Roman numerals are represented by seven different symbols: `I`, `V`, `X`, `L`, `C`, `D` and `M`.
+
+```
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+```
+
+For example, two is written as `II` in Roman numeral, just two one's added together. Twelve is written as, `XII`, which is simply `X` + `II`. The number twenty seven is written as `XXVII`, which is `XX` + `V` + `II`.
+
+Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not `IIII`. Instead, the number four is written as `IV`. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as `IX`. There are six instances where subtraction is used:
+
+*   `I` can be placed before `V` (5) and `X` (10) to make 4 and 9. 
+*   `X` can be placed before `L` (50) and `C` (100) to make 40 and 90. 
+*   `C` can be placed before `D` (500) and `M` (1000) to make 400 and 900.
+
+Given an integer, convert it to a roman numeral. Input is guaranteed to be within the range from 1 to 3999.
+
+**Example 1:**
+
+```
+Input: 3
+Output: "III"
+```
+
+**Example 2:**
+
+```
+Input: 4
+Output: "IV"
+```
+
+**Example 3:**
+
+```
+Input: 9
+Output: "IX"
+```
+
+**Example 4:**
+
+```
+Input: 58
+Output: "LVIII"
+Explanation: L = 50, V = 5, III = 3.
+```
+
+**Example 5:**
+
+```
+Input: 1994
+Output: "MCMXCIV"
+Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+```
+
+
+#### Solution
+
+Language: **C++**
+
+Complexity: $O(1)$
+
+```c++
+class Solution {
+public:
+    string intToRoman(int num) {
+        string A[] = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+        string B[] = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+        string C[] = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
+        string D[] = {"", "M", "MM", "MMM"};
+        
+        return D[num/1000%10] + 
+               C[num/100%10] +
+               B[num/10%10] +
+               A[num/1%10];
+    }
+};
+```
+
+### [13\. Roman to Integer](https://leetcode.com/problems/roman-to-integer/)
+
+Difficulty: **Easy**
+
+
+Roman numerals are represented by seven different symbols: `I`, `V`, `X`, `L`, `C`, `D` and `M`.
+
+```
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+```
+
+For example, two is written as `II` in Roman numeral, just two one's added together. Twelve is written as, `XII`, which is simply `X` + `II`. The number twenty seven is written as `XXVII`, which is `XX` + `V` + `II`.
+
+Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not `IIII`. Instead, the number four is written as `IV`. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as `IX`. There are six instances where subtraction is used:
+
+*   `I` can be placed before `V` (5) and `X` (10) to make 4 and 9. 
+*   `X` can be placed before `L` (50) and `C` (100) to make 40 and 90. 
+*   `C` can be placed before `D` (500) and `M` (1000) to make 400 and 900.
+
+Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.
+
+**Example 1:**
+
+```
+Input: "III"
+Output: 3
+```
+
+**Example 2:**
+
+```
+Input: "IV"
+Output: 4
+```
+
+**Example 3:**
+
+```
+Input: "IX"
+Output: 9
+```
+
+**Example 4:**
+
+```
+Input: "LVIII"
+Output: 58
+Explanation: L = 50, V= 5, III = 3.
+```
+
+**Example 5:**
+
+```
+Input: "MCMXCIV"
+Output: 1994
+Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    int romanToInt(string s) {
+        int a[200], tmp=0;
+        a['I'] = 1;
+        a['V'] = 5;
+        a['X'] = 10;
+        a['L'] = 50;
+        a['C'] = 100;
+        a['D'] = 500;
+        a['M'] = 1000;
+        for(int i=0; i<s.size(); ++i) {
+            tmp += a[s[i]];
+            if(i!=0 && a[s[i-1]]<a[s[i]]) tmp-=2*a[s[i-1]];
+        }
+        return tmp;
+    }
+};
+```
+
+### [14\. Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/)
+
+Difficulty: **Easy**
+
+
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string `""`.
+
+**Example 1:**
+
+```
+Input: ["flower","flow","flight"]
+Output: "fl"
+```
+
+**Example 2:**
+
+```
+Input: ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input strings.
+```
+
+**Note:**
+
+All given inputs are in lowercase letters `a-z`.
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        if(strs.size() == 0) return "";
+        if(strs.size() == 1) return strs[0];
+        string re = "";
+        
+        int i=0;
+        char tmp;
+        while(i<strs[0].size()) {
+            tmp = strs[0][i];
+            for(int j=0; j<strs.size(); ++j)
+                if(i>=strs[j].size() || strs[j][i] != tmp) return re;
+            re+= tmp, i++;
+        }
+        return re;
+    }
+};
+```
+
+Advanced
+
+> 把对string的维护换成substr快了一倍
+
+```cpp
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        if(strs.size() == 0) return "";
+        if(strs.size() == 1) return strs[0];
+        string re = "";
+        
+        int i=0;
+        char tmp;
+        while(i<strs[0].size()) {
+            tmp = strs[0][i];
+            for(int j=0; j<strs.size(); ++j)
+                if(i>=strs[j].size() || strs[j][i] != tmp) return strs[0].substr(0, i);
+            i++;
+        }
+        return strs[0].substr(0, i);
+    }
+};
+```
+
+### [15\. 3Sum](https://leetcode.com/problems/3sum/)
+
+Difficulty: **Medium**
+
+
+Given an array `nums` of _n_ integers, are there elements _a_, _b_, _c_ in `nums` such that _a_ + _b_ + _c_ = 0? Find all unique triplets in the array which gives the sum of zero.
+
+**Note:**
+
+The solution set must not contain duplicate triplets.
+
+**Example:**
+
+```
+Given array nums = [-1, 0, 1, 2, -1, -4],
+
+A solution set is:
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+```
+
+
+#### Solution
+
+Language: **C++**
+
+Complexity: $O(n^{2})$
+
+```c++
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>> re;
+        if(nums.size() <= 2) return re;
+        sort(nums.begin(), nums.end());
+        for(int i=0; i<nums.size()-2; ++i) {
+            if(i!=0 && nums[i]==nums[i-1]) continue;
+            int l = i+1, r = nums.size()-1;
+            while(l<r) {
+                int sum = nums[i] + nums[l] + nums[r];
+                if(sum == 0) {
+                    re.push_back({nums[i], nums[l], nums[r]});
+                    while( l<r && nums[l] == nums[l+1] ) l++;
+                    while( l<r && nums[r-1] == nums[r] ) r--;
+                    r--; l++;
+                }
+                else if(sum < 0) l++;
+                else if(sum > 0) r--;
+            }
+        }
+        return re;
+    }
+};
+```
+
+### [16\. 3Sum Closest](https://leetcode.com/problems/3sum-closest/)
+
+Difficulty: **Medium**
+
+
+Given an array `nums` of _n_ integers and an integer `target`, find three integers in `nums` such that the sum is closest to `target`. Return the sum of the three integers. You may assume that each input would have exactly one solution.
+
+**Example:**
+
+```
+Given array nums = [-1, 2, 1, -4], and target = 1.
+
+The sum that is closest to the target is 2\. (-1 + 2 + 1 = 2).
+```
+
+
+#### Solution
+
+Language: **C++**
+
+Complexity: $O(n^{2})$
+
+```c++
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+        if(nums.size() == 3) return nums[0]+nums[1]+nums[2];
+        
+        int re, _min=INT_MAX;
+        sort(nums.begin(), nums.end());
+        for(int i=0; i<nums.size()-2; ++i) {
+            int l = i+1, r = nums.size()-1;
+            while(l<r) {
+                int sum = nums[i]+nums[l]+nums[r];
+                
+                if(abs(sum-target) < _min) re = sum, _min = abs(sum-target);
+                
+                if(sum > target) r--;
+                else if(sum < target) l++;
+                else return re;
+            }
+        }
+        return re;
+    }
+};
+```
+
+### [17\. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
+
+Difficulty: **Medium**
+
+
+Given a string containing digits from `2-9` inclusive, return all possible letter combinations that the number could represent.
+
+A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+
+![](/images/200px-Telephone-keypad2.svg.png)
+
+**Example:**
+
+```
+Input: "23"
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+```
+
+**Note:**
+
+Although the above answer is in lexicographical order, your answer could be in any order you want.
+
+
+#### Solution 1
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    vector<string> m = {
+        "",
+        "",     "abc", "def",
+        "ghi",  "jkl", "mno",
+        "pqrs", "tuv", "wxyz"
+    };
+    
+    void dfs(string digits, int index, string tmp, vector<string>& re) {
+        if(index == digits.size()-1)
+            for(auto i : m[digits[index]-'0'])
+                re.push_back(tmp+i);
+        else
+            for(auto i : m[digits[index]-'0'])
+                dfs(digits, index+1, tmp+i, re);
+    }
+    
+    vector<string> letterCombinations(string digits) {
+        if(digits == "") return {};
+        vector<string> re;
+        dfs(digits, 0, "", re);
+        return re;
+    }
+};
+```
+
+#### Solution 2
+
+> queue代替的递归版
+
+```cpp
+class Solution {
+public:
+    vector<string> m = {
+        "",
+        "",     "abc", "def",
+        "ghi",  "jkl", "mno",
+        "pqrs", "tuv", "wxyz"
+    };
+    
+    vector<string> letterCombinations(string digits) {
+        if(digits == "") return {};
+        vector<string> re;
+        queue<string> q;
+        
+        q.push("");
+        while(q.front().size() != digits.size()) {
+            string tmp = q.front(); q.pop();
+            for(auto i : m[digits[tmp.size()]-'0']) q.push(tmp+i);
+        }
+        while(!q.empty()) {re.push_back(q.front()); q.pop();}
+        return re;
+    }
+};
+```
+
+### [18\. 4Sum](https://leetcode.com/problems/4sum/)
+
+Difficulty: **Medium**
+
+
+Given an array `nums` of _n_ integers and an integer `target`, are there elements _a_, _b_, _c_, and _d_ in `nums` such that _a_ + _b_ + _c_ + _d_ = `target`? Find all unique quadruplets in the array which gives the sum of `target`.
+
+**Note:**
+
+The solution set must not contain duplicate quadruplets.
+
+**Example:**
+
+```
+Given array nums = [1, 0, -1, 0, -2, 2], and target = 0.
+
+A solution set is:
+[
+  [-1,  0, 0, 1],
+  [-2, -1, 1, 2],
+  [-2,  0, 0, 2]
+]
+```
+
+
+#### Solution
+
+Language: **C++**
+
+Complexity: $O(n^{3})$
+
+```c++
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        vector<vector<int>> re;
+        if(nums.size() <= 3) return re;
+        sort(nums.begin(), nums.end());
+        for(int i=0; i<nums.size(); ++i) {
+            if(i!=0 && nums[i]==nums[i-1]) continue;
+            for(int j=i+1; j<nums.size(); ++j) {
+                if(j!=i+1 && nums[j]==nums[j-1]) continue;
+                int l=j+1, r=nums.size()-1;
+                while(l < r) {
+                    int sum = nums[i]+nums[j]+nums[l]+nums[r];
+                    if(sum == target) {
+                        re.push_back({nums[i], nums[j], nums[l], nums[r]});
+                        while( l<r && nums[l] == nums[l+1] ) l++;
+                        while( l<r && nums[r-1] == nums[r] ) r--;
+                        r--; l++;
+                    }
+                    else if(sum < target) l++;
+                    else if(sum > target) r--;
+                }
+            }
+        }
+        return re;
+    }
+};
+```
+
+### [19\. Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+
+Difficulty: **Medium**
+
+
+Given a linked list, remove the _n_-th node from the end of list and return its head.
+
+**Example:**
+
+```
+Given linked list: 1->2->3->4->5, and n = 2.
+
+After removing the second node from the end, the linked list becomes 1->2->3->5.
+```
+
+**Note:**
+
+Given _n_ will always be valid.
+
+**Follow up:**
+
+Could you do this in one pass?
+
+
+#### Solution
+
+Language: **C++**
+
+Complexity: $O(n)$
+
+```c++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        if(n==0) return head;
+        
+        ListNode *l=head, *r=head;
+        while(n--) r=r->next;
+        if(r==nullptr) return head->next;
+        while(r->next != nullptr) l=l->next, r=r->next; l->next=l->next->next;
+        return head;
+    }
+};
+```
+
+### [20\. Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)
+
+Difficulty: **Easy**
+
+
+Given a string containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
+
+An input string is valid if:
+
+1.  Open brackets must be closed by the same type of brackets.
+2.  Open brackets must be closed in the correct order.
+
+Note that an empty string is also considered valid.
+
+**Example 1:**
+
+```
+Input: "()"
+Output: true
+```
+
+**Example 2:**
+
+```
+Input: "()[]{}"
+Output: true
+```
+
+**Example 3:**
+
+```
+Input: "(]"
+Output: false
+```
+
+**Example 4:**
+
+```
+Input: "([)]"
+Output: false
+```
+
+**Example 5:**
+
+```
+Input: "{[]}"
+Output: true
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    bool isValid(string str) {
+        stack<char> s;
+        map<char, char> m;
+        m[')']='(', m['}']='{', m[']']='[';
+        m['(']=' ', m['{']=' ', m['[']=' ';
+        for(auto i : str) {
+            if(!s.empty() && m[i]==s.top()) s.pop();
+            else if(m[i]!=' ') return false;
+            else s.push(i);
+        }
+        if(s.empty()) return true;
+        else return false;
+    }
+};
+```
+
+## 21 - 30
+
+### [21\. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
+
+Difficulty: **Easy**
+
+
+Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
+
+**Example:**
+
+```
+Input: 1->2->4, 1->3->4
+Output: 1->1->2->3->4->4
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode *p, *head;
+        p = head = new ListNode(0);
+        while(l1!=nullptr && l2!=nullptr) {
+            if(l1->val <= l2->val) p->next=l1, p=p->next, l1=l1->next;
+            else p->next=l2, p=p->next, l2=l2->next;
+        }
+        if(l1!=nullptr) p->next=l1;
+        else if(l2!=nullptr) p->next=l2;
+        return head->next;
+    }
+};
+```
+
+Advanced
+
+> 尾递归版
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void merge(ListNode* l1, ListNode* l2, ListNode* tmp) {
+        if(l1==nullptr) {tmp->next=l2; return; }
+        if(l2==nullptr) {tmp->next=l1; return; }
+        if(l1->val <= l2->val)
+            tmp->next=l1, tmp=tmp->next, merge(l1->next, l2, tmp);
+        else
+            tmp->next=l2, tmp=tmp->next, merge(l1, l2->next, tmp);
+    }
+    
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode* tmp=new ListNode(0);
+        merge(l1, l2, tmp);
+        return tmp->next;
+    }
+};
+```
+
+### [22\. Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)
+
+Difficulty: **Medium**
+
+
+Given _n_ pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+For example, given _n_ = 3, a solution set is:
+
+```
+[
+  "((()))",
+  "(()())",
+  "(())()",
+  "()(())",
+  "()()()"
+]
+```
+
+
+#### Solution
+
+Language: **C++**
+
+> 尾递归
+
+```c++
+class Solution {
+public:
+    void dfs(vector<string>&v, string tmp, int a, int b, int n) {
+        if(a==n && b==n) v.push_back(tmp);
+        else {
+            if(a<n) dfs(v, tmp+"(", a+1, b, n);
+            if(b<a) if(tmp[tmp.size()-1]=='(' || tmp[tmp.size()-1]==')') dfs(v, tmp+")", a, b+1, n);
+        }
+    }
+    
+    vector<string> generateParenthesis(int n) {
+        vector<string> v;
+        dfs(v, "", 0, 0, n);
+        return v;
+    }
+};
+```
+
+### [23\. Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
+
+Difficulty: **Hard**
+
+
+Merge _k_ sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
+
+**Example:**
+
+```
+Input:
+[
+  1->4->5,
+  1->3->4,
+  2->6
+]
+Output: 1->1->2->3->4->4->5->6
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* merge(ListNode* l1, ListNode* l2) {
+        if(l1==nullptr) return l2;
+        if(l2==nullptr) return l1;
+        if(l1->val < l2->val) {
+            l1->next = merge(l1->next,l2);
+            return l1;
+        } else {
+            l2->next = merge(l1,l2->next);
+            return l2;
+        }
+    }
+    
+    ListNode* mergeK(vector<ListNode*> lists) {
+        if(lists.size()==2) return merge(lists[0], lists[1]);
+        else {
+            ListNode* tmp=lists.back();
+            lists.pop_back();
+            return merge(tmp, mergeK(lists));
+        }
+    }
+    
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        if(lists.size()==0) return nullptr;
+        if(lists.size()==1) return lists[0];
+        return mergeK(lists);
+    }
+};
+```
+
+### [24\. Swap Nodes in Pairs](https://leetcode.com/problems/swap-nodes-in-pairs/)
+
+Difficulty: **Medium**
+
+
+Given a linked list, swap every two adjacent nodes and return its head.
+
+You may **not** modify the values in the list's nodes, only nodes itself may be changed.
+
+**Example:**
+
+```
+Given 1->2->3->4, you should return the list as 2->1->4->3.
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        if(head==nullptr || head->next==nullptr) return head;
+        ListNode *p, *first, *second;
+        p=new ListNode(0), p->next=head, head=head->next;
+        while(p!=nullptr && p->next!=nullptr && p->next->next!=nullptr) {
+            first=p->next, second=p->next->next;
+            
+            first->next=second->next;
+            second->next=first;
+            p->next=second;
+            
+            p=p->next->next;
+        }
+        return head;
+    }
+};
+```
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        if(head==nullptr || head->next==nullptr) return head;
+        ListNode *first, *second;
+        first=head, second=head->next;
+        first->next=swapPairs(second->next), second->next=first;
+        return second;
+    }
+};
+```
+
+### [26\. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
+
+Difficulty: **Easy**
+
+
+Given a sorted array _nums_, remove the duplicates such that each element appear only _once_ and return the new length.
+
+Do not allocate extra space for another array, you must do this by **modifying the input array** with O(1) extra memory.
+
+**Example 1:**
+
+```
+Given nums = [1,1,2],
+
+Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively.
+
+It doesn't matter what you leave beyond the returned length.
+```
+
+**Example 2:**
+
+```
+Given nums = [0,0,1,1,1,2,2,3,3,4],
+
+Your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively.
+
+It doesn't matter what values are set beyond the returned length.
+```
+
+**Clarification:**
+
+Confused why the returned value is an integer but your answer is an array?
+
+Note that the input array is passed in by **reference**, which means modification to the input array will be known to the caller as well.
+
+Internally you can think of this:
+
+```
+// nums is passed in by reference. (i.e., without making a copy)
+int len = removeDuplicates(nums);
+
+// any modification to nums in your function would be known by the caller.
+// using the length returned by your function, it prints the first len elements.
+for (int i = 0; i < len; i++) {
+    print(nums[i]);
+}
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int cnt=0;
+        for(int i=0;i<nums.size();++i)
+            if(i==0 || nums[i]!=nums[i-1])
+                nums[cnt++]=nums[i];
+        return cnt;
+    }
+};
+```
+
+### [27\. Remove Element](https://leetcode.com/problems/remove-element/)
+
+Difficulty: **Easy**
+
+
+Given an array _nums_ and a value _val_, remove all instances of that value and return the new length.
+
+Do not allocate extra space for another array, you must do this by **modifying the input array** with O(1) extra memory.
+
+The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+
+**Example 1:**
+
+```
+Given nums = [3,2,2,3], val = 3,
+
+Your function should return length = 2, with the first two elements of nums being 2.
+
+It doesn't matter what you leave beyond the returned length.
+```
+
+**Example 2:**
+
+```
+Given nums = [0,1,2,2,3,0,4,2], val = 2,
+
+Your function should return length = 5, with the first five elements of nums containing 0, 1, 3, 0, and 4.
+
+Note that the order of those five elements can be arbitrary.
+
+It doesn't matter what values are set beyond the returned length.
+```
+
+**Clarification:**
+
+Confused why the returned value is an integer but your answer is an array?
+
+Note that the input array is passed in by **reference**, which means modification to the input array will be known to the caller as well.
+
+Internally you can think of this:
+
+```
+// nums is passed in by reference. (i.e., without making a copy)
+int len = removeElement(nums, val);
+
+// any modification to nums in your function would be known by the caller.
+// using the length returned by your function, it prints the first len elements.
+for (int i = 0; i < len; i++) {
+    print(nums[i]);
+}
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int l=0, r=nums.size()-1;
+        while(l-r<1) {
+            if(nums[r]!=val && nums[l]==val) swap(nums[l], nums[r]);
+            if(nums[r]==val) r--;
+            if(nums[l]!=val) l++;
+        }
+        return l;
+    }
+};
+```
