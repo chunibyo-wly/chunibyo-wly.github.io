@@ -102,3 +102,62 @@ priority=1
 ### World File Location
 
 `~/.local/share/Terraria/Worlds`
+
+### 生成service
+
+```
+# /lib/systemd/system/terraria.service
+[Unit]
+Description=server daemon for terraria
+
+[Service]
+Type=forking
+User=root
+KillMode=none
+ExecStart=/usr/bin/screen -dmS terraria /bin/bash -c "/root/terraria/TerrariaServer.bin.x86_64 -config /root/terraria/serverconfig.txt 2>&1 | tee /root/log_ws/terraria.log"
+ExecStop=/usr/local/bin/terrariad exit
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```
+#!/bin/bash
+# /usr/local/bin/terrariad
+
+send="`printf \"$*\r\"`"
+attach="screen -r terraria"
+inject="screen -S terraria -X stuff $send"
+
+if [ "$1" = "attach" ] ;
+then
+    cmd="$attach" ;
+else
+    cmd="$inject" ;
+fi
+
+$cmd
+```
+
+```
+systemctl start terraria.service
+terrariad <command>
+terrariad attach
+```
+
+```
+$ systemctl status terraria.service
+● terraria.service - server daemon for terraria
+   Loaded: loaded (/lib/systemd/system/terraria.service; enabled; vendor preset: enabled)
+   Active: active (running) since Sun 2020-02-09 20:46:51 CST; 2h 2min ago
+ Main PID: 369 (screen)
+    Tasks: 10 (limit: 4680)
+   CGroup: /system.slice/terraria.service
+           ├─369 /usr/bin/SCREEN -dmS terraria /bin/bash -c /root/terraria/TerrariaServer.bin.x86_64 -config           ├─397 /bin/bash -c /root/terraria/TerrariaServer.bin.x86_64 -config /root/terraria/serverconfig.t           ├─409 /root/terraria/TerrariaServer.bin.x86_64 -config /root/terraria/serverconfig.txt
+           └─410 tee /root/log_ws/terraria.log
+
+Feb 09 20:46:51 iZbp13dkrvca9v6gpgqk8zZ systemd[1]: Starting server daemon for terraria...
+Feb 09 20:46:51 iZbp13dkrvca9v6gpgqk8zZ systemd[1]: Started server daemon for terraria.
+lines 1-13/13 (END)
+```
+
