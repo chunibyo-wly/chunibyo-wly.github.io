@@ -5,8 +5,9 @@ mathjax: true
 date: 2020-02-09 12:33:46
 tags:
 	- game
+	- linux
 categories:
-	- server
+	- 运维
 ---
 ![Terraria](/images/Terraria-vita-header.jpeg)
 
