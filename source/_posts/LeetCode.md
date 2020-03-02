@@ -1885,3 +1885,127 @@ class Solution {
     }
 };
 ```
+
+### [38\. Count and Say](https://leetcode.com/problems/count-and-say/)
+
+Difficulty: **Easy**
+
+
+The count-and-say sequence is the sequence of integers with the first five terms as following:
+
+```
+1\.     1
+2\.     11
+3\.     21
+4\.     1211
+5\.     111221
+```
+
+`1` is read off as `"one 1"` or `11`.  
+`11` is read off as `"two 1s"` or `21`.  
+`21` is read off as `"one 2`, then `one 1"` or `1211`.
+
+Given an integer _n_ where 1 ≤ _n_ ≤ 30, generate the _n_<sup>th</sup> term of the count-and-say sequence. You can do so recursively, in other words from the previous member read off the digits, counting the number of digits in groups of the same digit.
+
+Note: Each term of the sequence of integers will be represented as a string.
+
+**Example 1:**
+
+```
+Input: 1
+Output: "1"
+Explanation: This is the base case.
+```
+
+**Example 2:**
+
+```
+Input: 4
+Output: "1211"
+Explanation: For n = 3 the term was "21" in which we have two groups "2" and "1", "2" can be read as "12" which means frequency = 1 and value = 2, the same way "1" is read as "11", so the answer is the concatenation of "12" and "11" which is "1211".
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+    public:
+    string countAndSay(int n) {
+        if(n==1) return "1";
+        string s = countAndSay(n-1) + '@';
+        int cnt=0;
+        string result="";
+        for(int i=1; i<s.size(); ++i) {
+            cnt++;
+            if(i!=0 && s[i]!=s[i-1]) {
+                result+=(cnt+'0');
+                result+=s[i-1];
+                cnt=0;
+            }
+        }
+        return result;
+    }
+};
+```
+
+### [39\. Combination Sum](https://leetcode.com/problems/combination-sum/)
+
+Difficulty: **Medium**
+
+
+Given a **set** of candidate numbers (`candidates`) **(without duplicates)** and a target number (`target`), find all unique combinations in `candidates` where the candidate numbers sums to `target`.
+
+The **same** repeated number may be chosen from `candidates` unlimited number of times.
+
+**Note:**
+
+*   All numbers (including `target`) will be positive integers.
+*   The solution set must not contain duplicate combinations.
+
+**Example 1:**
+
+```
+Input: candidates = [2,3,6,7], target = 7,
+A solution set is:
+[
+  [7],
+  [2,2,3]
+]
+```
+
+**Example 2:**
+
+```
+Input: candidates = [2,3,5], target = 8,
+A solution set is:
+[
+  [2,2,2,2],
+  [2,3,3],
+  [3,5]
+]
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    void dfs(vector<vector<int>>&result, vector<int>&tmp, vector<int>&candidates, int ordinal, int target) {
+        if (target==0) result.push_back(tmp);
+        for(int i=ordinal; i<candidates.size(); ++i)
+            if(candidates[i]<=target) {tmp.push_back(candidates[i]); dfs(result, tmp, candidates, i,target-candidates[i]); tmp.pop_back();}
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> result;
+        vector<int> tmp;
+        dfs(result, tmp,candidates, 0, target);
+        return result;
+    }
+};
+```
