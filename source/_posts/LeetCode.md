@@ -2009,3 +2009,132 @@ public:
     }
 };
 ```
+
+### [40\. Combination Sum II](https://leetcode.com/problems/combination-sum-ii/)
+
+Difficulty: **Medium**
+
+
+Given a collection of candidate numbers (`candidates`) and a target number (`target`), find all unique combinations in `candidates` where the candidate numbers sums to `target`.
+
+Each number in `candidates` may only be used **once** in the combination.
+
+**Note:**
+
+*   All numbers (including `target`) will be positive integers.
+*   The solution set must not contain duplicate combinations.
+
+**Example 1:**
+
+```
+Input: candidates = [10,1,2,7,6,1,5], target = 8,
+A solution set is:
+[
+  [1, 7],
+  [1, 2, 5],
+  [2, 6],
+  [1, 1, 6]
+]
+```
+
+**Example 2:**
+
+```
+Input: candidates = [2,5,2,1,2], target = 5,
+A solution set is:
+[
+  [1,2,2],
+  [5]
+]
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    void dfs(vector<vector<int>>&result, vector<int>&tmp, vector<int>&candidates, int ordinal, int target) {
+        if (target==0) result.push_back(tmp);
+        for(int i=ordinal; i<candidates.size(); ++i) {
+            if(candidates[i]<=target) {
+                if(i>ordinal && candidates[i]==candidates[i-1]) continue;
+                tmp.push_back(candidates[i]); 
+                dfs(result, tmp, candidates, i+1, target-candidates[i]); 
+                tmp.pop_back();
+            }
+        }
+    }
+    
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<vector<int>> result;
+        vector<int> tmp;
+        sort(candidates.begin(), candidates.end());
+        dfs(result, tmp,candidates, 0, target);
+        return result;
+    }
+};
+```
+
+## 41 - 50
+
+### [41\. First Missing Positive](https://leetcode.com/problems/first-missing-positive/)
+
+Difficulty: **Hard**
+
+
+Given an unsorted integer array, find the smallest missing positive integer.
+
+**Example 1:**
+
+```
+Input: [1,2,0]
+Output: 3
+```
+
+**Example 2:**
+
+```
+Input: [3,4,-1,1]
+Output: 2
+```
+
+**Example 3:**
+
+```
+Input: [7,8,9,11,12]
+Output: 1
+```
+
+**Note:**
+
+Your algorithm should run in _O_(_n_) time and uses constant extra space.
+
+#### Solution
+
+> 有一个要注意的地方是, 需要检查的地方是索引后的位置
+>
+> 检查当前值因为有重复所以会死循环
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        for(int i=0; i<nums.size(); ++i) {
+            while(nums[i]>0 && nums[i]<=nums.size() && nums[nums[i]-1]!=nums[i]) {
+                    cout<<i<<nums[i]-1<<endl;
+                    swap(nums[i], nums[nums[i]-1]);
+            }
+        }
+        int i;
+        for(i=0; i<nums.size(); ++i) {
+            if(nums[i]<=0 || nums[i]>nums.size() || i!=nums[i]-1) break;
+        }
+        return i+1;
+    }
+};
+```
