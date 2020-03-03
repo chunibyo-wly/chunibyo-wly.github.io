@@ -1815,3 +1815,73 @@ public:
     }
 };
 ```
+
+### [37\. Sudoku Solver](https://leetcode.com/problems/sudoku-solver/)
+
+Difficulty: **Hard**
+
+
+Write a program to solve a Sudoku puzzle by filling the empty cells.
+
+A sudoku solution must satisfy **all of the following rules**:
+
+1.  Each of the digits `1-9` must occur exactly once in each row.
+2.  Each of the digits `1-9` must occur exactly once in each column.
+3.  Each of the the digits `1-9` must occur exactly once in each of the 9 `3x3` sub-boxes of the grid.
+
+Empty cells are indicated by the character `'.'`.
+
+![](/images/250px-Sudoku-by-L2G-20050714.svg-1582790921586.png)  
+<small style="display: inline;">A sudoku puzzle...</small>
+
+![](/images/250px-Sudoku-by-L2G-20050714_solution.svg.png)  
+<small style="display: inline;">...and its solution numbers marked in red.</small>
+
+**Note:**
+
+*   The given board contain only digits `1-9` and the character `'.'`.
+*   You may assume that the given Sudoku puzzle will have a single unique solution.
+*   The given board size is always `9x9`.
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+    public:
+    bool row[10][10] = {0}, col[10][10] = {0}, cel[10][10] = {0};
+
+    bool check(int x, int y, int v) {
+        return !row[x][v] && !col[y][v] && !cel[x/3*3+y/3+1][v];
+    }
+
+    bool dfs(int x, int y, vector<vector<char>>&board) {
+        while(x<=8 && y<=8 && board[x][y]!='.')
+            y=y+(x+1)/9, x=(x+1)%9;
+        if(y>8) return true;
+        for(int i=1; i<=9; ++i) {
+            if(check(x, y, i)) {
+                row[x][i] = col[y][i] = cel[x/3*3+y/3+1][i] = 1;
+                board[x][y] = char(i+'0');
+                if(dfs(x, y, board)) return true;
+                board[x][y] = '.';
+                row[x][i] = col[y][i] = cel[x/3*3+y/3+1][i] = 0;
+            }
+        }
+        return false;
+    }
+
+    void solveSudoku(vector<vector<char>>& board) {
+        for(int i=0; i<board.size(); ++i) {
+            for(int j=0; j<board.size(); ++j) {
+                if(board[i][j] == '.') continue;
+                int v = board[i][j]-'0';
+                row[i][v] = col[j][v] = cel[i/3*3+j/3+1][v] = 1;
+            }
+        }
+        dfs(0, 0, board);
+    }
+};
+```
