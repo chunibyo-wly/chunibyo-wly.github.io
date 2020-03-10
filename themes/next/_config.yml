@@ -122,7 +122,8 @@ menu:
   tags: /tags/ || tags
   categories: /categories/ || th
   archives: /archives/ || archive
-  TimeLine: /TimeLine/ || TimeLine
+  # TimeLine: /TimeLine/ || TimeLine
+  20春招记录: /interview/ || calendar
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
