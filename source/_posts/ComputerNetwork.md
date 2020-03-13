@@ -7,6 +7,8 @@ tags:
 categories:
 	- 面试
 ---
+![img](/images/tcp-and-http.jpg)
+
 <!-- more -->
 
 # 一. 传输层
