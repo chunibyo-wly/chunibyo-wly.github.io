@@ -282,19 +282,22 @@ categories:
 
    2. TLS四次握手(2-RTT)
 
-      |        | 消息                                              |
-      | :----: | ------------------------------------------------- |
-      | A -> B | ClientHello(客户端随机数, 加密算法)               |
-      | B -> A | ServerHello(服务器随机数, 加密算法)               |
-      |        | Certificate证书链                                 |
-      |        | Server Key Exchange, 公钥                         |
-      |        | CertificateRequst, 验证客户端证书                 |
-      |        | ServerHelloDone                                   |
-      | A -> B | ClientKeyExchange, 使用服务端公钥加密的随机字符串 |
-      |        | ChangeCipherSpec                                  |
-      |        | Finished                                          |
-      | B -> A | ChangeCipherSpec                                  |
-      |        | Finished                                          |
+      |        | 消息                                            |
+      | :----: | ----------------------------------------------- |
+      | A -> B | ClientHello(客户端随机数-对称密钥, 加密算法)    |
+      | B -> A | ServerHello(服务器随机数-非对称密钥, 加密算法)  |
+      |        | Certificate证书链                               |
+      |        | Server Key Exchange, 公钥                       |
+      |        | CertificateRequst, 验证客户端证书               |
+      |        | ServerHelloDone                                 |
+      | A -> B | ClientKeyExchange, 使用服务端公钥加密的对称密钥 |
+      |        | ChangeCipherSpec                                |
+      |        | Finished                                        |
+      | B -> A | ChangeCipherSpec                                |
+      |        | Finished                                        |
 
    3. HTTP交互 (1-RTT), 真正传输数据的
+
+6. 服务端的状态码
+   
 

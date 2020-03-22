@@ -7,6 +7,8 @@ tags:
 categories:
 	- 面试
 ---
+![mysql](/images/1200px-MySQL.svg.png)
+
 <!-- more -->
 
 # 1. 事务
