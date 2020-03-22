@@ -9,7 +9,7 @@ categories:
 <!-- more -->
 
 | 时间  | 公司             | 简历 | 笔试 | 一面 | 二面 | 三面 |
-| ----- | ---------------- | :--: | :--: | :--: | :--: | :--: |
+| :---: | ---------------- | :--: | :--: | :--: | :--: | :--: |
 | 03/02 | mihoyo           |  ✔   |      |      |      |      |
 |       | bilibili         |      |      |      |      |      |
 |       | 斗鱼             |      |      |      |      |      |
@@ -237,4 +237,64 @@ categories:
    3. 缺页中断
 2. 直接写磁盘的性能损耗
    操作系统和C库函数通常会对写入的文件内容做缓存，以减少实际写文件的次数。直接调用系统函数fsync或C函数fflush将使系统的缓存机制失效，此时将强制把内容刷到磁盘上。除非必需，否则不要执行强制刷盘操作。
-3. 
+
+# [腾讯暑期实习面试](https://blog.csdn.net/weixin_41863129/article/details/105006828)
+
+## 一面
+
+1. 进程线程通信
+   1. 进程: 管道, 有名管道, 信号量, 消息队列, 共享内存, 套接字
+   2. 线程: 锁, 信号量
+   
+2. MySQL索引
+   MySQL 5.5以前的默认存储引擎是MyISAM, MySQL 5.5之后的默认存储引擎是InnoDB
+   
+   1. MyISAM
+      1. 没有事务
+      2. 全文索引(like %XXX)
+      3. 表级锁
+      4. 表压缩(io密集)
+      5. count()
+   
+   |                              |                                                 |        |        |        |
+   | :--------------------------- | :---------------------------------------------- | :----- | :----- | :----- |
+   | 特性                         | 说明                                            | InnoDB | MyISAM | MEMORY |
+   | B树索引 (B-tree indexes)     | 自增ID物理连续性更高， 二叉树，红黑树高度不可控 | √      | √      | √      |
+   | R树索引 (R-tree indexes)     | 空间索引                                        |        | √      |        |
+   | 哈希索引 (Hash indexes)      | 无法做范围查询                                  | √      |        | √      |
+   | 全文索引 (Full-text indexes) |                                                 | √      | √      |        |
+   
+   1. B树是多路树，红黑树是二叉树！红黑树一个节点只能存出一个值，B树一个节点可以存储多个值，红黑树的深度会更大,定位时 红黑树的查找次数会大一些。
+   2. 高度
+   3. 局部性原理 
+   
+3. MySQL的联合索引
+   叶节点存储的则是三个关键字col1、col2、col3三个关键字的数据，且按照col1、col2、col3的顺序进行排序
+
+4. https是什么
+
+   1. http的安全版本
+   2. ssl(Transport Layer Security) -> tls(Transport Layer Security)
+
+5. https 过程
+
+   1. TCP三次握手(1.5-RTT)
+
+   2. TLS四次握手(2-RTT)
+
+      |        | 消息                                              |
+      | :----: | ------------------------------------------------- |
+      | A -> B | ClientHello(客户端随机数, 加密算法)               |
+      | B -> A | ServerHello(服务器随机数, 加密算法)               |
+      |        | Certificate证书链                                 |
+      |        | Server Key Exchange, 公钥                         |
+      |        | CertificateRequst, 验证客户端证书                 |
+      |        | ServerHelloDone                                   |
+      | A -> B | ClientKeyExchange, 使用服务端公钥加密的随机字符串 |
+      |        | ChangeCipherSpec                                  |
+      |        | Finished                                          |
+      | B -> A | ChangeCipherSpec                                  |
+      |        | Finished                                          |
+
+   3. HTTP交互 (1-RTT), 真正传输数据的
+
