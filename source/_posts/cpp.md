@@ -80,3 +80,47 @@ std::auto_ptr<report> ps(new report("using auto ptr"));
 [https://marian5211.github.io/2018/03/09/B%E6%A0%91%E3%80%81B-%E6%A0%91%E3%80%81AVL%E6%A0%91%E3%80%81Trie%E6%A0%91%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/](https://marian5211.github.io/2018/03/09/B树、B-树、AVL树、Trie树及其应用场景/)
 
 map, set 
+
+# 11 & 14 & 17 新特性
+
+## 11
+
+1. auto
+
+# 奇怪的笔试题~
+
+1. sizeof(class)
+
+   ```cpp
+   #include <iostream>
+   
+   class A {
+   public:
+       A() = default;
+   };
+   
+   class B {
+       void f1() {}
+   
+       virtual void f2() {}
+   };
+   
+   class C : public B {
+   };
+   
+   class D {
+       int a;
+       char *p;
+   };
+   
+   int main() {
+       printf("%lu\n", sizeof(A));
+       printf("%lu\n", sizeof(B));
+       printf("%lu\n", sizeof(C));
+       printf("%lu\n", sizeof(D));
+   }
+   ```
+
+   ![image-20200323142617741](/images/image-20200323142617741.png)
+
+2. 
