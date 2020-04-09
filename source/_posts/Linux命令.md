@@ -16,9 +16,7 @@ categories:
 
 # 文件
 
-## 文件的处理
-
-### sed
+## sed
 
 ![image-20200327134335901](/images/image-20200327134335901.png)
 
