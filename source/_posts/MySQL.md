@@ -33,10 +33,6 @@ MySQLd 每个查询都是AUTOCOMMIT
 - 3NF: 属性不依赖于其他非主属性(消除传递依赖)
 - BCNF: 任何非主属性不能对主键子集依赖[消除对主码子集的依赖]
 
-## 2NF
-
-
-
 # 三. 锁🔒
 
 ## 1. 共享锁与排他锁
@@ -158,6 +154,48 @@ CHAR, VARCHAR
    ```mysql
    RENAME USER user@ipaddress1 TO user@ipaddress2;	
    ```
+   
+4. 查看当前使用数据库
+
+   ```mysql
+   select database();
+   ```
+
+   查看所有数据库
+
+   ```mysql
+   show databases;
+   ```
+
+   
+
+5. 格式化日期
+
+   ```mysql
+   select date_format(now(), '%y-%m-%d %H:%i:%s');
+   ```
+
+6. 事务
+
+   ```mysql
+   begin;
+   XXXXX
+   commit; / rollback;
+   ```
+
+7. alter
+
+   ```mysql
+   删除teacher表name字段
+   alter table teacher drop name;
+   
+   添加teacher表name字段
+   alter table teacher add name INT;
+   
+   alter table teacher modify name char(10);
+   ```
+
+   
 
 
 # sql 50题

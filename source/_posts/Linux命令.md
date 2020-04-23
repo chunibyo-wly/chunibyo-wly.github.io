@@ -301,3 +301,112 @@ cat file.txt | awk '/^[0-9][0-9][0-9]\-[0-9][0-9][0-9]\-[0-9][0-9][0-9][0-9]$/ |
 7. `-n`: 不要解析dns
 8. `-c`: 隔一秒输出一次
 
+## lsof
+
+![image-20200413190618816](/images/image-20200413190618816.png)
+
+Linux 一切皆文件
+
+1. `-u`: 某个用户打开的文件信息
+
+2. `-c`: 某个程序打开的文件信息
+
+3. `-i`: 网络连接
+
+   1. 所有的tcp
+
+      ```bash
+      lsof -i tcp
+      ```
+
+   2. `:3306`: 按端口查找
+
+      ```bash
+      lsof -i :3306
+      ```
+
+4. `-p`: 通过进程号查找
+
+## nc
+
+![image-20200413211046821](/images/image-20200413211046821.png)
+
+1. `-n`: 不适用dns, 直接使用ip
+2. `-u`: 扫描udp, 默认是tcp
+
+## tcpdump
+
+![image-20200413212845206](/images/image-20200413212845206.png)
+
+1. 监听指定的host
+
+   ```bash
+   tcpdump host 210.27.48.1
+   ```
+
+2. 监听本机udp且端口为123
+
+   ```bash
+   tcpdump udp port 123
+   ```
+
+## telnet
+
+1. 查看端口是否开放
+
+   ```bash
+   telnet chunibyo.xyz 22
+   ```
+
+## whois
+
+1. 查看域名信息
+
+   ```bash
+   whois chunibyo.xyz
+   ```
+
+## traceroute
+
+```bash
+traceroute www.baidu.com
+```
+
+1. `-m`限制跳数
+
+## mtr
+
+ping+traceroute
+
+## iptables
+
+1. 4个表
+   1. nat(状态转换表)
+   2. filter(数据过滤表)
+   3. raw(状态跟踪表)
+   4. mangle(包标记表)
+2. 内置链
+   1. input(入站)
+   2. output(出站)
+   3. forward(转发)
+   4. prerouting(路由前)
+   5. postrouting(路由后)
+3. `-t`: 指定表名`-t filter`
+4. `-A`: 给链追加  规则`-A INPUT`
+5. `-p`: 指定协议名`-p tcp`
+6. `-j`: option `-j DROP`
+7. `--dport`: 指定端口 `--dport 8081`
+
+#  其他
+
+## gdb
+
+1. `g++ -g`: Produce debugging information in the operating system's native format (stabs, COFF, XCOFF, or DWARF).  GDB can work with this debugging information.
+2. `run`: `r` 断点处停止
+3. `next`: 单步运行, 不进入函数
+4. `step`: 单步运行, 进入函数
+5. `break/delete n`: 第n行设置/删除断点
+6. `enable/disable n`: 第n行开启/暂停断点
+7. `list`
+8. `print`
+9. `watch`: 监视的表达式值变化, 停止程序
