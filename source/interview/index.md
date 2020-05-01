@@ -265,7 +265,6 @@ C端: Consumer, 消费者, 个人和家庭用户
 7. 时间片轮转算法
    5ms - 800ms
 
-8. 
 
 ## 深信服(C++)一面
 
@@ -300,6 +299,114 @@ C端: Consumer, 消费者, 个人和家庭用户
    1. 第二次挥手完成的时候，服务端可能还有数据要发送
    2. 所以只能先发送ack确认
 3. 内存排布
+4. 进程资源是如何隔离的
+   1. namespace是Linux提供的资源隔离机制。只有在同一个namespace下的进程可以相互联系，但无法感受到外部进程的存在，营造出处于一个独立的系统环境中的错觉，从而实现了隔离。
+   2. cgroup提供
+      1. 资源限制
+      2. 优先级控制
+      3. 资源统计
+      4. 任务控制
+5. 死锁的条件
+   1. 互斥: 一个资源只能被一个进程占用
+   2. 请求和保持等待: 一个进程因请求被占用资源而发生阻塞时，对已获得的资源保持占有
+   3. 不可抢占
+   4. 循环等待: 所等待的进程必定会形成一个环路
+6. 死锁的预防
+   1. 打破互斥: 实际意义不大
+   2. 打破请求和保持等待: 一次性申请需要的全部资源
+      1. 进程是动态的，不可能提前预知资源多少
+      2. 资源利用率低，降低了资源使用的并发性
+   3. 打破不可抢占: 允许分配已占有的资源
+   4. 打破循环等待：资源有序分配
+7. 死锁的避免
+   1. 银行家算法
+8. 死锁的检测
+   1. 发生死锁时，最小代价恢复运行
+   2. 发现环路说明有死锁
+9. 死锁的恢复
+   1. 按照进程优先级撤销进程
+
+## 百度二面
+
+1. GC
+   1. 引用计数法
+   2. mark sweep
+   3. 维护不需要GC的
+
+2. 线程安全的单例模式
+
+   1. 饿汉版
+
+      ```cpp
+      #include <bits/stdc++.h>
+      
+      using namespace std;
+      
+      class single {
+      private:
+          single() = default;
+      
+          ~single() = default;
+      
+          static single *instance;
+      public:
+          int val = 2;
+      
+          static single *getInstance() {
+              return instance;
+          }
+      };
+      
+      single *single::instance = new single();
+      
+      int main() {
+          cout << single::getInstance()->val << endl;
+      }
+      
+      ```
+
+      
+
+   2. 懒汉版
+
+      ```cpp
+      #include <bits/stdc++.h>
+      
+      using namespace std;
+      
+      class single {
+      private:
+          single() = default;
+      
+          ~single() = default;
+      
+          static single *instance;
+      
+          static mutex _mutex;
+      public:
+          int val = 2;
+      
+          static single *getInstance() {
+              if (instance == nullptr) {
+                  unique_lock<mutex> lock(_mutex);
+                  if (instance == nullptr)
+                      instance = new single();
+              }
+              return instance;
+          }
+      };
+      
+      single *single::instance = nullptr;
+      mutex single::_mutex;
+      
+      
+      int main() {
+          cout << single::getInstance()->val << endl;
+      }
+      
+      ```
+
+      
 
 ## 作业帮(运维)一面
 
@@ -344,17 +451,33 @@ C端: Consumer, 消费者, 个人和家庭用户
    4. 403: 服务端收到请求, 但是拒绝提供服务
    5. 404: 请求的资源不存在
 
-4. websocket
+4. cookie 和 session区别
+
+   |          | cookie             | session        |
+   | -------- | ------------------ | -------------- |
+   | 存取方式 | ASCII字符串        | 任意类型       |
+   | 隐私策略 | 客户端可见         | 存储在服务器   |
+   | 有效期   | 时间可以设置比较长 | 不可能又多又长 |
+   | 跨域     | 支持               | 不支持         |
+
+   
+
+5. websocket
 
    1. 基于TCP的真正的全双工通信，客户端和服务器都可以正常接受与发送数据
    2. 建立TCP连接后，不需要HTTP header
    3. 通信协议符为(ws, wss)
 
-5. 事务是什么
+6. 事务是什么
    满足ACID的一组操作
 
-6. 为什么需要事务
+7. 为什么需要事务
    保证数据库中数据的完整性和正确性
+
+## 字节(运维)二面
+
+1. 聚簇索引
+   聚簇索引的数据的物理存放顺序与索引顺序是一致，IO时间变少
 
 # [[暑期实习面经]](https://www.nowcoder.com/discuss/375967?type=post&order=time&pos=&page=1)
 

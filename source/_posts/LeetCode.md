@@ -2138,3 +2138,388 @@ public:
     }
 };
 ```
+
+### [42\. Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
+
+> 单调栈
+>
+> 维护一个严格递减的栈
+
+Difficulty: **Hard**
+
+
+Given _n_ non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
+
+![](/images/rainwatertrap.png)  
+<small style="display: inline;">The above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped. **Thanks Marcos** for contributing this image!</small>
+
+**Example:**
+
+```
+Input: [0,1,0,2,1,0,1,3,2,1,2,1]
+Output: 6
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    int trap(vector<int> &height) {
+        stack<int> s;
+
+        int sum = 0;
+        for (int i = 0; i < height.size(); ++i) {
+            while(!s.empty() && height[s.top()] <= height[i]) {
+                int mid = height[s.top()]; s.pop();
+                if(!s.empty()) {
+                    int pre = s.top();
+                    sum += (min(height[pre], height[i]) - mid) * (i-pre-1);
+                }
+            }
+            s.push(i);
+        }
+
+        return sum;
+    }
+};
+
+```
+
+## ELSE
+
+### [51\. N-Queens](https://leetcode.com/problems/n-queens/)
+
+Difficulty: **Hard**
+
+
+The _n_-queens puzzle is the problem of placing _n_ queens on an _n_×_n_ chessboard such that no two queens attack each other.
+
+![](/images/8-queens.png)
+
+Given an integer _n_, return all distinct solutions to the _n_-queens puzzle.
+
+Each solution contains a distinct board configuration of the _n_-queens' placement, where `'Q'` and `'.'` both indicate a queen and an empty space respectively.
+
+**Example:**
+
+```
+Input: 4
+Output: [
+ [".Q..",  // Solution 1
+  "...Q",
+  "Q...",
+  "..Q."],
+
+ ["..Q.",  // Solution 2
+  "Q...",
+  "...Q",
+  ".Q.."]
+]
+Explanation: There exist two distinct solutions to the 4-queens puzzle as shown above.
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+const int MAXN = 1e3+5;
+
+class Solution {
+public:
+    bool m[MAXN][MAXN]={0};
+    bool x[MAXN]={0}, y[MAXN]={0}, x_minus_y[MAXN*2]={0}, x_plus_y[MAXN*2]={0};
+    
+    int n;
+    
+    bool check(int i, int j) {
+        return x[i] || y[j] || x_minus_y[i-j+MAXN] || x_plus_y[i+j];
+    }
+    
+    void dfs(vector<vector<string>> &result, int i) {
+        
+        if(i >= n) {
+            vector<string> v;
+            for(int j=0; j<n; ++j) {
+                string tmp = "";
+                for(int k=0; k<n; ++k) {
+                    if(m[j][k]) tmp += 'Q';
+                    else tmp += '.';
+                }
+                v.push_back(tmp);
+            }
+            result.push_back(v);
+            return ;
+        }
+                
+        for(int j=0; j<n; ++j) {
+            if(check(i, j)) continue;
+            
+            // cout << i << ' ' << j <<endl;
+            
+            m[i][j] = 1, x[i] = 1, y[j] = 1, x_minus_y[i-j+MAXN] = 1, x_plus_y[i+j] = 1;
+            dfs(result, i+1);
+            m[i][j] = 0, x[i] = 0, y[j] = 0, x_minus_y[i-j+MAXN] = 0, x_plus_y[i+j] = 0;
+        }
+
+    }
+    
+    vector<vector<string>> solveNQueens(int _n) {
+        n = _n;
+        vector<vector<string>> result;
+        dfs(result, 0);
+        return result;
+    }
+};
+```
+
+### [88\. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)
+
+Difficulty: **Easy**
+
+
+Given two sorted integer arrays _nums1_ and _nums2_, merge _nums2_ into _nums1_ as one sorted array.
+
+**Note:**
+
+*   The number of elements initialized in _nums1_ and _nums2_ are _m_ and _n_ respectively.
+*   You may assume that _nums1_ has enough space (size that is greater or equal to _m_ + _n_) to hold additional elements from _nums2_.
+
+**Example:**
+
+```
+Input:
+nums1 = [1,2,3,0,0,0], m = 3
+nums2 = [2,5,6],       n = 3
+
+Output: [1,2,2,3,5,6]
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int a=m-1, b=n-1;
+        
+        // if(a < 0) {
+        //     for(int i=0; i<nums1.size(); ++i) nums1[i]=nums2[i]; return ;
+        // }
+        
+        for(int i=nums1.size()-1; i>=0; i--) {
+            if(b >=0 && (a < 0 || nums1[a] < nums2[b])) nums1[i] = nums2[b--];
+            else nums1[i] = nums1[a--];
+        }
+    }
+};
+```
+
+### [92\. Reverse Linked List II](https://leetcode.com/problems/reverse-linked-list-ii/)
+
+Difficulty: **Medium**
+
+
+Reverse a linked list from position _m_ to _n_. Do it in one-pass.
+
+**Note: **1 ≤ _m_ ≤ _n_ ≤ length of list.
+
+**Example:**
+
+```
+Input: 1->2->3->4->5->NULL, m = 2, n = 4
+Output: 1->4->3->2->5->NULL
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int m, int n) {
+        if(head == nullptr || head->next == nullptr || m == n) return head;
+        
+        ListNode *dummy = new ListNode(0), *pre, *cur;
+        dummy->next = head, pre = dummy;
+        
+        for(int i=0; i<m-1; ++i) pre = pre->next;
+        
+        cur = pre->next;
+        for(int i=0; i<n-m; ++i) {
+            ListNode *tmp = pre->next;
+            pre->next = cur->next;
+            cur->next = pre->next->next;
+            pre->next->next = tmp;
+        }
+        
+        return dummy->next;
+    }
+};
+```
+
+### [145\. Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)
+
+Difficulty: **Hard**
+
+
+Given a binary tree, return the _postorder_ traversal of its nodes' values.
+
+**Example:**
+
+```
+Input: [1,null,2,3]
+   1
+    \
+     2
+    /
+   3
+
+Output: [3,2,1]
+```
+
+**Follow up:** Recursive solution is trivial, could you do it iteratively?
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> v;
+        stack<TreeNode*> s;
+        s.push(root);
+        while(!s.empty()) {
+            TreeNode* tmp = s.top(); s.pop();
+            if(tmp == nullptr) continue;
+            v.push_back(tmp->val);
+            s.push(tmp->left);
+            s.push(tmp->right);
+        }
+        reverse(v.begin(), v.end());
+        return v;
+    }
+};
+```
+
+### [206\. Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)
+
+Difficulty: **Easy**
+
+
+Reverse a singly linked list.
+
+**Example:**
+
+```
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+```
+
+**Follow up:**
+
+A linked list can be reversed either iteratively or recursively. Could you implement both?
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    
+    ListNode* reverse(ListNode *node) {
+        if(node->next == nullptr) return node;
+        ListNode *head = reverse(node->next);
+        node->next->next = node;
+        return head;
+    }
+    
+    ListNode* reverseList(ListNode* head) {
+        if(head == nullptr || head->next == nullptr) return head;
+
+        ListNode *result = reverse(head);
+        head->next = nullptr;
+        return result;
+    }
+};
+```
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if(head == nullptr || head->next == nullptr) return head;
+        
+        ListNode *pre = head, *cur = head->next;
+        
+        while(cur->next != nullptr) {
+            ListNode *nxt = cur->next;
+            cur->next = pre;
+            pre = cur;
+            cur = nxt;
+        }
+        
+        cur->next = pre;
+        head->next = nullptr;
+        
+        return cur;
+    }
+};
+```
+
