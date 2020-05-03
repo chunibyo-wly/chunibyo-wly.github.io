@@ -291,3 +291,47 @@ void clear()
 void insert(iterator position, size_type n, const T& x)
 ```
 
+## 4.3 list
+
+### 4.3.3 迭代器
+
+Bidirectional Iterators
+
+插入(insert)和接合(splice)不会造成迭代器失效, erase只有**"指向被删除"**的迭代器失效
+
+### 4.3.4 list 的数据结构
+
+环状双向链表
+
+**注意**
+
+1. 指针node指向尾部的空白节点，node就可以符合STL的**前闭后开**
+2. size()方法复杂度是O(n)的
+
+```cpp
+template<class T>
+class list {
+protected:
+    typedef __list_node<T> list_node;
+public:
+    typedef list_node* link_type;
+protected:
+    link_type node; // 用这个指针表示整个环状双向链表
+    
+    iterator begin() {return (link_type)((*node).next);}
+    iterator end()   {return node;}
+    bool empty() const {return node->next == node;}
+    
+    size_type size() const {
+        size_type result = 0;
+        distance(begin(), end(), result);
+        return result;
+    }
+    reference front() {return *begin();}
+    reference back() { return *(--end()); }
+    
+};
+```
+
+### 4.3.6 list 的元素操作
+

@@ -2523,3 +2523,246 @@ public:
 };
 ```
 
+### [535\. Encode and Decode TinyURL](https://leetcode.com/problems/encode-and-decode-tinyurl/)
+
+Difficulty: **Medium**
+
+
+> Note: This is a companion problem to the problem: .
+
+TinyURL is a URL shortening service where you enter a URL such as `https://leetcode.com/problems/design-tinyurl` and it returns a short URL such as `http://tinyurl.com/4e9iAk`.
+
+Design the `encode` and `decode` methods for the TinyURL service. There is no restriction on how your encode/decode algorithm should work. You just need to ensure that a URL can be encoded to a tiny URL and the tiny URL can be decoded to the original URL.
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+
+    // 设置 id 自增，一个 10进制 id 对应一个 62进制的数值
+    
+    map<int, string> m;
+    int cnt = 0;
+    string tiny = "http://tinyurl.com/";
+    
+    string table = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    
+    string change(int x) {
+        string tmp = "";
+        while(x) {
+            tmp=table[x%62]+tmp;
+            x/=62;
+        }
+        return tmp;
+    }
+    
+    int rechange(string s){
+        int tmp = 0;
+        for(auto &x: s) {
+            if(x>='0' && x<='9') {
+                tmp=tmp*62+(x-'0');
+            }
+            else if(x >= 'A' && x <= 'Z') {
+                 tmp=tmp*62+(x-'A')+10;
+            }
+            else if(x >= 'a' && x <= 'z') {
+                tmp=tmp*62+(x-'a')+10;
+            }
+        }
+        return tmp;
+    }
+    
+    // Encodes a URL to a shortened URL.
+    string encode(string longUrl) {
+        
+        cnt++;
+        m[cnt] = longUrl;
+        
+        return tiny+change(cnt);
+    }
+
+    // Decodes a shortened URL to its original URL.
+    string decode(string shortUrl) {
+        
+        
+        
+        return m[rechange(shortUrl.substr(tiny.size()-1))];
+    }
+};
+
+// Your Solution object will be instantiated and called as such:
+// Solution solution;
+// solution.decode(solution.encode(url));
+```
+
+### [693\. Binary Number with Alternating Bits](https://leetcode.com/problems/binary-number-with-alternating-bits/)
+
+Difficulty: **Easy**
+
+
+Given a positive integer, check whether it has alternating bits: namely, if two adjacent bits will always have different values.
+
+**Example 1:**  
+
+```
+Input: 5
+Output: True
+Explanation:
+The binary representation of 5 is: 101
+```
+
+**Example 2:**  
+
+```
+Input: 7
+Output: False
+Explanation:
+The binary representation of 7 is: 111.
+```
+
+**Example 3:**  
+
+```
+Input: 11
+Output: False
+Explanation:
+The binary representation of 11 is: 1011.
+```
+
+**Example 4:**  
+
+```
+Input: 10
+Output: True
+Explanation:
+The binary representation of 10 is: 1010.
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    bool hasAlternatingBits(int n) {
+        
+        //  101010
+        //^ 001010
+        // --------
+        //  100000
+        //& 011111
+        // --------
+        //  000000
+        
+        n = n ^ (n>>2);
+        return !(n & n-1);
+        
+        //  101011
+        //^ 001010
+        // --------
+        //  100001
+        //& 100000
+        // --------
+        //  100000
+    }
+};
+```
+
+### [1106\. Parsing A Boolean Expression](https://leetcode.com/problems/parsing-a-boolean-expression/)
+
+Difficulty: **Hard**
+
+
+Return the result of evaluating a given boolean `expression`, represented as a string.
+
+An expression can either be:
+
+*   `"t"`, evaluating to `True`;
+*   `"f"`, evaluating to `False`;
+*   `"!(expr)"`, evaluating to the logical NOT of the inner expression `expr`;
+*   `"&(expr1,expr2,...)"`, evaluating to the logical AND of 2 or more inner expressions `expr1, expr2, ...`;
+*   `"|(expr1,expr2,...)"`, evaluating to the logical OR of 2 or more inner expressions `expr1, expr2, ...`
+
+**Example 1:**
+
+```
+Input: expression = "!(f)"
+Output: true
+```
+
+**Example 2:**
+
+```
+Input: expression = "|(f,t)"
+Output: true
+```
+
+**Example 3:**
+
+```
+Input: expression = "&(t,f)"
+Output: false
+```
+
+**Example 4:**
+
+```
+Input: expression = "|(&(t,f,t),!(t))"
+Output: false
+```
+
+**Constraints:**
+
+*   `1 <= expression.length <= 20000`
+*   `expression[i]` consists of characters in `{'(', ')', '&', '|', '!', 't', 'f', ','}`.
+*   `expression` is a valid expression representing a boolean, as given in the description.
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    
+    bool dfs(string &s, int &i) {
+        if(s[i]=='t') {i++; return true;}
+        else if(s[i]=='f') {i++; return false;}
+        else if(s[i]=='!') {
+            i+=2;
+            bool tmp = !dfs(s, i);
+            i+=1;
+            return tmp;
+        }
+        else if(s[i]=='&') {
+            i+=1;
+            bool tmp = true;
+            while(s[i] != ')')
+                i+=1, tmp &= dfs(s, i);
+            i+=1;
+            return tmp;
+        }
+        else if(s[i]=='|') {
+            i+=1;
+            bool tmp = false;
+            while(s[i] != ')')
+                i+=1, tmp |= dfs(s, i);
+            i+=1;
+            return tmp;
+        }
+        return false;
+    }
+    
+    bool parseBoolExpr(string expression) {
+        int i = 0;
+        return dfs(expression, i);
+    }
+};
+```
