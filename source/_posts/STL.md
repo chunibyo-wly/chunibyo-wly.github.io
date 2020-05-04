@@ -335,3 +335,22 @@ protected:
 
 ### 4.3.6 list 的元素操作
 
+1. push_front:() insert(begin(), x);
+2. push_back(): insert(end(), x);
+3. erase(): return下一个节点的迭代器
+4. pop_front(): erase(begin());
+5. pop_back(): 
+   iterator tmp=end(); // 最后一个是空节点
+   erase(--tmp);
+6. clear(): 
+   while(cur != node) {...}
+   node->nxt = node, node->pre = node;
+7. remove(const T& value); 将数值为value的所有元素移除
+8. unique(): 移除**连续而相同的元素**
+9. transfer()
+10. splice():
+    1. x结合于position所指位置之前, x必须不同于*this
+    2. i 所指元素接合于 position前
+    3. 将 [first, last) 所有元素结合与 position 前
+11. list 不能使用STL的sort, 但是自带sort 成员函数
+    因为STL的sort只接受RandomAccessIterator
