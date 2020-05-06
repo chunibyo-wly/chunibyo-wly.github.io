@@ -2674,6 +2674,89 @@ public:
 };
 ```
 
+### [824\. Goat Latin](https://leetcode.com/problems/goat-latin/)
+
+Difficulty: **Easy**
+
+
+A sentence `S` is given, composed of words separated by spaces. Each word consists of lowercase and uppercase letters only.
+
+We would like to convert the sentence to "_Goat Latin"_ (a made-up language similar to Pig Latin.)
+
+The rules of Goat Latin are as follows:
+
+*   If a word begins with a vowel (a, e, i, o, or u), append `"ma"` to the end of the word.  
+    For example, the word 'apple' becomes 'applema'.  
+
+*   If a word begins with a consonant (i.e. not a vowel), remove the first letter and append it to the end, then add `"ma"`.  
+    For example, the word `"goat"` becomes `"oatgma"`.  
+
+*   Add one letter `'a'` to the end of each word per its word index in the sentence, starting with 1.  
+    For example, the first word gets `"a"` added to the end, the second word gets `"aa"` added to the end and so on.
+
+Return the final sentence representing the conversion from `S` to Goat Latin. 
+
+**Example 1:**
+
+```
+Input: "I speak Goat Latin"
+Output: "Imaa peaksmaaa oatGmaaaa atinLmaaaaa"
+```
+
+**Example 2:**
+
+```
+Input: "The quick brown fox jumped over the lazy dog"
+Output: "heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa"
+```
+
+Notes:
+
+*   `S` contains only uppercase, lowercase and spaces. Exactly one space between each word.
+*   `1 <= S.length <= 150`.
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    unordered_set<char> m;
+    string toGoatLatin(string s) {
+        
+        m.insert('a');m.insert('e');m.insert('i');m.insert('o');m.insert('u');
+        m.insert('A');m.insert('E');m.insert('I');m.insert('O');m.insert('U');
+        
+        string re;
+        char flag=' ';
+        int cnt=2;
+        for(int i=0; i<=s.size(); ++i) {
+            if(s[i]==' ' || i==s.size()) {
+                if(flag!=' ') re+=flag;
+                re+='m'; for(int i=0; i<cnt; ++i) re+='a';
+                if(i<s.size()) re+=' ';
+                flag=' ';
+                cnt++;
+            }
+            else if(i==0 || s[i-1]==' '){
+                if(m.find(s[i])  == m.end()) {
+                    flag=s[i];
+                }
+                else {
+                    re+=s[i];
+                }
+            }
+            else {
+                re += s[i];
+            }
+        }
+        return re;
+    }
+};
+```
+
 ### [1106\. Parsing A Boolean Expression](https://leetcode.com/problems/parsing-a-boolean-expression/)
 
 Difficulty: **Hard**
@@ -2763,6 +2846,89 @@ public:
     bool parseBoolExpr(string expression) {
         int i = 0;
         return dfs(expression, i);
+    }
+};
+```
+
+### [1290\. Convert Binary Number in a Linked List to Integer](https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/)
+
+Difficulty: **Easy**
+
+
+Given `head` which is a reference node to a singly-linked list. The value of each node in the linked list is either 0 or 1\. The linked list holds the binary representation of a number.
+
+Return the _decimal value_ of the number in the linked list.
+
+**Example 1:**
+
+![](/images/graph-1.png)
+
+```
+Input: head = [1,0,1]
+Output: 5
+Explanation: (101) in base 2 = (5) in base 10
+```
+
+**Example 2:**
+
+```
+Input: head = [0]
+Output: 0
+```
+
+**Example 3:**
+
+```
+Input: head = [1]
+Output: 1
+```
+
+**Example 4:**
+
+```
+Input: head = [1,0,0,1,0,0,1,1,1,0,0,0,0,0,0]
+Output: 18880
+```
+
+**Example 5:**
+
+```
+Input: head = [0,0]
+Output: 0
+```
+
+**Constraints:**
+
+*   The Linked List is not empty.
+*   Number of nodes will not exceed `30`.
+*   Each node's value is either `0` or `1`.
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int getDecimalValue(ListNode* head) {
+        long long sum = 0;
+        ListNode* cur = head;
+        while(cur != nullptr) {
+            sum =sum*2+ cur->val;
+            cur=cur->next;
+        }
+        return sum;
     }
 };
 ```

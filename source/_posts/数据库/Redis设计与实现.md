@@ -61,3 +61,71 @@ typedef struct List {
 8465656
 ```
 
+## 第四章、字典
+
+### 4.1 哈希表
+
+```cpp
+typedef struct dictht {
+    // 哈希表数组
+    dictEntry **table;
+    
+    // 哈希表大小
+    unsigned long size;
+    
+    // 用于计算索引值, 等于 size-1
+    unsigned long sizemask;
+    
+    // 哈希表节点数目
+    unsigned long used;
+}dictht;
+```
+
+### 4.2 哈希表节点
+
+```cpp
+typedef struct dictEntry {
+    // 键
+    void *key;
+    
+    // 值
+    union z{
+        void *val;
+        uint64_t u64;
+        int64_t s64;
+    } v;
+    
+    // 指向下一个哈希表节点
+    struct dictEntry *next;
+}dictEntry;
+```
+
+### 4.3 字典
+
+```cpp
+typedef struct dict {
+    // 类型特定函数
+    dictType *type;
+    
+    // 私有数据
+    void *privdata;
+    
+    // 哈希表
+    dictht ht[2];
+    
+    // rehash索引
+    int trehashidx;
+}dict;
+```
+
+### 4.4 哈希算法
+
+1. hash   = dict->type->MurmurHash2(key)
+2. index = hash & dict->ht[0].sizemask;
+
+### 4.5 rehash
+
+1. `ht[0]` 渐进式 rehash 到 `ht[1]`
+2. 释放 `ht[0]`
+3. `ht[1]` 设置为 `ht[0]`, 给 `ht[1]` 分配一个空白哈希表
+

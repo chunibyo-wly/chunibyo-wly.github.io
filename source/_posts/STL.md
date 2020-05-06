@@ -354,3 +354,7 @@ protected:
     3. 将 [first, last) 所有元素结合与 position 前
 11. list 不能使用STL的sort, 但是自带sort 成员函数
     因为STL的sort只接受RandomAccessIterator
+
+## 4.5 stack & 4.6 queue
+
+deque 为底层的配接器(adapter), 没有迭代器
