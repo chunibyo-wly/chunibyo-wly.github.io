@@ -2523,6 +2523,159 @@ public:
 };
 ```
 
+### [445\. Add Two Numbers II](https://leetcode.com/problems/add-two-numbers-ii/)
+
+Difficulty: **Medium**
+
+
+You are given two **non-empty** linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+**Follow up:**  
+What if you cannot modify the input lists? In other words, reversing the lists is not allowed.
+
+**Example:**
+
+```
+Input: (7 -> 2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 8 -> 0 -> 7
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode *cur1=l1, *cur2=l2;
+        stack<int> s1, s2;
+        while(cur1!=nullptr || cur2!=nullptr) {
+            if(cur1!=nullptr) {s1.push(cur1->val); cur1=cur1->next;}
+            if(cur2!=nullptr) {s2.push(cur2->val); cur2=cur2->next;}
+        }
+        // cout << s1.top() << ' ' << s2.top() <<endl;
+
+        int flag=0;
+        ListNode* head = new ListNode(0);
+        while(!s1.empty() || !s2.empty() || flag) {
+            if(!s1.empty()) {flag+=s1.top(); s1.pop();}
+            if(!s2.empty()) {flag+=s2.top(); s2.pop();}
+            ListNode* node = new ListNode(flag%10);
+            node->next = head->next;
+            head->next = node;
+            flag       = flag/10;
+        }
+        return head->next;
+    }
+};
+```
+
+### [468\. Validate IP Address](https://leetcode.com/problems/validate-ip-address/)
+
+Difficulty: **Medium**
+
+
+Write a function to check whether an input string is a valid IPv4 address or IPv6 address or neither.
+
+**IPv4** addresses are canonically represented in dot-decimal notation, which consists of four decimal numbers, each ranging from 0 to 255, separated by dots ("."), e.g.,`172.16.254.1`;
+
+Besides, leading zeros in the IPv4 is invalid. For example, the address `172.16.254.01` is invalid.
+
+**IPv6** addresses are represented as eight groups of four hexadecimal digits, each group representing 16 bits. The groups are separated by colons (":"). For example, the address `2001:0db8:85a3:0000:0000:8a2e:0370:7334` is a valid one. Also, we could omit some leading zeros among four hexadecimal digits and some low-case characters in the address to upper-case ones, so `2001:db8:85a3:0:0:8A2E:0370:7334` is also a valid IPv6 address(Omit leading zeros and using upper cases).
+
+However, we don't replace a consecutive group of zero value with a single empty group using two consecutive colons (::) to pursue simplicity. For example, `2001:0db8:85a3::8A2E:0370:7334` is an invalid IPv6 address.
+
+Besides, extra leading zeros in the IPv6 is also invalid. For example, the address `02001:0db8:85a3:0000:0000:8a2e:0370:7334` is invalid.
+
+**Note:** You may assume there is no extra space or special characters in the input string.
+
+**Example 1:**  
+
+```
+Input: "172.16.254.1"
+
+Output: "IPv4"
+
+Explanation: This is a valid IPv4 address, return "IPv4".
+```
+
+**Example 2:**  
+
+```
+Input: "2001:0db8:85a3:0:0:8A2E:0370:7334"
+
+Output: "IPv6"
+
+Explanation: This is a valid IPv6 address, return "IPv6".
+```
+
+**Example 3:**  
+
+```
+Input: "256.256.256.256"
+
+Output: "Neither"
+
+Explanation: This is neither a IPv4 address nor a IPv6 address.
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public: 
+    
+    bool checkInt(char c) {return '0'<=c && c<='9';}
+    bool checkChar(char c){return ('a'<=c && c<='f') || ('A'<=c&&c<='F');}
+    
+    string validIPAddress(string s) {
+        stringstream ss(s);
+        int cnt = 0;
+        string t;
+        // IPv4
+        if(s.find('.') != string::npos) {
+            while(getline(ss, t, '.')) {
+                cnt++;
+                if(cnt>4 || t.empty() || t.size()>3 || (t.size()>1&&t[0]=='0')) return "Neither";
+                for(auto c:t) if(!checkInt(c)) return "Neither";
+                int tmp = stoi(t);
+                if(!(tmp>=0&&tmp<=255)) return "Neither";
+            }
+            if(cnt==4&&s[s.size()-1]!='.') return "IPv4";
+            else return "Neither";
+        }
+        // IPv6
+        else if(s.find(':') != string::npos) {
+            while(getline(ss, t, ':')) {
+                cnt++;
+                if(cnt>8 || t.empty() || t.size()>4) return "Neither";
+                for(auto c:t) if(!checkInt(c) && !checkChar(c)) return "Neither";
+            }
+            if(cnt==8&&s[s.size()-1]!=':') return "IPv6";
+            else return "Neither";
+        }
+        return "Neither";
+    }
+};
+```
+
 ### [535\. Encode and Decode TinyURL](https://leetcode.com/problems/encode-and-decode-tinyurl/)
 
 Difficulty: **Medium**
@@ -2846,6 +2999,77 @@ public:
     bool parseBoolExpr(string expression) {
         int i = 0;
         return dfs(expression, i);
+    }
+};
+```
+
+### [1220\. Count Vowels Permutation](https://leetcode.com/problems/count-vowels-permutation/)
+
+Difficulty: **Hard**
+
+
+Given an integer `n`, your task is to count how many strings of length `n` can be formed under the following rules:
+
+*   Each character is a lower case vowel (`'a'`, `'e'`, `'i'`, `'o'`, `'u'`)
+*   Each vowel `'a'` may only be followed by an `'e'`.
+*   Each vowel `'e'` may only be followed by an `'a'` or an `'i'`.
+*   Each vowel `'i'` **may not** be followed by another `'i'`.
+*   Each vowel `'o'` may only be followed by an `'i'` or a `'u'`.
+*   Each vowel `'u'` may only be followed by an `'a'.`
+
+Since the answer may be too large, return it modulo `10^9 + 7.`
+
+**Example 1:**
+
+```
+Input: n = 1
+Output: 5
+Explanation: All possible strings are: "a", "e", "i" , "o" and "u".
+```
+
+**Example 2:**
+
+```
+Input: n = 2
+Output: 10
+Explanation: All possible strings are: "ae", "ea", "ei", "ia", "ie", "io", "iu", "oi", "ou" and "ua".
+```
+
+**Example 3: **
+
+```
+Input: n = 5
+Output: 68
+```
+
+**Constraints:**
+
+*   `1 <= n <= 2 * 10^4`
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    
+    int MOD          = 1e9 + 7;    
+    int dp[5][20005] = {0};
+    
+    int countVowelPermutation(int n) {
+        for(int i=0;i<5;++i) dp[i][1]=1;
+        for(int i=2;i<=n;++i) {
+            dp[0][i] = (dp[1][i-1])%MOD;
+            dp[1][i] = (dp[0][i-1]+dp[2][i-1])%MOD;
+            dp[2][i] = ((dp[0][i-1]+dp[1][i-1])%MOD+(dp[3][i-1]+dp[4][i-1])%MOD)%MOD;
+            dp[3][i] = (dp[2][i-1]+dp[4][i-1])%MOD;
+            dp[4][i] = (dp[0][i-1])%MOD;
+        }
+        int sum=0;
+        for(int i=0;i<5;++i) sum=(sum+dp[i][n])%MOD;
+        return sum;
     }
 };
 ```
