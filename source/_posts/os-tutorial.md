@@ -48,3 +48,67 @@ qemu-system-x86_64 --curses out/01_boot_sect_simple.bin
 
 AX 的低 8 位（0-7）构成了 AL 寄存器，高 8 位（8-15）构成了 AH 寄存器。它们是可以独立使用的 8 位寄存器。
 
+# 第3章、引导内存
+
+BIOS将引导程序放在内存地址$0x7c00$
+
+这里引入了全局地址偏移
+
+```asm
+[org 0x7c00]
+```
+
+# 第4章、引导栈
+
+`bp`寄存器存储栈的基地址
+
+`sp`寄存器存储栈顶地址
+
+`sp`从`bp`开始向下生长(递减)
+
+```asm
+mov ah, 0x0e ; tty mode
+
+mov bp, 0x8000 ; this is an address far away from 0x7c00 so that we don't get overwritten
+mov sp, bp ; if the stack is empty then sp points to bp
+
+push 'A'
+push 'B'
+push 'C'
+
+; to show how the stack grows downwards
+mov al, [0x7ffe] ; 0x8000 - 2
+int 0x10
+
+; however, don't try to access [0x8000] now, because it won't work
+; you can only access the stack top so, at this point, only 0x7ffe (look above)
+mov al, [0x8000]
+int 0x10
+
+
+; recover our characters using the standard procedure: 'pop'
+; We can only pop full words so we need an auxiliary register to manipulate
+; the lower byte
+pop bx
+mov al, bl
+int 0x10 ; prints C
+
+pop bx
+mov al, bl
+int 0x10 ; prints B
+
+pop bx
+mov al, bl
+int 0x10 ; prints A
+
+; data that has been pop'd from the stack is garbage now
+mov al, [0x8000]
+int 0x10
+
+
+jmp $
+times 510-($-$$) db 0
+dw 0xaa55
+```
+
+![image-20200513190333679](/images/image-20200513190333679.png)

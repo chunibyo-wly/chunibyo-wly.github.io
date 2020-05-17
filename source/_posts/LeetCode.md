@@ -1537,6 +1537,64 @@ public:
 };
 ```
 
+### [25\. Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/)
+
+Difficulty: **Hard**
+
+
+Given a linked list, reverse the nodes of a linked list _k_ at a time and return its modified list.
+
+_k_ is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of _k_ then left-out nodes in the end should remain as it is.
+
+**Example:**
+
+Given this linked list: `1->2->3->4->5`
+
+For _k_ = 2, you should return: `2->1->4->3->5`
+
+For _k_ = 3, you should return: `3->2->1->4->5`
+
+**Note:**
+
+*   Only constant extra memory is allowed.
+*   You may not alter the values in the list's nodes, only nodes itself may be changed.
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    
+    ListNode* reverse(ListNode* head) {↔}
+    
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if(head==nullptr || head->next==nullptr) return head;
+        ListNode* tail=head;
+        int tmp=k;
+        while(--tmp) {
+            tail=tail->next;
+            if(tail==nullptr) return head;
+        }
+        ListNode* tmpNode=tail->next;
+        tail->next=nullptr;
+        ListNode* newHead = reverse(head);
+        head->next = reverseKGroup(tmpNode, k);
+        return newHead;
+    }
+};
+```
+
 ### [26\. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
 
 Difficulty: **Easy**
@@ -1676,6 +1734,57 @@ public:
 ```
 
 ## 31 - 40
+
+### [32\. Longest Valid Parentheses](https://leetcode.com/problems/longest-valid-parentheses/)
+
+Difficulty: **Hard**
+
+
+Given a string containing just the characters `'('` and `')'`, find the length of the longest valid (well-formed) parentheses substring.
+
+**Example 1:**
+
+```
+Input: "(()"
+Output: 2
+Explanation: The longest valid parentheses substring is "()"
+```
+
+**Example 2:**
+
+```
+Input: ")()())"
+Output: 4
+Explanation: The longest valid parentheses substring is "()()"
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    int longestValidParentheses(string s) {
+        stack<int> st;
+        st.push(-1);
+        int _max=0;
+        for(int i=0; i<s.size(); ++i) {
+            if(s[i]=='(') st.push(i);
+            else {
+                st.pop();
+                if(st.empty()) st.push(i);
+                else {
+                    if(st.empty()) st.push(i);
+                    else _max=max(_max, i-st.top());
+                }
+            }
+        }
+        return _max;
+    }
+};
+```
 
 ### [35\. Search Insert Position](https://leetcode.com/problems/search-insert-position/)
 
@@ -2378,6 +2487,64 @@ public:
 };
 ```
 
+### [93\. Restore IP Addresses](https://leetcode.com/problems/restore-ip-addresses/)
+
+Difficulty: **Medium**
+
+
+Given a string containing only digits, restore it by returning all possible valid IP address combinations.
+
+A valid IP address consists of exactly four integers (each integer is between 0 and 255) separated by single points.
+
+**Example:**
+
+```
+Input: "25525511135"
+Output: ["255.255.11.135", "255.255.111.35"]
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    
+    
+    
+    void dfs(vector<string>&v, string s, string ip, int n) {
+        
+        cout << s << endl;
+        
+        if(n >= 4) {
+            if(s.empty()) {
+                ip.erase(ip.end()-1);
+                v.push_back(ip);
+            }
+            return ;
+        }
+        
+        for(int i=1; i<=3; ++i) {
+            if(i>s.size()) return ;
+            if(i>=2 && s[0]=='0') return;
+            
+            int tmp = stoi(s.substr(0, i));
+            if(tmp>=0 && tmp<=255) {
+                dfs(v, s.substr(i), ip+s.substr(0, i)+'.', n+1);
+            }
+        }
+    }
+    
+    vector<string> restoreIpAddresses(string s) {
+        vector<string> v;
+        dfs(v, s, "", 0);
+        return v;
+    }
+};
+```
+
 ### [145\. Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)
 
 Difficulty: **Hard**
@@ -2432,6 +2599,77 @@ public:
         }
         reverse(v.begin(), v.end());
         return v;
+    }
+};
+```
+
+### [148\. Sort List](https://leetcode.com/problems/sort-list/)
+
+Difficulty: **Medium**
+
+
+Sort a linked list in _O_(_n_ log _n_) time using constant space complexity.
+
+**Example 1:**
+
+```
+Input: 4->2->1->3
+Output: 1->2->3->4
+```
+
+**Example 2:**
+
+```
+Input: -1->5->3->4->0
+Output: -1->0->3->4->5
+```
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+        return mergeSort(head);
+    }
+    
+    ListNode* mergeSort(ListNode* head) {
+        if(head==nullptr || head->next==nullptr) return head;
+        cout << head->val<<endl;
+        ListNode* dummy = new ListNode(0);
+        dummy->next = head;
+        ListNode* fast=dummy, *slow=dummy;
+        while(fast!=nullptr && fast->next!=nullptr) slow=slow->next, fast=fast->next->next;
+        ListNode* tmp=slow->next;
+        slow->next=nullptr;
+        return merge(
+            mergeSort(head),
+            mergeSort(tmp)
+        );
+    }
+    
+    ListNode* merge(ListNode* l1, ListNode* l2) {
+        ListNode* dummy = new ListNode(0), *tail=dummy;
+        while(l1!=nullptr && l2!=nullptr) {
+            if(l1->val < l2->val) tail->next=l1, l1=l1->next, tail=tail->next;
+            else                  tail->next=l2, l2=l2->next, tail=tail->next;
+        }
+        if(l1!=nullptr) tail->next=l1;        
+        if(l2!=nullptr) tail->next=l2;
+        return dummy->next;
     }
 };
 ```
@@ -3153,6 +3391,74 @@ public:
             cur=cur->next;
         }
         return sum;
+    }
+};
+```
+
+### [1360\. Number of Days Between Two Dates](https://leetcode.com/problems/number-of-days-between-two-dates/)
+
+Difficulty: **Easy**
+
+
+Write a program to count the number of days between two dates.
+
+The two dates are given as strings, their format is `YYYY-MM-DD` as shown in the examples.
+
+**Example 1:**
+
+```
+Input: date1 = "2019-06-29", date2 = "2019-06-30"
+Output: 1
+```
+
+**Example 2:**
+
+```
+Input: date1 = "2020-01-15", date2 = "2019-12-31"
+Output: 15
+```
+
+**Constraints:**
+
+*   The given dates are valid dates between the years `1971` and `2100`.
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    
+    // 闰年
+    bool check(int year) {
+        return (year%4==0 && year%100!=0) || year%400==0;
+    }
+    
+    int m[15] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    
+    int change2day(string s) {
+        int year  = stoi(s.substr(0,4));
+        int month = stoi(s.substr(5,2));
+        int day   = stoi(s.substr(8,2));
+        
+        int sum=0;
+        for(int i=1970; i<year; ++i) {
+            sum+=365;
+            if(check(i)) {sum+=1;}
+        }
+        for(int i=1; i<month; ++i) sum+=m[i];
+        if(check(year) && month>2) {
+            cout << year <<endl;
+            sum+=1;
+        }
+        
+        return sum+day;
+    }
+    
+    int daysBetweenDates(string date1, string date2) {
+        return abs(change2day(date1)-change2day(date2));
     }
 };
 ```
