@@ -722,25 +722,14 @@ C端: Consumer, 消费者, 个人和家庭用户
 5. https 过程
 
    1. TCP三次握手(1.5-RTT)
-
-   2. TLS四次握手(2-RTT)
-
-      |        | 消息                                            |
-      | :----: | ----------------------------------------------- |
-      | A -> B | ClientHello(客户端随机数-对称密钥, 加密算法)    |
-      | B -> A | ServerHello(服务器随机数-非对称密钥, 加密算法)  |
-      |        | Certificate证书链                               |
-      |        | Server Key Exchange, 公钥                       |
-      |        | CertificateRequst, 验证客户端证书               |
-      |        | ServerHelloDone                                 |
-      | A -> B | ClientKeyExchange, 使用服务端公钥加密的对称密钥 |
-      |        | ChangeCipherSpec                                |
-      |        | Finished                                        |
-      | B -> A | ChangeCipherSpec                                |
-      |        | Finished                                        |
-
-   3. HTTP交互 (1-RTT), 真正传输数据的
-
+2. TLS四次握手(2-RTT)
+   
+3. HTTP交互 (1-RTT), 真正传输数据的
+   
+   ![image-20200519165142493](/images/image-20200519165142493.png)
+   
+   ![image-20200519165246955](/images/image-20200519165246955.png)
+   
 6. 服务端的状态码
 
    | 状态码 |            |
@@ -787,7 +776,7 @@ C端: Consumer, 消费者, 个人和家庭用户
     | 2.0  | 二进制, 多路复用, 主动推送, 头部压缩 |
 
 12. TCP怎么可靠传输
-    拥塞控制, 流量控制, 校验和, 超时重传
+    拥塞控制, 流量控制, 校验和, 超时重传, 字节编号
 
 13. 滑动窗口是什么
     接收方通过 TCP 报文段中的窗口字段告诉发送方自己的窗口大小，发送方根据这个值和其它信息设置自己的窗口大小

@@ -94,20 +94,24 @@ map, set
    ```cpp
    #include <iostream>
    
+   // 占位符
    class A {
    public:
        A() = default;
    };
    
+   // 一个虚表指针
    class B {
        void f1() {}
    
        virtual void f2() {}
    };
    
+   // 一个虚表指针
    class C : public B {
    };
    
+   // 
    class D {
        int a;
        char *p;
