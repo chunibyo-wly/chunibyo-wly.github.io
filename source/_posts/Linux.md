@@ -397,7 +397,25 @@ ping+traceroute
 6. `-j`: option `-j DROP`
 7. `--dport`: 指定端口 `--dport 8081`
 
-#  其他
+![img](/images/4WFXrnn2.png)
+
+1. 重置已有规则
+
+   ```bash
+   iptables -X
+   ```
+
+2. 拒绝所有input流量
+   
+   ```bash
+   iptables -P INPUT DROP
+   ```
+   
+3. DNAT(Destination Network Address Translation): 目的地址转换
+
+4. SNAT(Source Network Address Translation)： 源地址转换
+
+#  怕其他
 
 ## gdb
 
