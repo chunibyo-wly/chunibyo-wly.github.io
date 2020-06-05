@@ -196,7 +196,51 @@ CHAR, VARCHAR
    alter table teacher modify name char(10);
    ```
 
-   
+8. UNION
+
+   ```mysql
+   SELECT customerNumber
+   FROM orders
+   UNION ALL
+   SELECT customerNumber
+   FROM payments
+   ```
+
+   默认`distinct`
+
+9. GROUP BY
+
+   根据一个或多个列对结果集进行分组。在分组的列上我们可以使用 COUNT, SUM, AVG,等函数。
+
+10. JOIN
+
+    1. INNER JOIN
+
+       ```mysql
+       SELECT *
+       FROM productlines
+                INNER JOIN products on productlines.productLine = products.productLine;
+       ```
+
+    2. LEFT JOIN
+
+    3. RIGHT JOIN
+
+11. NULL
+
+    ```mysql
+    # 正确
+    SELECT *
+    FROM productlines
+    WHERE htmlDescription IS NULL;
+    
+    # 错误
+    SELECT *
+    FROM productlines
+    WHERE htmlDescription = NULL;
+    ```
+
+    
 
 
 # sql 50题

@@ -13,6 +13,26 @@ categories:
 
 <!-- more -->
 
+# 命令
+
+## 一、string
+
+`set`, `get`, `del`, `mset`, `mget`
+
+## 二、hash
+
+`hset h1 name liming`
+
+`hdel h1 age`
+
+## 三、list
+
+`lrange`, `lpop`
+
+## 四、set
+
+`sadd`， `smembers`
+
 # 一、数据结构与对象
 
 ## 第二章、简单动态字符串(SDS)
@@ -129,3 +149,25 @@ typedef struct dict {
 2. 释放 `ht[0]`
 3. `ht[1]` 设置为 `ht[0]`, 给 `ht[1]` 分配一个空白哈希表
 
+## 第五章、跳跃表
+
+有序集合的底层实现之一（另一个是字典）
+
+`zskiplist`， `zskiplistNode`
+
+随机算法
+
+## 第六章、整数集合
+
+```c
+typefef struct intest {
+    // int16_t, int32_t, int64_t
+    uint32_t encoding;
+    
+    uint32_t length;
+    
+    int8_t contents[];
+}
+```
+
+升级， 无法降级

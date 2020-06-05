@@ -154,3 +154,20 @@ Bean的销毁需要使用`AbstractApplicationContext.registerShutdownHook()`
 ```
 
 ### 3.3 @Autowired
+
+# SpringBoot
+
+## 一、AOP
+
+- **@Aspect**：声明该类为一个注解类；
+- **@Pointcut**：定义一个切点，后面跟随一个表达式，表达式可以定义为切某个注解，也可以切某个 package 下的方法
+
+
+
+- **@Before**: 在切点之前，织入相关代码；
+- **@After**: 在切点之后，织入相关代码;
+- **@AfterReturning**: 在切点返回内容后，织入相关代码，一般用于对返回值做些加工处理的场景；
+- **@AfterThrowing**: 用来处理当织入的代码抛出异常后的逻辑处理;
+- **@Around**: 环绕，可以在切入点前后织入代码，并且可以自由的控制何时执行切点；
+
+![image-20200604153551383](/images/image-20200604153551383.png)
