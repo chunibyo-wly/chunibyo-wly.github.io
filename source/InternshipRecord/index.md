@@ -100,9 +100,9 @@
 - [x] 编写jedis与session demo
 - [x] 阅读源码
 - [x] Java刷题
-- [ ] reac
-- [ ] Redis学习
-- [ ] 高性能mysql
+- [x] react
+- [x] Redis学习
+- [x] 高性能mysql
 
 问题：
 
@@ -111,3 +111,10 @@
 2. git工作流
 3. postman 使用
 4. 有没有和业务无关的简单任务
+
+# 6.8 需求评审
+
+- [ ] Java刷题
+- [ ] react
+- [ ] Redis学习
+- [ ] 高性能mysql
