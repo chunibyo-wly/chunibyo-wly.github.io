@@ -9,7 +9,7 @@ categories:
 	- 数据库
 ---
 
-![img](/../images/1200px-Redis_Logo.svg.png)
+![](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114191459878-20210114193632361.png)
 
 <!-- more -->
 

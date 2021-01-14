@@ -10,7 +10,7 @@ categories:
 	- 前端
 ---
 
-![前端开发者的Docker 之旅－开篇- DCS 文档](/../images/unnamed.jpg)
+![image-20210114184506332](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114184506332.png)
 
 <!-- more -->
 
@@ -22,7 +22,7 @@ categories:
 http://{{host}}:{{port}}/api/file_list?path=/
 ```
 
-![image-20200518085221454](/../images/image-20200518085221454.png)
+![image-20200518085221454](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200518085221454.png)
 
 ```json
 var settings = {
@@ -50,7 +50,7 @@ def get_url():
 
 `Content-type: text/plain`
 
-![image-20200518003250110](/../images/image-20200518003250110.png)
+![image-20210114185348013](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114185348013.png)
 
 ```javascript
 var settings = {
@@ -82,7 +82,7 @@ def get_textplain():
 
 `Content-type: application/x-www-form-urlencoded`
 
-![image-20200518003835265](/../images/image-20200518003835265.png)
+![image-20210114185411578](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114185411578.png)
 
 ```javascript
 var settings = {
@@ -110,7 +110,7 @@ def get_form():
 
 #### 1.2.2.2 JSON Object
 
-![image-20200518004907360](/../images/image-20200518004907360.png)
+![image-20210114185430773](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114185430773.png)
 
 ```javascript
 var settings = {

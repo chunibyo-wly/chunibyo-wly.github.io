@@ -8,7 +8,7 @@ tags:
 categories:
 	- 数据库
 ---
-![mysql](/../images/1200px-MySQL.svg.png)
+![image-20210114190010572](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190010572.png)
 
 <!-- more -->
 
@@ -23,7 +23,7 @@ MySQLd 每个查询都是AUTOCOMMIT
 - Isolation(隔离性): 多个用户并发访问数据库时, 多个并发事务之间相互隔离
 - Durability(持久性): 一旦事务提交，则其所做的修改将会永远保存到数据库中
 
-![img](/../images/a58e294a-615d-4ea0-9fbf-064a6daec4b2-1534474592177.png)
+![image-20210114190223714](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190223714.png)
 
 # 二. 范式
 
@@ -75,7 +75,7 @@ MySQLd 每个查询都是AUTOCOMMIT
 
 解决办法: 事务+查询共享锁
 
-![img](/../images/88ff46b3-028a-4dbb-a572-1f062b8b96d3.png)
+![image-20210114190235850](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190235850.png)
 
 ## 2. 脏读
 
@@ -84,7 +84,7 @@ MySQLd 每个查询都是AUTOCOMMIT
 1. 把数据库的事务隔离级别调整到 READ_COMMITTED
 2. 共享锁select
 
-![img](/../images/dd782132-d830-4c55-9884-cfac0a541b8e.png)
+![image-20210114190251744](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190251744.png)
 
 ## 3. 不可重复读
 
@@ -93,13 +93,13 @@ MySQLd 每个查询都是AUTOCOMMIT
 1. 数据库的事务隔离级别调整到REPEATABLE_READ
 2. select共享锁
 
-![img](/../images/c8d18ca9-0b09-441a-9a0c-fb063630d708-1534474726485.png)
+![img](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190255850.png)
 
 
 
 ## 4. 幻读
 
-![img](/../images/72fe492e-f1cb-4cfc-92f8-412fb3ae6fec.png)
+![image-20210114190308856](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190308856.png)
 
 # 五. 数据类型
 
@@ -167,8 +167,6 @@ CHAR, VARCHAR
    ```mysql
    show databases;
    ```
-
-   
 
 5. 格式化日期
 
@@ -240,7 +238,6 @@ CHAR, VARCHAR
     WHERE htmlDescription = NULL;
     ```
 
-    
 
 
 # sql 50题
@@ -256,7 +253,7 @@ CHAR, VARCHAR
    where t1.SId = t2.SId;
    ```
 
-   ![image-20200317173755751](/../images/image-20200317173755751.png)
+   ![image-20210114191200711](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114191200711.png)
 
 3. 查询存在" 01 "课程但可能不存在" 02 "课程的情况(不存在时显示为 null )
 
@@ -268,7 +265,7 @@ CHAR, VARCHAR
             on t1.SId = t2.SId;
    ```
 
-   ![image-20200317175118703](/../images/image-20200317175118703.png)
+   ![image-20210114191325355](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114191325355.png)
 
 4. 查询各科成绩最高分、最低分和平均分
 
@@ -288,7 +285,7 @@ CHAR, VARCHAR
    ORDER BY count(*) DESC, SC.CId
    ```
 
-   ![image-20200318100206507](/../images/image-20200318100206507.png)
+   ![image-20200318100206507](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200318100206507.png)
 
 5. 各科成绩进行排序，并显示排名， Score 重复时保留名次空缺
 
@@ -302,6 +299,6 @@ CHAR, VARCHAR
    order by a.CId ASC, a.score DESC
    ```
 
-   ![image-20200318115216776](/../images/image-20200318115216776.png)
+   ![image-20200318115216776](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200318115216776.png)
 
 6. 查询学生的总成绩，并进行排名，总分重复时不保留名次空缺

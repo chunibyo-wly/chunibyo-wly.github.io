@@ -7,7 +7,7 @@ tags:
 categories:
 	- cv
 ---
-![image-20200202221618439](/images/image-20200202221618439.png)
+![image-20210114193109534](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193109534.png)
 
 <!-- more -->
 
@@ -17,7 +17,7 @@ categories:
 
 ## 针孔模型
 
-![image-20200202221739922](/images/image-20200202221739922.png)
+![image-20210114193141067](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193141067.png)
 $$
 \frac{Z}{f}=\frac{X}{X'}=\frac{Y}{Y'}
 $$
@@ -27,7 +27,7 @@ X'=f\frac{X}{Z} \\
 Y'=f\frac{Y}{Z}
 $$
 
-![image-20200202222758224](/images/image-20200202222758224.png)
+![image-20210114193213213](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193213213.png)
 
 - $f$: 焦距
 - $X,Y$: 三维空间相对于光心$O$的坐标(相机坐标系)
@@ -85,16 +85,16 @@ $$
 
 - **径向畸变**(穿过图像中心和光轴有交点的直线还能保持形状不变)
 
-  1. ![image-20200203125918708](/images/image-20200203125918708.png)
-  2. ![image-20200203130549423](/images/image-20200203130549423.png)
+  1. ![image-20210114193241973](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193241973.png)
+  2. ![image-20210114193254789](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193254789.png)
 
 - **切向畸变**
 
-  ![image-20200203131232486](/images/image-20200203131232486.png)
+  ![image-20210114193324591](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193324591.png)
 
 ## 总结
 
-![image-20200203131327868](/images/image-20200203131327868.png)
+![image-20210114193400782](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193400782.png)
 
 ## Camera库
 
@@ -144,7 +144,7 @@ D = X[2, ]
 
 首先这个模型是基于针孔模型的
 
-![image-20200311094730455](/images/image-20200311094730455.png)
+![image-20210114193412461](https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193412461.png)
 
 - $u_{L}, u_{R}$: 像素坐标
 - $O_{L}, O_{R}$: 光心
