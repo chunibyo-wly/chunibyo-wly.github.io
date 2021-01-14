@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png">
+  <link rel="mask-icon" href="/images/avatar.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://chunibyo-wly.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"flat"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="MySQL复习">
+<meta property="og:url" content="https://chunibyo-wly.github.io/2020/03/14/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/index.html">
+<meta property="og:site_name" content="Chunibyo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190010572.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190223714.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190235850.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190251744.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190255850.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190308856.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114191200711.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114191325355.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200318100206507.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200318115216776.png">
+<meta property="article:published_time" content="2020-03-14T06:20:47.000Z">
+<meta property="article:modified_time" content="2021-01-14T11:22:44.146Z">
+<meta property="article:author" content="Chunibyo">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190010572.png">
+
+<link rel="canonical" href="https://chunibyo-wly.github.io/2020/03/14/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>MySQL复习 | Chunibyo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chunibyo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">16</span></a>
+
+  </li>
+        <li class="menu-item menu-item-20春招记录">
+
+    <a href="/interview/" rel="section"><i class="fa fa-fw fa-calendar"></i>20春招记录</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chunibyo-wly.github.io/2020/03/14/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Chunibyo">
+      <meta itemprop="description" content="先生能否卖我几斤仁义道德?">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chunibyo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL复习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-14 14:20:47" itemprop="dateCreated datePublished" datetime="2020-03-14T14:20:47+08:00">2020-03-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-14 19:22:44" itemprop="dateModified" datetime="2021-01-14T19:22:44+08:00">2021-01-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190010572.png" alt="image-20210114190010572" /></p>
+<a id="more"></a>
+<h1 id="1-事务"><a class="markdownIt-Anchor" href="#1-事务"></a> 1. 事务</h1>
+<p>满足ACID的一组操作, 使用Commit和Rollback操作</p>
+<p>MySQLd 每个查询都是AUTOCOMMIT</p>
+<ul>
+<li>Atomicity(原子性): 全部成功，要么全部失败</li>
+<li>Consistency(一致性): AB两账户无论转账, 总额不会改变</li>
+<li>Isolation(隔离性): 多个用户并发访问数据库时, 多个并发事务之间相互隔离</li>
+<li>Durability(持久性): 一旦事务提交，则其所做的修改将会永远保存到数据库中</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190223714.png" alt="image-20210114190223714" /></p>
+<h1 id="二-范式"><a class="markdownIt-Anchor" href="#二-范式"></a> 二. 范式</h1>
+<p>一般满足3NF足够</p>
+<ul>
+<li>1NF: 属性不可分</li>
+<li>2NF: 属性完全依赖于主键(消除部分子函数依赖)</li>
+<li>3NF: 属性不依赖于其他非主属性(消除传递依赖)</li>
+<li>BCNF: 任何非主属性不能对主键子集依赖[消除对主码子集的依赖]</li>
+</ul>
+<h1 id="三-锁"><a class="markdownIt-Anchor" href="#三-锁"></a> 三. 锁🔒</h1>
+<h2 id="1-共享锁与排他锁"><a class="markdownIt-Anchor" href="#1-共享锁与排他锁"></a> 1. 共享锁与排他锁</h2>
+<ol>
+<li>共享锁: 多个事务对于同一数据可以共享一把锁，都能访问到数据，但是只能读不能修改。</li>
+<li>排他锁: 不能与其他所并存, 但是获取排他锁的事务是可以对数据就行读取和修改。</li>
+<li>update,delete,insert都会自动加上排他锁</li>
+<li>select语句默认不会加任何锁, 并且直接select不存在锁限制</li>
+<li>select
+<ol>
+<li>加共享锁: <code>select ... lock in share mode</code></li>
+<li>加排他锁: <code>select ...for update</code></li>
+</ol>
+</li>
+</ol>
+<h2 id="2-悲观锁与乐观锁"><a class="markdownIt-Anchor" href="#2-悲观锁与乐观锁"></a> 2. 悲观锁与乐观锁</h2>
+<p>悲观锁和乐观锁都是业务逻辑层次的定义，不同的设计可能会有不同的实现。</p>
+<ol>
+<li>
+<p>在mysql层常用的悲观锁实现方式是加一个排他锁。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">begin;</span><br><span class="line">select * from account where id &#x3D; 1 for update;</span><br><span class="line">update account set balance&#x3D;150 where id &#x3D;1;</span><br><span class="line">commit;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>乐观锁是指在获取数据时候不加锁，乐观的认为操作不会有冲突，在update的时候再去检查冲突。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">begin;</span><br><span class="line">select balance from account where id&#x3D;1;</span><br><span class="line">-- 得到balance&#x3D;100;然后计算balance&#x3D;100+50&#x3D;150</span><br><span class="line">update account set balance &#x3D; 150 where id&#x3D;1 and balance &#x3D; 100;</span><br><span class="line">commit;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="四-并发一致性"><a class="markdownIt-Anchor" href="#四-并发一致性"></a> 四. 并发一致性</h1>
+<h2 id="1-丢失修改"><a class="markdownIt-Anchor" href="#1-丢失修改"></a> 1. 丢失修改</h2>
+<p>解决办法: 事务+查询共享锁</p>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190235850.png" alt="image-20210114190235850" /></p>
+<h2 id="2-脏读"><a class="markdownIt-Anchor" href="#2-脏读"></a> 2. 脏读</h2>
+<p>解决办法:</p>
+<ol>
+<li>把数据库的事务隔离级别调整到 READ_COMMITTED</li>
+<li>共享锁select</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190251744.png" alt="image-20210114190251744" /></p>
+<h2 id="3-不可重复读"><a class="markdownIt-Anchor" href="#3-不可重复读"></a> 3. 不可重复读</h2>
+<p>解决办法:</p>
+<ol>
+<li>数据库的事务隔离级别调整到REPEATABLE_READ</li>
+<li>select共享锁</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190255850.png" alt="img" /></p>
+<h2 id="4-幻读"><a class="markdownIt-Anchor" href="#4-幻读"></a> 4. 幻读</h2>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190308856.png" alt="image-20210114190308856" /></p>
+<h1 id="五-数据类型"><a class="markdownIt-Anchor" href="#五-数据类型"></a> 五. 数据类型</h1>
+<h2 id="1-整形"><a class="markdownIt-Anchor" href="#1-整形"></a> 1. 整形</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Tinyint</th>
+<th style="text-align:center">smallint</th>
+<th style="text-align:center">mediumint</th>
+<th style="text-align:center">int</th>
+<th style="text-align:center">bigint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">bit</td>
+<td style="text-align:center">1*8</td>
+<td style="text-align:center">2*8</td>
+<td style="text-align:center">3*8</td>
+<td style="text-align:center">4*8</td>
+<td style="text-align:center">8*8</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-浮点型"><a class="markdownIt-Anchor" href="#2-浮点型"></a> 2. 浮点型</h2>
+<p>FLOAT, DOUBLE(浮点类型)<br />
+DECIMAL(高精度小数类型, CPU不原生支持)</p>
+<h2 id="3-字符串"><a class="markdownIt-Anchor" href="#3-字符串"></a> 3. 字符串</h2>
+<p>CHAR, VARCHAR</p>
+<h2 id="4-时间和日期"><a class="markdownIt-Anchor" href="#4-时间和日期"></a> 4. 时间和日期</h2>
+<ol>
+<li>DATETIME(8字节)“2008-01-16 22:37:08”</li>
+<li>TIMESTAMP(4字节), 与时区有关</li>
+</ol>
+<h1 id="六-索引"><a class="markdownIt-Anchor" href="#六-索引"></a> 六. 索引</h1>
+<ol>
+<li>对于非常小的表、大部分情况下简单的全表扫描比建立索引更高效。</li>
+<li>对于中到大型的表，索引就非常有效。</li>
+<li>但是对于特大型的表，建立和维护索引的代价将会随之增长。<br />
+需要用到一种技术可以直接区分出需要查询的一组数据<br />
+而不是一条记录一条记录地匹配，例如可以使用分区技术。</li>
+</ol>
+<p><strong>不同存储引擎具有不同的索引类型和实现</strong></p>
+<h2 id="1-b-tree"><a class="markdownIt-Anchor" href="#1-b-tree"></a> 1. B-Tree</h2>
+<h1 id="常用命令"><a class="markdownIt-Anchor" href="#常用命令"></a> 常用命令</h1>
+<ol>
+<li>
+<p>user, host字段在mysql.user表里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select user, host from mysql.user;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>赋权</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grant select on practice.* to &#39;chunibyo&#39;@&#39;%&#39;;</span><br><span class="line">flush privileges</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>有用户切换了他们的ip地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RENAME USER user@ipaddress1 TO user@ipaddress2;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>查看当前使用数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select database();</span><br></pre></td></tr></table></figure>
+<p>查看所有数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>格式化日期</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select date_format(now(), &#39;%y-%m-%d %H:%i:%s&#39;);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>事务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">begin;</span><br><span class="line">XXXXX</span><br><span class="line">commit; &#x2F; rollback;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>alter</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">删除teacher表name字段</span><br><span class="line">alter table teacher drop name;</span><br><span class="line"></span><br><span class="line">添加teacher表name字段</span><br><span class="line">alter table teacher add name INT;</span><br><span class="line"></span><br><span class="line">alter table teacher modify name char(10);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>UNION</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT customerNumber</span><br><span class="line">FROM orders</span><br><span class="line">UNION ALL</span><br><span class="line">SELECT customerNumber</span><br><span class="line">FROM payments</span><br></pre></td></tr></table></figure>
+<p>默认<code>distinct</code></p>
+</li>
+<li>
+<p>GROUP BY</p>
+<p>根据一个或多个列对结果集进行分组。在分组的列上我们可以使用 COUNT, SUM, AVG,等函数。</p>
+</li>
+<li>
+<p>JOIN</p>
+<ol>
+<li>
+<p>INNER JOIN</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM productlines</span><br><span class="line">         INNER JOIN products on productlines.productLine &#x3D; products.productLine;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>LEFT JOIN</p>
+</li>
+<li>
+<p>RIGHT JOIN</p>
+</li>
+</ol>
+</li>
+<li>
+<p>NULL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 正确</span><br><span class="line">SELECT *</span><br><span class="line">FROM productlines</span><br><span class="line">WHERE htmlDescription IS NULL;</span><br><span class="line"></span><br><span class="line"># 错误</span><br><span class="line">SELECT *</span><br><span class="line">FROM productlines</span><br><span class="line">WHERE htmlDescription &#x3D; NULL;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="sql-50题"><a class="markdownIt-Anchor" href="#sql-50题"></a> sql 50题</h1>
+<ol>
+<li>
+<p>查询&quot; 01 “课程比” 02 &quot;课程成绩高的学生的信息及课程分数</p>
+</li>
+<li>
+<p>查询同时存在&quot; 01 “课程和” 02 &quot;课程的情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select *</span><br><span class="line">from (select SId from SC where SC.CId &#x3D; &#39;01&#39;) as t1,</span><br><span class="line">     (select SId from SC where SC.Cid &#x3D; &#39;02&#39;) as t2</span><br><span class="line">where t1.SId &#x3D; t2.SId;</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114191200711.png" alt="image-20210114191200711" /></p>
+</li>
+<li>
+<p>查询存在&quot; 01 “课程但可能不存在” 02 &quot;课程的情况(不存在时显示为 null )</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select t1.SId, t1.CId, t2.CId</span><br><span class="line">from (select * from SC where CId &#x3D; &#39;01&#39;) as t1</span><br><span class="line">         left join</span><br><span class="line">         (select * from SC where CId &#x3D; &#39;02&#39;) as t2</span><br><span class="line">         on t1.SId &#x3D; t2.SId;</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114191325355.png" alt="image-20210114191325355" /></p>
+</li>
+<li>
+<p>查询各科成绩最高分、最低分和平均分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 14</span><br><span class="line">select SC.CId,</span><br><span class="line">       max(SC.score)                                              as max_score,</span><br><span class="line">       min(SC.score)                                              as min_score,</span><br><span class="line">       AVG(SC.score)                                              as avg_score,</span><br><span class="line">       count(*)                                                   as number,</span><br><span class="line">       sum(IF(SC.score &gt;&#x3D; 60, 1, 0)) &#x2F; count(*)                   as D,</span><br><span class="line">       sum(IF(SC.score &gt;&#x3D; 70 and SC.score &lt; 80, 1, 0)) &#x2F; count(*) as C,</span><br><span class="line">       sum(IF(SC.score &gt;&#x3D; 80 and SC.score &lt; 90, 1, 0)) &#x2F; count(*) as B,</span><br><span class="line">       sum(IF(SC.score &gt;&#x3D; 90, 1, 0)) &#x2F; count(*)                   as A</span><br><span class="line">from SC</span><br><span class="line">GROUP BY SC.CId</span><br><span class="line">ORDER BY count(*) DESC, SC.CId</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200318100206507.png" alt="image-20200318100206507" /></p>
+</li>
+<li>
+<p>各科成绩进行排序，并显示排名， Score 重复时保留名次空缺</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 15</span><br><span class="line">select a.CId, a.SId, a.score, count(b.CId) + 1 as _rank</span><br><span class="line">from SC as a</span><br><span class="line">         left join SC as b</span><br><span class="line">                   on a.CId &#x3D; b.CId and a.score &lt; b.score</span><br><span class="line">group by a.CId, a.SId, a.score</span><br><span class="line">order by a.CId ASC, a.score DESC</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200318115216776.png" alt="image-20200318115216776" /></p>
+</li>
+<li>
+<p>查询学生的总成绩，并进行排名，总分重复时不保留名次空缺</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/mysql/" rel="tag"><i class="fa fa-tag"></i> mysql</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/11/%E9%9D%A2%E8%AF%95/ComputerNetwork/" rel="prev" title="计算机网络复习">
+      <i class="fa fa-chevron-left"></i> 计算机网络复习
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/14/%E8%AF%AD%E6%B3%95/cpp/" rel="next" title="c++复习">
+      c++复习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-事务"><span class="nav-number">1.</span> <span class="nav-text"> 1. 事务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-范式"><span class="nav-number">2.</span> <span class="nav-text"> 二. 范式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-锁"><span class="nav-number">3.</span> <span class="nav-text"> 三. 锁🔒</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-共享锁与排他锁"><span class="nav-number">3.1.</span> <span class="nav-text"> 1. 共享锁与排他锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-悲观锁与乐观锁"><span class="nav-number">3.2.</span> <span class="nav-text"> 2. 悲观锁与乐观锁</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-并发一致性"><span class="nav-number">4.</span> <span class="nav-text"> 四. 并发一致性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-丢失修改"><span class="nav-number">4.1.</span> <span class="nav-text"> 1. 丢失修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-脏读"><span class="nav-number">4.2.</span> <span class="nav-text"> 2. 脏读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-不可重复读"><span class="nav-number">4.3.</span> <span class="nav-text"> 3. 不可重复读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-幻读"><span class="nav-number">4.4.</span> <span class="nav-text"> 4. 幻读</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-数据类型"><span class="nav-number">5.</span> <span class="nav-text"> 五. 数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-整形"><span class="nav-number">5.1.</span> <span class="nav-text"> 1. 整形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-浮点型"><span class="nav-number">5.2.</span> <span class="nav-text"> 2. 浮点型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-字符串"><span class="nav-number">5.3.</span> <span class="nav-text"> 3. 字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-时间和日期"><span class="nav-number">5.4.</span> <span class="nav-text"> 4. 时间和日期</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六-索引"><span class="nav-number">6.</span> <span class="nav-text"> 六. 索引</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-b-tree"><span class="nav-number">6.1.</span> <span class="nav-text"> 1. B-Tree</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用命令"><span class="nav-number">7.</span> <span class="nav-text"> 常用命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sql-50题"><span class="nav-number">8.</span> <span class="nav-text"> sql 50题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Chunibyo"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Chunibyo</p>
+  <div class="site-description" itemprop="description">先生能否卖我几斤仁义道德?</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chunibyo-wly" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chunibyo-wly" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chunibyo.wly@gmail.com" title="E-Mail → mailto:chunibyo.wly@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-:author"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chunibyo</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">Symbols count total: </span>
+    <span title="Symbols count total">51k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    <span title="Reading time total">46 mins.</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+
+
+  
+
+</body>
+</html>

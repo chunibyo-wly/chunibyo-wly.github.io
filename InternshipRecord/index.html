@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png">
+  <link rel="mask-icon" href="/images/avatar.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://chunibyo-wly.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"flat"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="June  6.1 入职  [x] Java基础学习 [x] spring 学习 [x] 填写入职表 [x] 安装钉钉, 微信   6.2 无事  [x] spring学习完成 [x] 复习sql [x] 开始myBatis [x] 数学建模题目阅读   6.3 无事  [x] mybatis demo编写完成 [x] Java刷题 [x] Redis学习 [x] 下载Redis [x] Red">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chunibyo">
+<meta property="og:url" content="https://chunibyo-wly.github.io/InternshipRecord/index.html">
+<meta property="og:site_name" content="Chunibyo">
+<meta property="og:description" content="June  6.1 入职  [x] Java基础学习 [x] spring 学习 [x] 填写入职表 [x] 安装钉钉, 微信   6.2 无事  [x] spring学习完成 [x] 复习sql [x] 开始myBatis [x] 数学建模题目阅读   6.3 无事  [x] mybatis demo编写完成 [x] Java刷题 [x] Redis学习 [x] 下载Redis [x] Red">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-14T12:07:57.514Z">
+<meta property="article:modified_time" content="2021-01-11T03:19:29.429Z">
+<meta property="article:author" content="Chunibyo">
+<meta property="article:tag" content="Chunibyo">
+<meta property="article:tag" content=" chunibyo">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://chunibyo-wly.github.io/InternshipRecord/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: false
+  };
+</script>
+
+  <title> | Chunibyo
+  </title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chunibyo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">16</span></a>
+
+  </li>
+        <li class="menu-item menu-item-20春招记录">
+
+    <a href="/interview/" rel="section"><i class="fa fa-fw fa-calendar"></i>20春招记录</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+    
+    
+    
+    <div class="post-block" lang="en">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h1 id="june"><a class="markdownIt-Anchor" href="#june"></a> June</h1>
+<h2 id="61-入职"><a class="markdownIt-Anchor" href="#61-入职"></a> 6.1 入职</h2>
+<ul>
+<li>[x] Java基础学习</li>
+<li>[x] spring 学习</li>
+<li>[x] 填写入职表</li>
+<li>[x] 安装钉钉, 微信</li>
+</ul>
+<h2 id="62-无事"><a class="markdownIt-Anchor" href="#62-无事"></a> 6.2 无事</h2>
+<ul>
+<li>[x] spring学习完成</li>
+<li>[x] 复习sql</li>
+<li>[x] 开始myBatis</li>
+<li>[x] 数学建模题目阅读</li>
+</ul>
+<h2 id="63-无事"><a class="markdownIt-Anchor" href="#63-无事"></a> 6.3 无事</h2>
+<ul>
+<li>[x] mybatis demo编写完成</li>
+<li>[x] Java刷题</li>
+<li>[x] Redis学习</li>
+<li>[x] 下载Redis</li>
+<li>[x] Redis跳表</li>
+</ul>
+<h2 id="64-阅读ai-check源码"><a class="markdownIt-Anchor" href="#64-阅读ai-check源码"></a> 6.4 阅读AI-check源码</h2>
+<ul>
+<li>[x] 阅读源码</li>
+<li>[ ] 跑神经网络</li>
+<li>[x] Redis整数集合</li>
+<li>[x] 高性能MySQL</li>
+<li>[x] Java算法两题</li>
+<li>[x] React</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Common</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>constant</td>
+<td></td>
+</tr>
+<tr>
+<td>enums</td>
+<td></td>
+</tr>
+<tr>
+<td>response</td>
+<td></td>
+</tr>
+<tr>
+<td>shiro</td>
+<td></td>
+</tr>
+<tr>
+<td>utils</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>@Component</code>就是跟<code>&lt;bean&gt;</code>一样，可以托管到Spring容器进行管理<br />
+<code>@Controller</code>注解类进行前端请求的处理，转发，重定向。包括调用Service层的方法<br />
+<code>@Service</code>注解类处理业务逻辑<br />
+<code>@Repository</code>注解类作为DAO对象（数据访问对象，Data Access Objects），这些类可以直接对数据库进行操作</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ScheduledTasks</td>
+<td>定时任务</td>
+</tr>
+<tr>
+<td>SerialNumberComponent</td>
+<td>序列号生成</td>
+</tr>
+<tr>
+<td>ServiceLogAspect</td>
+<td>AOP sercie 日志</td>
+</tr>
+<tr>
+<td>SystemLogAspect</td>
+<td>AOP controller 日志</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>table</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>analy_log</td>
+<td>随录数据解析日志</td>
+</tr>
+<tr>
+<td>auth_org</td>
+<td>组织表(运营部, 营销部)</td>
+</tr>
+<tr>
+<td>auth_power</td>
+<td>权限表</td>
+</tr>
+<tr>
+<td>auth_role</td>
+<td>角色表(管理员, 质检员, 座席)</td>
+</tr>
+<tr>
+<td>auth_role_org</td>
+<td>角色与组织关系表</td>
+</tr>
+<tr>
+<td>auth_role_power</td>
+<td>角色与权限关联表</td>
+</tr>
+<tr>
+<td>auth_user</td>
+<td>用户表(小蓝, 小红)</td>
+</tr>
+<tr>
+<td>auth_user_org</td>
+<td>用户与组织关系表</td>
+</tr>
+<tr>
+<td>auth_user_role</td>
+<td>用户与角色关系表</td>
+</tr>
+<tr>
+<td>deduct_count</td>
+<td></td>
+</tr>
+<tr>
+<td>extract_sound_log</td>
+<td>抽音记录表</td>
+</tr>
+<tr>
+<td>extract_sound_rule</td>
+<td>抽音规则表</td>
+</tr>
+<tr>
+<td>pdman_db_version</td>
+<td></td>
+</tr>
+<tr>
+<td>qc_analysis</td>
+<td></td>
+</tr>
+<tr>
+<td>qc_approval_history</td>
+<td>流程管理 - 审批历史</td>
+</tr>
+<tr>
+<td>qc_machine_score_error</td>
+<td>机器打分错误日志表</td>
+</tr>
+<tr>
+<td>qc_process</td>
+<td>流程管理 - 审批流维护</td>
+</tr>
+<tr>
+<td>qc_process_flow</td>
+<td>流程管理 - 作业项</td>
+</tr>
+<tr>
+<td>qc_retask</td>
+<td>复检</td>
+</tr>
+<tr>
+<td>qc_retask_allot</td>
+<td>复检任务分配表</td>
+</tr>
+<tr>
+<td>qc_retask_assign</td>
+<td>复检任务指派表</td>
+</tr>
+<tr>
+<td>qc_retask_log</td>
+<td>复检任务日志</td>
+</tr>
+<tr>
+<td>qc_review</td>
+<td>复议记录表</td>
+</tr>
+<tr>
+<td>qc_score_edit_history</td>
+<td>质检打分修改历史表</td>
+</tr>
+<tr>
+<td>qc_score_history</td>
+<td>质检打分历史表</td>
+</tr>
+<tr>
+<td>qc_template</td>
+<td>质检模板表</td>
+</tr>
+<tr>
+<td>qc_template_item</td>
+<td>质检模板 - 质检项</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sys_log</td>
+<td>系统日志</td>
+</tr>
+<tr>
+<td>xiron_log</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>问题:</p>
+<ol>
+<li>为什么没有外键 - 懒了</li>
+<li>字段应该大写吗 - 应该</li>
+<li>为什么会出现unicode问题</li>
+<li>deduct_count</li>
+<li>字典表</li>
+<li>字段重复</li>
+</ol>
+<h2 id="65-阅读ai-check源码"><a class="markdownIt-Anchor" href="#65-阅读ai-check源码"></a> 6.5 阅读AI-check源码</h2>
+<ul>
+<li>[x] 编写jedis与session demo</li>
+<li>[x] 阅读源码</li>
+<li>[x] Java刷题</li>
+<li>[x] react</li>
+<li>[x] Redis学习</li>
+<li>[x] 高性能mysql</li>
+</ul>
+<p>问题：</p>
+<ol>
+<li>controller写什么
+<ol>
+<li>/init</li>
+</ol>
+</li>
+<li>git工作流</li>
+<li>postman 使用</li>
+<li>有没有和业务无关的简单任务</li>
+</ol>
+<h1 id="68-需求评审"><a class="markdownIt-Anchor" href="#68-需求评审"></a> 6.8 需求评审</h1>
+<ul>
+<li>[ ] Java刷题</li>
+<li>[ ] react</li>
+<li>[ ] Redis学习</li>
+<li>[ ] 高性能mysql</li>
+</ul>
+
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#june"><span class="nav-number">1.</span> <span class="nav-text"> June</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#61-入职"><span class="nav-number">1.1.</span> <span class="nav-text"> 6.1 入职</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#62-无事"><span class="nav-number">1.2.</span> <span class="nav-text"> 6.2 无事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#63-无事"><span class="nav-number">1.3.</span> <span class="nav-text"> 6.3 无事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#64-阅读ai-check源码"><span class="nav-number">1.4.</span> <span class="nav-text"> 6.4 阅读AI-check源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#65-阅读ai-check源码"><span class="nav-number">1.5.</span> <span class="nav-text"> 6.5 阅读AI-check源码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#68-需求评审"><span class="nav-number">2.</span> <span class="nav-text"> 6.8 需求评审</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Chunibyo"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Chunibyo</p>
+  <div class="site-description" itemprop="description">先生能否卖我几斤仁义道德?</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chunibyo-wly" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chunibyo-wly" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chunibyo.wly@gmail.com" title="E-Mail → mailto:chunibyo.wly@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-:author"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chunibyo</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">Symbols count total: </span>
+    <span title="Symbols count total">51k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    <span title="Reading time total">46 mins.</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

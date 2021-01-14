@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png">
+  <link rel="mask-icon" href="/images/avatar.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://chunibyo-wly.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"flat"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="春招记录">
+<meta property="og:url" content="https://chunibyo-wly.github.io/2020/03/02/%E9%9D%A2%E8%AF%95/%E9%9D%A2%E7%BB%8F/index.html">
+<meta property="og:site_name" content="Chunibyo">
+<meta property="og:description" content="…">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/bg2016112201.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200323233818841.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/06.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200413074535469.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/shellscript.shellexec.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200519165142493.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200519165246955.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/cdn_1.png">
+<meta property="article:published_time" content="2020-03-02T15:09:50.000Z">
+<meta property="article:modified_time" content="2021-01-14T12:27:09.621Z">
+<meta property="article:author" content="Chunibyo">
+<meta property="article:tag" content="Chunibyo">
+<meta property="article:tag" content=" chunibyo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/bg2016112201.gif">
+
+<link rel="canonical" href="https://chunibyo-wly.github.io/2020/03/02/%E9%9D%A2%E8%AF%95/%E9%9D%A2%E7%BB%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>春招记录 | Chunibyo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chunibyo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">16</span></a>
+
+  </li>
+        <li class="menu-item menu-item-20春招记录">
+
+    <a href="/interview/" rel="section"><i class="fa fa-fw fa-calendar"></i>20春招记录</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chunibyo-wly.github.io/2020/03/02/%E9%9D%A2%E8%AF%95/%E9%9D%A2%E7%BB%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Chunibyo">
+      <meta itemprop="description" content="先生能否卖我几斤仁义道德?">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chunibyo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          春招记录
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-02 23:09:50" itemprop="dateCreated datePublished" datetime="2020-03-02T23:09:50+08:00">2020-03-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-14 20:27:09" itemprop="dateModified" datetime="2021-01-14T20:27:09+08:00">2021-01-14</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>8.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>7 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>…</p>
+<a id="more"></a>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">时间</th>
+<th>公司</th>
+<th style="text-align:center">简历</th>
+<th style="text-align:center">笔试</th>
+<th style="text-align:center">一面</th>
+<th style="text-align:center">二面</th>
+<th style="text-align:center">三面</th>
+<th>HR面</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">03/02</td>
+<td>mihoyo</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>bilibili</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>斗鱼</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">03/04</td>
+<td>阿里提前批</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">03/10</td>
+<td>头条(运维)</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>网易雷火(服务器)</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>阿里提前批(飞天)</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">03/16</td>
+<td>CVTE(c++)</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>深信服(c++)</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>腾讯(后台)</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">03/19</td>
+<td>拼多多(服务器)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>美团(运维)</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>Thoughtworks</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>猿辅导(服务器)</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>作业帮(运维)</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center"></td>
+<td>✔</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>作业帮(C++)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">03/20</td>
+<td>快手(后台)</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>华为(C++)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>百度(C++)</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>西山居(服务器)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>七牛云(后端)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>360(C++)</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">03/27</td>
+<td>阿里(C++)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">04/07</td>
+<td>腾讯(业务运维)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">✔</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="my-own"><a class="markdownIt-Anchor" href="#my-own"></a> MY OWN</h1>
+<p>A端: 开发界面</p>
+<p>B端: Business, 商家, 商业用户</p>
+<p>C端: Consumer, 消费者, 个人和家庭用户</p>
+<h2 id="腾讯一面322"><a class="markdownIt-Anchor" href="#腾讯一面322"></a> 腾讯一面(3.22)</h2>
+<ol>
+<li>
+<p>TEG: Technology and Engineering Group</p>
+</li>
+<li>
+<p>面向对象, 多态</p>
+</li>
+<li>
+<p>虚函数</p>
+<ol>
+<li>概念
+<ol>
+<li>虚函数是为了允许用基类的指针来调用子类的这个函数</li>
+<li>纯虚函数是为了实现一个接口, 起到一个规范的作用</li>
+</ol>
+</li>
+<li>对于虚函数来说, 父类和子类都有各自的版本。由多态方式调用的时候动态绑定</li>
+<li>虚函数是C++中用于实现多态(polymorphism)的机制。核心理念就是通过基类访问派生类定义的函数。</li>
+<li>如果指针指向的是子类对象, 将调用子类的析构函数, 然后自动调用基类的析构函数</li>
+<li>意义
+<ol>
+<li>为了安全, 因为避免任何需要明确但是因为不小心而导致的未知的结果, 提醒子类去做应做的实现</li>
+<li>为了编码的效率</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>虚函数表</p>
+</li>
+<li>
+<p>快排, 堆排</p>
+</li>
+<li>
+<p>网络字节序, 大小端</p>
+<ol>
+<li>大端: 高位在前, 人类读写数值的方法</li>
+<li>小端: 低位在前<br />
+<img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/bg2016112201.gif" alt="img" /></li>
+<li>除了计算机的内部处理, 其他的场合几乎都是大端字节序, 比如网络传输和文件储存</li>
+<li><strong>&quot;只有读取的时候，才必须区分字节序，其他情况都不用考虑。&quot;</strong></li>
+<li>历史原因是CPU架构不同, 为了规范所以让网络字节序为大端</li>
+<li><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200323233818841.png" alt="image-20200323233818841" /></li>
+</ol>
+</li>
+<li>
+<p>进程调度</p>
+<ol>
+<li>先来先服务, 短作业等待时间过长</li>
+<li>短作业优先, 长作业饿死</li>
+<li>最短剩余时间</li>
+</ol>
+</li>
+<li>
+<p>内存管理</p>
+<ol>
+<li>只读部分
+<ol>
+<li>.text: 代码段</li>
+<li>.rodata: 常量</li>
+</ol>
+</li>
+<li>读写部分
+<ol>
+<li>.data: 初始化了全局变量, 静态变量</li>
+<li>.bss: 未初始化的全局变量, 静态变量</li>
+<li>heap: malloc, free</li>
+<li>stack: 函数调用, 生命周期被限制的变量</li>
+</ol>
+</li>
+<li>页面置换算法
+<ol>
+<li>先进先出</li>
+<li>先进先出·改</li>
+<li>最近最久未使用(LRU)</li>
+<li>时间片轮转</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>阻塞, 非阻塞, 同步, 异步</p>
+</li>
+<li>
+<p>服务器容灾</p>
+<ol>
+<li>高可用: 两台机器, 备份机一直发hello包, 主机未应答的话, 主动接管业务</li>
+<li>冷备: 手动启动配置备份机</li>
+<li>容错: A运行时, 通过软件同步复制操作到B, A崩溃后, B立刻托管业务, 成本变高</li>
+</ol>
+</li>
+<li>
+<p>索引优化</p>
+<ol>
+<li>最左前缀匹配<br />
+a = 1 and b = 2 and c &gt; 3 and d = 4, (a, b, c, d)索引用不到d</li>
+<li>count(distinct col) / count(*) 越大越好, 最大是唯一键的1</li>
+<li>索引列不参与计算</li>
+<li>拓展索引, 不要新建索引</li>
+</ol>
+</li>
+<li>
+<p>limit优化</p>
+<ol>
+<li>
+<p>limit的逻辑</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table_name <span class="keyword">limit</span> <span class="number">10000</span>,<span class="number">10</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>从数据表中读取第N条数据添加到数据集中</li>
+<li>重复第一步直到 N = 10000 + 10</li>
+<li>根据 offset 抛弃前面 10000 条数</li>
+<li>返回剩余的 10 条数据</li>
+</ol>
+</li>
+<li>
+<p>自增索引</p>
+</li>
+<li>
+<p>先把索引列查找出来</p>
+</li>
+<li>
+<p>inner join</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="腾讯二面"><a class="markdownIt-Anchor" href="#腾讯二面"></a> 腾讯二面</h2>
+<ol>
+<li>
+<p>进程通信</p>
+<ol>
+<li>共享内存: 不需要系统调用, 所以效率最高, 但是没有同步互斥机制</li>
+</ol>
+</li>
+<li>
+<p>范式</p>
+<ol>
+<li>第一范式: 每个属性不可再分</li>
+<li>第二范式: 消除了非主属性对于码的部分函数依赖<br />
+实体的属性完全依赖于主关键字，即：不能存在仅依赖主关键字的一部分<br />
+(学号, 课程号, 得分, 课程名)</li>
+<li>第三范式: 消除数据库中关键字之间的依赖关系<br />
+消除传递依赖<br />
+(学号, 系别, 系主任)</li>
+<li>BCNF范式: 不允许主键的一部分被另一部分或其它部分决定<br />
+(学生, 老师, 课程)</li>
+</ol>
+</li>
+<li>
+<p>uuid不重复的原理</p>
+<ol>
+<li>时间戳</li>
+<li>名字的MD5散列</li>
+</ol>
+</li>
+</ol>
+<h2 id="腾讯业务运维一面"><a class="markdownIt-Anchor" href="#腾讯业务运维一面"></a> 腾讯(业务运维)一面</h2>
+<ol>
+<li>mysql修改字段名</li>
+<li>mysql修改字段值</li>
+<li>查看IO<br />
+<a href="https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/iostat.html" target="_blank" rel="noopener">iostat</a></li>
+<li>修改DNS服务器ip
+<ol>
+<li>非永久解决方案: <code>/etc/resolv.conf</code></li>
+<li>永久解决方案: <code>/etc/dhcp/dhclient.conf</code></li>
+</ol>
+</li>
+</ol>
+<h2 id="腾讯业务运维二面"><a class="markdownIt-Anchor" href="#腾讯业务运维二面"></a> 腾讯(业务运维)二面</h2>
+<ol>
+<li>
+<p>TCP端口一共多少个<br />
+16位, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>16</mn></msup><mo>=</mo><mn>65536</mn></mrow><annotation encoding="application/x-tex">2^{16}=65536</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">6</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">5</span><span class="mord">5</span><span class="mord">3</span><span class="mord">6</span></span></span></span>, 所以是0-65535</p>
+</li>
+<li>
+<p>端口分类</p>
+<ol>
+<li>公认端口: 0-1023</li>
+<li>注册端口: 松散的绑定一些服务</li>
+<li>动态和私有端口: 49152-65535, 可用于任意软件与任何其他的软件通信的端口数，使用因特网的传输控制协议，或用户传输协议。</li>
+</ol>
+</li>
+<li>
+<p>文件权限:</p>
+<p>拥有者, 拥有者所在用户组, 其他用户</p>
+</li>
+<li>
+<p>如何判断tcp超时</p>
+<ol>
+<li>3次ACK快重传</li>
+<li>α·SRTT +（1 - α）·RTT</li>
+<li>容易混淆的知识
+<ol>
+<li>MSL: maximum segment lifetime, 最大报文生存时间</li>
+<li>TTL: time to live, 路由的跳数</li>
+<li>RTT: round trip time, 往返时延, 数据包回环一圈的时间</li>
+<li>RTO: Retransmission Time Out, 重传超时</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>tcp 可靠性</p>
+<ol>
+<li>校验和</li>
+<li>字节编号</li>
+<li>数据段确认
+<ol>
+<li>一次发送滑动窗口大小个数据段</li>
+<li>对连续接受的数据段的最后一个序号进行确认</li>
+<li>不连续的已经接受的缓存</li>
+<li>超时重传</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>如何创建进程</p>
+<ol>
+<li>fork(): 复制当前进程, 返回父进程和子进程ID一共两次</li>
+<li>vfork(): 产生子进程和父进程共享地址空间</li>
+<li>clone(): clone可以让你有选择性的继承父进程的资源</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/06.png" alt="img" /></p>
+</li>
+<li>
+<p>mysql服务的连接过程<br />
+<img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200413074535469.png" alt="image-20200413074535469" /></p>
+</li>
+</ol>
+<h2 id="腾讯业务运维三面"><a class="markdownIt-Anchor" href="#腾讯业务运维三面"></a> 腾讯(业务运维)三面</h2>
+<ol>
+<li>
+<p>bash是如何执行命令的</p>
+<ol>
+<li>
+<p>执行交互式命令</p>
+<ol>
+<li>fork当前进程并且exec执行命令</li>
+<li>内建命令不创建新进程<code>cd</code>, <code>alias</code>, <code>export</code></li>
+</ol>
+</li>
+<li>
+<p>执行脚本</p>
+<ol>
+<li>
+<p><code>./script.sh</code>(需要可执行权限): fork成子进程, exec系统调用</p>
+<ol>
+<li>用<code>script.sh</code>程序代码替换子进程代码</li>
+<li>从<code>_start</code>开始执行</li>
+</ol>
+</li>
+<li>
+<p><code>/bin/sh ./script.sh</code>(不需要可执行权限)</p>
+<ol>
+<li>用解释器程序代码替换子进程代码</li>
+<li>从 解释器的<code>_start</code>开始执行</li>
+</ol>
+</li>
+<li>
+<p>实例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+<ol>
+<li>交互Shell（<code>bash</code>）<code>fork</code>/<code>exec</code>一个子Shell（<code>sh</code>）用于执行脚本，父进程<code>bash</code>等待子进程<code>sh</code>终止</li>
+<li><code>sh</code>读取脚本中的<code>cd ..</code>命令，调用相应的函数执行内建命令，改变当前工作目录为上一级目录</li>
+<li><code>sh</code>读取脚本中的<code>ls</code>命令，<code>fork</code>/<code>exec</code>这个程序，列出当前工作目录下的文件，<code>sh</code>等待<code>ls</code>终止</li>
+<li><code>ls</code>终止后，<code>sh</code>继续执行，读到脚本文件末尾，<code>sh</code>终止</li>
+<li><code>sh</code>终止后，<code>bash</code>继续执行，打印提示符等待用户输入</li>
+<li><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/shellscript.shellexec.png" alt="Shell脚本的执行过程" /></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>fork底层</p>
+</li>
+<li>
+<p>查看某个进程的系统调用<br />
+<code>strace -p pid</code></p>
+</li>
+<li>
+<p>用户态和内核态是如何切换的</p>
+</li>
+<li>
+<p>分配给进程的资源包括什么, 又是如何分配的</p>
+</li>
+<li>
+<p>进程调度算法</p>
+<ol>
+<li>先来先服务</li>
+<li>短作业优先</li>
+<li>最高响应比(响应比 = 1+作业等待时间/作业处理时间)</li>
+<li>优先级调度</li>
+</ol>
+</li>
+<li>
+<p>时间片轮转算法<br />
+5ms - 800ms</p>
+</li>
+</ol>
+<h2 id="深信服c一面"><a class="markdownIt-Anchor" href="#深信服c一面"></a> 深信服(C++)一面</h2>
+<ol>
+<li>
+<p>为什么会有hash冲突<br />
+根据输入值变成固定的长度，必然存在不同的输入产生相同的值</p>
+</li>
+<li>
+<p>time33算法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">time33</span><span class="params">(<span class="keyword">char</span>[] str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> hash = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> c : str) &#123;</span><br><span class="line">        hash = hash * <span class="number">33</span> + c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hash;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="百度c一面"><a class="markdownIt-Anchor" href="#百度c一面"></a> 百度(C++)一面</h2>
+<ol>
+<li>tcp建立连接为什么需要三次
+<ol>
+<li>为什么不需要四次(ii, iii可以合并)
+<ol>
+<li>A --syn+seq(A)=x–&gt; B</li>
+<li>B ----ack=x+1— --&gt; A</li>
+<li>B --syn+seq(B)=y–&gt; A</li>
+<li>A ----ack=y+1------&gt; B</li>
+</ol>
+</li>
+<li>为什么不能是两次(不能就B的初始序列号达成一致)
+<ol>
+<li>A --syn+seq(A)=x–&gt; B</li>
+<li>B --syn+seq(B)=y+ack=x+1–&gt; A</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>tcp断开连接为什么需要四次
+<ol>
+<li>第二次挥手完成的时候，服务端可能还有数据要发送</li>
+<li>所以只能先发送ack确认</li>
+</ol>
+</li>
+<li>内存排布</li>
+<li>进程资源是如何隔离的
+<ol>
+<li>namespace是Linux提供的资源隔离机制。只有在同一个namespace下的进程可以相互联系，但无法感受到外部进程的存在，营造出处于一个独立的系统环境中的错觉，从而实现了隔离。</li>
+<li>cgroup提供
+<ol>
+<li>资源限制</li>
+<li>优先级控制</li>
+<li>资源统计</li>
+<li>任务控制</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>死锁的条件
+<ol>
+<li>互斥: 一个资源只能被一个进程占用</li>
+<li>请求和保持等待: 一个进程因请求被占用资源而发生阻塞时，对已获得的资源保持占有</li>
+<li>不可抢占</li>
+<li>循环等待: 所等待的进程必定会形成一个环路</li>
+</ol>
+</li>
+<li>死锁的预防
+<ol>
+<li>打破互斥: 实际意义不大</li>
+<li>打破请求和保持等待: 一次性申请需要的全部资源
+<ol>
+<li>进程是动态的，不可能提前预知资源多少</li>
+<li>资源利用率低，降低了资源使用的并发性</li>
+</ol>
+</li>
+<li>打破不可抢占: 允许分配已占有的资源</li>
+<li>打破循环等待：资源有序分配</li>
+</ol>
+</li>
+<li>死锁的避免
+<ol>
+<li>银行家算法</li>
+</ol>
+</li>
+<li>死锁的检测
+<ol>
+<li>发生死锁时，最小代价恢复运行</li>
+<li>发现环路说明有死锁</li>
+</ol>
+</li>
+<li>死锁的恢复
+<ol>
+<li>按照进程优先级撤销进程</li>
+</ol>
+</li>
+</ol>
+<h2 id="百度二面"><a class="markdownIt-Anchor" href="#百度二面"></a> 百度二面</h2>
+<ol>
+<li>
+<p>GC</p>
+<ol>
+<li>引用计数法</li>
+<li>mark sweep</li>
+<li>维护不需要GC的</li>
+</ol>
+</li>
+<li>
+<p>线程安全的单例模式</p>
+<ol>
+<li>
+<p>饿汉版</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">single</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    single() = <span class="keyword">default</span>;</span><br><span class="line"></span><br><span class="line">    ~single() = <span class="keyword">default</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> single *instance;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> val = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> single *<span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">single *single::instance = <span class="keyword">new</span> single();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; single::getInstance()-&gt;val &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>懒汉版</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">single</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    single() = <span class="keyword">default</span>;</span><br><span class="line"></span><br><span class="line">    ~single() = <span class="keyword">default</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> single *instance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> mutex _mutex;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> val = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> single *<span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            unique_lock&lt;mutex&gt; lock(_mutex);</span><br><span class="line">            <span class="keyword">if</span> (instance == <span class="literal">nullptr</span>)</span><br><span class="line">                instance = <span class="keyword">new</span> single();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">single *single::instance = <span class="literal">nullptr</span>;</span><br><span class="line">mutex single::_mutex;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; single::getInstance()-&gt;val &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="作业帮运维一面"><a class="markdownIt-Anchor" href="#作业帮运维一面"></a> 作业帮(运维)一面</h2>
+<ol>
+<li>软硬链接区别
+<ol>
+<li>硬连接共享inode</li>
+<li>若原来的文件删除了，软链接不可访问，硬链接可以访问</li>
+<li>软链接可以跨磁盘，硬连接不行</li>
+</ol>
+</li>
+<li>如何在log文件打开的情况下删除</li>
+<li>运维的工作
+<ol>
+<li>对全平台的业务的监控与部署</li>
+<li>服务部署的效率化与自动化</li>
+<li>降低运维的成本</li>
+<li>一整套服务的生命周期的管理</li>
+</ol>
+</li>
+</ol>
+<h2 id="作业帮运维二面"><a class="markdownIt-Anchor" href="#作业帮运维二面"></a> 作业帮(运维)二面</h2>
+<ol>
+<li>
+<p>常见http请求头</p>
+<table>
+<thead>
+<tr>
+<th>请求头</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accept</td>
+<td>文件类型(text/css)</td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td>压缩方式(gzip)</td>
+</tr>
+<tr>
+<td>Accept-Language</td>
+<td>zh, cn</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>操作系统，浏览器</td>
+</tr>
+<tr>
+<td>method</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>常见http响应头</p>
+<table>
+<thead>
+<tr>
+<th>响应头</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>文件类型(text/css)</td>
+</tr>
+<tr>
+<td>Content-Encoding</td>
+<td>压缩方式(gzip)</td>
+</tr>
+<tr>
+<td>Content-Language</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>状态码(200)</td>
+</tr>
+<tr>
+<td>method</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>301与302, 常见状态码</p>
+<ol>
+<li>301: 永久重定向(<strong>http</strong>😕/www.baidu.com跳转<strong>https</strong>😕/www.baidu.com)</li>
+<li>302: 临时跳转(未登陆的用户访问用户中心重定向到登录页面)</li>
+<li>400: 客户端请求有语法错误</li>
+<li>403: 服务端收到请求, 但是拒绝提供服务</li>
+<li>404: 请求的资源不存在</li>
+</ol>
+</li>
+<li>
+<p>cookie 和 session区别</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>cookie</th>
+<th>session</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>存取方式</td>
+<td>ASCII字符串</td>
+<td>任意类型</td>
+</tr>
+<tr>
+<td>隐私策略</td>
+<td>客户端可见</td>
+<td>存储在服务器</td>
+</tr>
+<tr>
+<td>有效期</td>
+<td>时间可以设置比较长</td>
+<td>不可能又多又长</td>
+</tr>
+<tr>
+<td>跨域</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>websocket</p>
+<ol>
+<li>基于TCP的真正的全双工通信，客户端和服务器都可以正常接受与发送数据</li>
+<li>建立TCP连接后，不需要HTTP header</li>
+<li>通信协议符为(ws, wss)</li>
+</ol>
+</li>
+<li>
+<p>事务是什么<br />
+满足ACID的一组操作</p>
+</li>
+<li>
+<p>为什么需要事务<br />
+保证数据库中数据的完整性和正确性</p>
+</li>
+</ol>
+<h2 id="字节运维二面"><a class="markdownIt-Anchor" href="#字节运维二面"></a> 字节(运维)二面</h2>
+<ol>
+<li>聚簇索引<br />
+聚簇索引的数据的物理存放顺序与索引顺序是一致，IO时间变少</li>
+</ol>
+<h1 id="暑期实习面经"><a class="markdownIt-Anchor" href="#暑期实习面经"></a> <a href="https://www.nowcoder.com/discuss/375967?type=post&amp;order=time&amp;pos=&amp;page=1" target="_blank" rel="noopener">[暑期实习面经]</a></h1>
+<h2 id="阿里一面"><a class="markdownIt-Anchor" href="#阿里一面"></a> 阿里一面</h2>
+<ol>
+<li>
+<p>const</p>
+<ol>
+<li>
+<p>const修饰普通变量: 常量不能修改(注意编译器优化, volatile)</p>
+</li>
+<li>
+<p>const修饰指针变量</p>
+<ol>
+<li>
+<p>修饰指针指向的内容: 内容不可变</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p = <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>修饰指针: 指针不可变</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* <span class="keyword">const</span> p = &amp;a;</span><br><span class="line">*p = <span class="number">9</span>; <span class="comment">// 正确</span></span><br><span class="line">p = &amp;b; <span class="comment">// 错误</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>修饰指针和指针指向的内容: 均不可变</p>
+</li>
+</ol>
+</li>
+<li>
+<p>const参数传递</p>
+<ol>
+<li>
+<p>按值传递的参数: 可以当没有必要(本来就是拷贝)</p>
+</li>
+<li>
+<p>指针参数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Cpf</span><span class="params">(<span class="keyword">int</span> *<span class="keyword">const</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;*a&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    *a = <span class="number">9</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>自定义类型的参数</p>
+</li>
+</ol>
+</li>
+<li>
+<p>const函数返回值</p>
+<ol>
+<li>
+<p>const修饰内置类型: 是否修饰作用一样</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">int</span> <span class="title">Cmf</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>const修饰函数指针</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">char</span> *<span class="title">getStr</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"dddd"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *str = getStr();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>const修饰成员函数<br />
+const 修饰类成员函数，其目的是防止成员函数修改被调用对象的值</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get_cm</span><span class="params">()</span><span class="keyword">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> _cm;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>多态</p>
+<p>一个接口, 多种行为</p>
+<ol>
+<li>编译时多态: 函数重载与模板(静态)</li>
+<li>运行时多态: 虚函数(动态)</li>
+</ol>
+<p>析构函数: 在多态基类中使用虚析构函数</p>
+</li>
+<li>
+<p>指针和引用</p>
+<ol>
+<li>
+<p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>;<span class="keyword">int</span> *p=&amp;a; <span class="comment">// p是指针</span></span><br><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>;<span class="keyword">int</span> &amp;b=a;  <span class="comment">// b是引用, 和a相同</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>可以有const指针，但是没有const引用</p>
+</li>
+<li>
+<p>指针可以有多级，但是引用只能是一级</p>
+</li>
+<li>
+<p>指针可以改变，但引用不可改变</p>
+</li>
+<li>
+<p>&quot;sizeof引用&quot;得到的是所指向的变量(对象)的大小，而&quot;sizeof指针&quot;得到的是指针本身的大小</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> b=&amp;a;</span><br><span class="line"><span class="keyword">sizeof</span>(b); <span class="comment">// 4</span></span><br><span class="line"><span class="keyword">sizeof</span>(<span class="keyword">int</span> *); <span class="comment">// 8(64位)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>函数参数</p>
+<ol>
+<li>
+<p>指针本质还是值传递</p>
+</li>
+<li>
+<p>引用传递的是实参本身</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> &amp;a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">　　<span class="built_in">cout</span>&lt;&lt;&amp;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;&amp;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    test(a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 0x7ffdf0564b14</span></span><br><span class="line"><span class="comment">// 0x7ffdf0564b14</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>判断链表是否循环<br />
+leetcode141</p>
+</li>
+</ol>
+<h1 id="cvte-c"><a class="markdownIt-Anchor" href="#cvte-c"></a> <a href="https://www.nowcoder.com/discuss/384664?type=post&amp;order=time&amp;pos=&amp;page=1&amp;subType=2" target="_blank" rel="noopener">CVTE C++</a></h1>
+<h2 id="一面"><a class="markdownIt-Anchor" href="#一面"></a> 一面</h2>
+<ol>
+<li>
+<p>RTSP协议<br />
+RTSP(Real-TimeStream Protocol )被用于建立的控制媒体流的传输，它为多媒体服务扮演“网络远程控制”的角色。尽管有时可以把RTSP控制信息和媒体数据流交织在一起传送，但一般情况RTSP本身并不用于转送媒体流数据。媒体数据的传送可通过RTP/RTCP等协议来完成。</p>
+<p>实时传输控制协议(Real-time ControlProtocol，RTCP)与RTP共同定义在1996年提出的RFC 1889中，是和 RTP一起工作的控制协议。RTCP单独运行在低层协议上，由低层协议提供数据与控制包的复用。</p>
+</li>
+<li>
+<p>基于UDP和TCP的传输有什么区别</p>
+<table>
+<thead>
+<tr>
+<th>TCP</th>
+<th>UDP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无状态面向连接</td>
+<td>无连接面向报文</td>
+</tr>
+<tr>
+<td>字节流模式</td>
+<td>数据报模式</td>
+</tr>
+<tr>
+<td>只能一对一</td>
+<td>可以多对多</td>
+</tr>
+<tr>
+<td>系统资源消耗大</td>
+<td>****小</td>
+</tr>
+<tr>
+<td>保证数据正确</td>
+<td>可能丢包</td>
+</tr>
+<tr>
+<td>保证数据顺序</td>
+<td>可能丢包</td>
+</tr>
+<tr>
+<td>流量控制,拥塞控制,<br />超时重传,校验和</td>
+<td>尽力交付</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>如何解决UDP传输乱序的问题?<br />
+tcp的seq</p>
+</li>
+<li>
+<p>shared_ptr和unique_ptr有什么区别</p>
+<table>
+<thead>
+<tr>
+<th>shared_ptr</th>
+<th>unique_ptr</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计数器</td>
+<td>独有</td>
+</tr>
+<tr>
+<td>make_shared</td>
+<td>只能new</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>shared_ptr如何做到多个同时管理一个对象<br />
+计数器, use_count, unique</p>
+</li>
+<li>
+<p>unique_ptr可以拷贝吗?为什么不能拷贝?<br />
+拷贝构造函数是被删除的</p>
+</li>
+<li>
+<p>c++多态如何理解?<br />
+一个接口, 多种行为</p>
+<ol>
+<li>编译时多态: 函数重载与模板(静态)</li>
+<li>运行时多态: 虚函数(动态)</li>
+</ol>
+</li>
+<li>
+<p>多进程和多线程的区别<br />
+线程是CPU调度的基本单元<br />
+进程是系统资源分配的基本单元</p>
+</li>
+<li>
+<p>如何在两个进程间共享一个对象</p>
+<ol>
+<li>共享内存</li>
+<li>管道</li>
+<li>MQ</li>
+</ol>
+</li>
+<li>
+<p>虚拟地址空间</p>
+<ol>
+<li>部分映射物理内存</li>
+<li>伪连续, 不需要物理内存连续</li>
+</ol>
+</li>
+</ol>
+<h2 id="电话面-二面"><a class="markdownIt-Anchor" href="#电话面-二面"></a> 电话面 二面</h2>
+<ol>
+<li>mmap原理<br />
+mmap将一个文件或者其它对象映射进内存, 文件被映射到多个页上
+<ol>
+<li>在用户虚拟地址空间中寻找空闲的满足要求的一段连续的虚拟地址空间,为映射做准备(由内核mmap系统调用完成)</li>
+<li>建立虚拟地址空间和文件或设备的物理地址之间的映射(设备驱动完成)</li>
+<li>缺页中断</li>
+</ol>
+</li>
+<li>直接写磁盘的性能损耗<br />
+操作系统和C库函数通常会对写入的文件内容做缓存，以减少实际写文件的次数。直接调用系统函数fsync或C函数fflush将使系统的缓存机制失效，此时将强制把内容刷到磁盘上。除非必需，否则不要执行强制刷盘操作。</li>
+</ol>
+<h1 id="腾讯暑期实习面试"><a class="markdownIt-Anchor" href="#腾讯暑期实习面试"></a> <a href="https://blog.csdn.net/weixin_41863129/article/details/105006828" target="_blank" rel="noopener">腾讯暑期实习面试</a></h1>
+<h2 id="一面-2"><a class="markdownIt-Anchor" href="#一面-2"></a> 一面</h2>
+<ol>
+<li>
+<p>进程线程通信</p>
+<ol>
+<li>进程: 管道, 有名管道, 信号量, 消息队列, 共享内存, 套接字</li>
+<li>线程: 锁, 信号量</li>
+</ol>
+</li>
+<li>
+<p>MySQL索引<br />
+MySQL 5.5以前的默认存储引擎是MyISAM, MySQL 5.5之后的默认存储引擎是InnoDB</p>
+<ol>
+<li>MyISAM
+<ol>
+<li>没有事务</li>
+<li>全文索引(like %XXX)</li>
+<li>表级锁</li>
+<li>表压缩(io密集)</li>
+<li>count()</li>
+</ol>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">InnoDB</th>
+<th style="text-align:left">MyISAM</th>
+<th style="text-align:left">MEMORY</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">B树索引 (B-tree indexes)</td>
+<td style="text-align:left">自增ID物理连续性更高， 二叉树，红黑树高度不可控</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">√</td>
+</tr>
+<tr>
+<td style="text-align:left">R树索引 (R-tree indexes)</td>
+<td style="text-align:left">空间索引</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">哈希索引 (Hash indexes)</td>
+<td style="text-align:left">无法做范围查询</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+</tr>
+<tr>
+<td style="text-align:left">全文索引 (Full-text indexes)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>B树是多路树，红黑树是二叉树！红黑树一个节点只能存出一个值，B树一个节点可以存储多个值，红黑树的深度会更大,定位时 红黑树的查找次数会大一些。</li>
+<li>高度</li>
+<li>局部性原理</li>
+</ol>
+</li>
+<li>
+<p>MySQL的联合索引<br />
+叶节点存储的则是三个关键字col1、col2、col3三个关键字的数据，且按照col1、col2、col3的顺序进行排序</p>
+</li>
+<li>
+<p>https是什么</p>
+<ol>
+<li>http的安全版本</li>
+<li>ssl(Transport Layer Security) -&gt; tls(Transport Layer Security)</li>
+</ol>
+</li>
+<li>
+<p>https 过程</p>
+<ol>
+<li>TCP三次握手(1.5-RTT)</li>
+</ol>
+</li>
+<li>
+<p>TLS四次握手(2-RTT)</p>
+</li>
+<li>
+<p>HTTP交互 (1-RTT), 真正传输数据的</p>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200519165142493.png" alt="image-20200519165142493" /></p>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200519165246955.png" alt="image-20200519165246955" /></p>
+</li>
+<li>
+<p>服务端的状态码</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">状态码</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2XX</td>
+<td style="text-align:center">成功</td>
+</tr>
+<tr>
+<td style="text-align:center">3XX</td>
+<td style="text-align:center">重定向</td>
+</tr>
+<tr>
+<td style="text-align:center">4XX</td>
+<td style="text-align:center">客户端错误</td>
+</tr>
+<tr>
+<td style="text-align:center">5XX</td>
+<td style="text-align:center">服务端错误</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>加密算法有哪些</p>
+<ol>
+<li>对称加密: DES, 3DES, AES</li>
+<li>非对称加密: RSA, DSA</li>
+<li>SHA-1, MD5</li>
+</ol>
+</li>
+<li>
+<p>CA证书</p>
+<ol>
+<li>A服务器产生公钥私钥后向root ca发送请求</li>
+<li>root ca发送用自己的私钥加密的A服务器的证书</li>
+<li>浏览器一般带有权威认证机构的公钥</li>
+<li>这个公钥可以用来解密证书证明自己是自己</li>
+</ol>
+</li>
+<li>
+<p>restful接口</p>
+<ol>
+<li>API与用户的通信协议，总是使用HTTPs协议</li>
+<li>每个网址代表一种资源(resource)</li>
+<li>动词</li>
+</ol>
+</li>
+<li>
+<p>get和post区别</p>
+<table>
+<thead>
+<tr>
+<th>GET</th>
+<th>POST</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一般是获取</td>
+<td>一般是发送</td>
+</tr>
+<tr>
+<td>数据url可见</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;=2kb</td>
+<td>一般无限制</td>
+</tr>
+<tr>
+<td>安全性低, 无加密</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>http1.0, 1.1, 2.0</p>
+<table>
+<thead>
+<tr>
+<th>HTTP</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>新增了POST, 一次请求一次连接</td>
+</tr>
+<tr>
+<td>1.1</td>
+<td>keep-alive, 管道, 分块</td>
+</tr>
+<tr>
+<td>2.0</td>
+<td>二进制, 多路复用, 主动推送, 头部压缩</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>TCP怎么可靠传输<br />
+拥塞控制, 流量控制, 校验和, 超时重传, 字节编号</p>
+</li>
+<li>
+<p>滑动窗口是什么<br />
+接收方通过 TCP 报文段中的窗口字段告诉发送方自己的窗口大小，发送方根据这个值和其它信息设置自己的窗口大小</p>
+</li>
+<li>
+<p>拥塞窗口<br />
+拥塞窗口只是一个状态变量，实际决定发送方能发送多少数据的是发送方窗口</p>
+</li>
+</ol>
+<h2 id="二面"><a class="markdownIt-Anchor" href="#二面"></a> 二面</h2>
+<ol>
+<li>
+<p>浏览器输入一个网址，发生的事情</p>
+</li>
+<li>
+<p>cdn是什么<br />
+<strong>大号的缓存代理</strong></p>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/cdn_1.png" alt="img" /></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/17/%E9%9D%A2%E8%AF%95/Vim/" rel="prev" title="Vim">
+      <i class="fa fa-chevron-left"></i> Vim
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/04/%E9%9D%A2%E8%AF%95/OperatingSystem/" rel="next" title="操作系统复习">
+      操作系统复习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#my-own"><span class="nav-number">1.</span> <span class="nav-text"> MY OWN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#腾讯一面322"><span class="nav-number">1.1.</span> <span class="nav-text"> 腾讯一面(3.22)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#腾讯二面"><span class="nav-number">1.2.</span> <span class="nav-text"> 腾讯二面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#腾讯业务运维一面"><span class="nav-number">1.3.</span> <span class="nav-text"> 腾讯(业务运维)一面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#腾讯业务运维二面"><span class="nav-number">1.4.</span> <span class="nav-text"> 腾讯(业务运维)二面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#腾讯业务运维三面"><span class="nav-number">1.5.</span> <span class="nav-text"> 腾讯(业务运维)三面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深信服c一面"><span class="nav-number">1.6.</span> <span class="nav-text"> 深信服(C++)一面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#百度c一面"><span class="nav-number">1.7.</span> <span class="nav-text"> 百度(C++)一面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#百度二面"><span class="nav-number">1.8.</span> <span class="nav-text"> 百度二面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作业帮运维一面"><span class="nav-number">1.9.</span> <span class="nav-text"> 作业帮(运维)一面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作业帮运维二面"><span class="nav-number">1.10.</span> <span class="nav-text"> 作业帮(运维)二面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字节运维二面"><span class="nav-number">1.11.</span> <span class="nav-text"> 字节(运维)二面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#暑期实习面经"><span class="nav-number">2.</span> <span class="nav-text"> [暑期实习面经]</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#阿里一面"><span class="nav-number">2.1.</span> <span class="nav-text"> 阿里一面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cvte-c"><span class="nav-number">3.</span> <span class="nav-text"> CVTE C++</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一面"><span class="nav-number">3.1.</span> <span class="nav-text"> 一面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#电话面-二面"><span class="nav-number">3.2.</span> <span class="nav-text"> 电话面 二面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#腾讯暑期实习面试"><span class="nav-number">4.</span> <span class="nav-text"> 腾讯暑期实习面试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一面-2"><span class="nav-number">4.1.</span> <span class="nav-text"> 一面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二面"><span class="nav-number">4.2.</span> <span class="nav-text"> 二面</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Chunibyo"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Chunibyo</p>
+  <div class="site-description" itemprop="description">先生能否卖我几斤仁义道德?</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chunibyo-wly" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chunibyo-wly" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chunibyo.wly@gmail.com" title="E-Mail → mailto:chunibyo.wly@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-:author"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chunibyo</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">Symbols count total: </span>
+    <span title="Symbols count total">51k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    <span title="Reading time total">46 mins.</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+
+
+  
+
+</body>
+</html>

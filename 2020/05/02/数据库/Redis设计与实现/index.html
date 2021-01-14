@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png">
+  <link rel="mask-icon" href="/images/avatar.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://chunibyo-wly.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"flat"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Redis设计与实现">
+<meta property="og:url" content="https://chunibyo-wly.github.io/2020/05/02/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="Chunibyo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114191459878-20210114193632361.png">
+<meta property="article:published_time" content="2020-05-02T15:35:49.000Z">
+<meta property="article:modified_time" content="2021-01-14T11:36:45.565Z">
+<meta property="article:author" content="Chunibyo">
+<meta property="article:tag" content="redis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114191459878-20210114193632361.png">
+
+<link rel="canonical" href="https://chunibyo-wly.github.io/2020/05/02/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Redis设计与实现 | Chunibyo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chunibyo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">16</span></a>
+
+  </li>
+        <li class="menu-item menu-item-20春招记录">
+
+    <a href="/interview/" rel="section"><i class="fa fa-fw fa-calendar"></i>20春招记录</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chunibyo-wly.github.io/2020/05/02/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Chunibyo">
+      <meta itemprop="description" content="先生能否卖我几斤仁义道德?">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chunibyo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Redis设计与实现
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-02 23:35:49" itemprop="dateCreated datePublished" datetime="2020-05-02T23:35:49+08:00">2020-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-14 19:36:45" itemprop="dateModified" datetime="2021-01-14T19:36:45+08:00">2021-01-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114191459878-20210114193632361.png" alt="" /></p>
+<a id="more"></a>
+<h1 id="命令"><a class="markdownIt-Anchor" href="#命令"></a> 命令</h1>
+<h2 id="一-string"><a class="markdownIt-Anchor" href="#一-string"></a> 一、string</h2>
+<p><code>set</code>, <code>get</code>, <code>del</code>, <code>mset</code>, <code>mget</code></p>
+<h2 id="二-hash"><a class="markdownIt-Anchor" href="#二-hash"></a> 二、hash</h2>
+<p><code>hset h1 name liming</code></p>
+<p><code>hdel h1 age</code></p>
+<h2 id="三-list"><a class="markdownIt-Anchor" href="#三-list"></a> 三、list</h2>
+<p><code>lrange</code>, <code>lpop</code></p>
+<h2 id="四-set"><a class="markdownIt-Anchor" href="#四-set"></a> 四、set</h2>
+<p><code>sadd</code>， <code>smembers</code></p>
+<h1 id="一-数据结构与对象"><a class="markdownIt-Anchor" href="#一-数据结构与对象"></a> 一、数据结构与对象</h1>
+<h2 id="第二章-简单动态字符串sds"><a class="markdownIt-Anchor" href="#第二章-简单动态字符串sds"></a> 第二章、简单动态字符串(SDS)</h2>
+<p>simple dynamic string</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sdshdr</span> &#123;</span></span><br><span class="line">    <span class="comment">// buf数组使用字节的数量</span></span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// buf数组未使用字节的数量</span></span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">free</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 字节数组，用于保存字符串</span></span><br><span class="line">    <span class="keyword">char</span> buf[];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="第三章-链表"><a class="markdownIt-Anchor" href="#第三章-链表"></a> 第三章、链表</h2>
+<p>链表键、发布与订阅、慢查询和监视器</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">prev</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">next</span>;</span></span><br><span class="line">    <span class="keyword">void</span> *value;</span><br><span class="line">    </span><br><span class="line">&#125;ListNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">List</span> &#123;</span></span><br><span class="line">    ListNode* head;</span><br><span class="line">    ListNode* tail;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> len;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 节点值复制函数</span></span><br><span class="line">    <span class="keyword">void</span> *(*dup)  (<span class="keyword">void</span> *ptr);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 节点值释放函数</span></span><br><span class="line">    <span class="keyword">void</span>  (*<span class="built_in">free</span>) (<span class="keyword">void</span> *ptr);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 节点值对比函数</span></span><br><span class="line">    <span class="keyword">int</span>   (*match)(<span class="keyword">void</span> *ptr);</span><br><span class="line">&#125;List;</span><br><span class="line"><span class="number">8465656</span></span><br></pre></td></tr></table></figure>
+<h2 id="第四章-字典"><a class="markdownIt-Anchor" href="#第四章-字典"></a> 第四章、字典</h2>
+<h3 id="41-哈希表"><a class="markdownIt-Anchor" href="#41-哈希表"></a> 4.1 哈希表</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">dictht</span> &#123;</span></span><br><span class="line">    <span class="comment">// 哈希表数组</span></span><br><span class="line">    dictEntry **table;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 哈希表大小</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> size;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 用于计算索引值, 等于 size-1</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> sizemask;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 哈希表节点数目</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> used;</span><br><span class="line">&#125;dictht;</span><br></pre></td></tr></table></figure>
+<h3 id="42-哈希表节点"><a class="markdownIt-Anchor" href="#42-哈希表节点"></a> 4.2 哈希表节点</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">dictEntry</span> &#123;</span></span><br><span class="line">    <span class="comment">// 键</span></span><br><span class="line">    <span class="keyword">void</span> *key;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 值</span></span><br><span class="line">    <span class="keyword">union</span> z&#123;</span><br><span class="line">        <span class="keyword">void</span> *val;</span><br><span class="line">        <span class="keyword">uint64_t</span> u64;</span><br><span class="line">        <span class="keyword">int64_t</span> s64;</span><br><span class="line">    &#125; v;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 指向下一个哈希表节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">dictEntry</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;dictEntry;</span><br></pre></td></tr></table></figure>
+<h3 id="43-字典"><a class="markdownIt-Anchor" href="#43-字典"></a> 4.3 字典</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">dict</span> &#123;</span></span><br><span class="line">    <span class="comment">// 类型特定函数</span></span><br><span class="line">    dictType *type;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 私有数据</span></span><br><span class="line">    <span class="keyword">void</span> *privdata;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 哈希表</span></span><br><span class="line">    dictht ht[<span class="number">2</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// rehash索引</span></span><br><span class="line">    <span class="keyword">int</span> trehashidx;</span><br><span class="line">&#125;dict;</span><br></pre></td></tr></table></figure>
+<h3 id="44-哈希算法"><a class="markdownIt-Anchor" href="#44-哈希算法"></a> 4.4 哈希算法</h3>
+<ol>
+<li>hash   = dict-&gt;type-&gt;MurmurHash2(key)</li>
+<li>index = hash &amp; dict-&gt;ht[0].sizemask;</li>
+</ol>
+<h3 id="45-rehash"><a class="markdownIt-Anchor" href="#45-rehash"></a> 4.5 rehash</h3>
+<ol>
+<li><code>ht[0]</code> 渐进式 rehash 到 <code>ht[1]</code></li>
+<li>释放 <code>ht[0]</code></li>
+<li><code>ht[1]</code> 设置为 <code>ht[0]</code>, 给 <code>ht[1]</code> 分配一个空白哈希表</li>
+</ol>
+<h2 id="第五章-跳跃表"><a class="markdownIt-Anchor" href="#第五章-跳跃表"></a> 第五章、跳跃表</h2>
+<p>有序集合的底层实现之一（另一个是字典）</p>
+<p><code>zskiplist</code>， <code>zskiplistNode</code></p>
+<p>随机算法</p>
+<h2 id="第六章-整数集合"><a class="markdownIt-Anchor" href="#第六章-整数集合"></a> 第六章、整数集合</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">typefef <span class="class"><span class="keyword">struct</span> <span class="title">intest</span> &#123;</span></span><br><span class="line">    <span class="comment">// int16_t, int32_t, int64_t</span></span><br><span class="line">    <span class="keyword">uint32_t</span> encoding;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">uint32_t</span> length;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int8_t</span> contents[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>升级， 无法降级</p>
+<h2 id="第七章-压缩列表"><a class="markdownIt-Anchor" href="#第七章-压缩列表"></a> 第七章、压缩列表</h2>
+<p>连续内存</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>长度(字节)</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zlbytes</td>
+<td>4</td>
+<td>总字节数</td>
+</tr>
+<tr>
+<td>zltail</td>
+<td>4</td>
+<td>表尾节点的偏移</td>
+</tr>
+<tr>
+<td>zllen</td>
+<td>2</td>
+<td>节点数(不能太多)</td>
+</tr>
+<tr>
+<td>entryX</td>
+<td></td>
+<td>节点</td>
+</tr>
+<tr>
+<td>zlend</td>
+<td>1</td>
+<td>特殊值0xFF</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>previous_entry_length</td>
+<td></td>
+</tr>
+<tr>
+<td>encoding</td>
+<td>数据类型及长度</td>
+</tr>
+<tr>
+<td>content</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>连锁更新</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/redis/" rel="tag"><i class="fa fa-tag"></i> redis</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/29/%E9%9D%A2%E8%AF%95/STL/" rel="prev" title="STL源码剖析">
+      <i class="fa fa-chevron-left"></i> STL源码剖析
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/06/Linux/proc%E8%AE%B0%E5%BD%95/" rel="next" title="proc记录">
+      proc记录 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#命令"><span class="nav-number">1.</span> <span class="nav-text"> 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-string"><span class="nav-number">1.1.</span> <span class="nav-text"> 一、string</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-hash"><span class="nav-number">1.2.</span> <span class="nav-text"> 二、hash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-list"><span class="nav-number">1.3.</span> <span class="nav-text"> 三、list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-set"><span class="nav-number">1.4.</span> <span class="nav-text"> 四、set</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一-数据结构与对象"><span class="nav-number">2.</span> <span class="nav-text"> 一、数据结构与对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-简单动态字符串sds"><span class="nav-number">2.1.</span> <span class="nav-text"> 第二章、简单动态字符串(SDS)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-链表"><span class="nav-number">2.2.</span> <span class="nav-text"> 第三章、链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章-字典"><span class="nav-number">2.3.</span> <span class="nav-text"> 第四章、字典</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#41-哈希表"><span class="nav-number">2.3.1.</span> <span class="nav-text"> 4.1 哈希表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#42-哈希表节点"><span class="nav-number">2.3.2.</span> <span class="nav-text"> 4.2 哈希表节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#43-字典"><span class="nav-number">2.3.3.</span> <span class="nav-text"> 4.3 字典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#44-哈希算法"><span class="nav-number">2.3.4.</span> <span class="nav-text"> 4.4 哈希算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#45-rehash"><span class="nav-number">2.3.5.</span> <span class="nav-text"> 4.5 rehash</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五章-跳跃表"><span class="nav-number">2.4.</span> <span class="nav-text"> 第五章、跳跃表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六章-整数集合"><span class="nav-number">2.5.</span> <span class="nav-text"> 第六章、整数集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第七章-压缩列表"><span class="nav-number">2.6.</span> <span class="nav-text"> 第七章、压缩列表</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Chunibyo"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Chunibyo</p>
+  <div class="site-description" itemprop="description">先生能否卖我几斤仁义道德?</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chunibyo-wly" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chunibyo-wly" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chunibyo.wly@gmail.com" title="E-Mail → mailto:chunibyo.wly@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-:author"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chunibyo</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">Symbols count total: </span>
+    <span title="Symbols count total">51k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    <span title="Reading time total">46 mins.</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+
+
+  
+
+</body>
+</html>

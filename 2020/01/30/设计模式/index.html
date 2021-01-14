@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png">
+  <link rel="mask-icon" href="/images/avatar.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://chunibyo-wly.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"flat"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="https://chunibyo-wly.github.io/2020/01/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Chunibyo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114192912129.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114192932043.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114192938475.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114192947042.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114192955091.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193008855.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193020275.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193027870.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193039850.png">
+<meta property="article:published_time" content="2020-01-30T02:08:33.000Z">
+<meta property="article:modified_time" content="2021-01-14T11:31:04.405Z">
+<meta property="article:author" content="Chunibyo">
+<meta property="article:tag" content="cpp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114192912129.png">
+
+<link rel="canonical" href="https://chunibyo-wly.github.io/2020/01/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>设计模式 | Chunibyo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chunibyo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">16</span></a>
+
+  </li>
+        <li class="menu-item menu-item-20春招记录">
+
+    <a href="/interview/" rel="section"><i class="fa fa-fw fa-calendar"></i>20春招记录</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chunibyo-wly.github.io/2020/01/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Chunibyo">
+      <meta itemprop="description" content="先生能否卖我几斤仁义道德?">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chunibyo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          设计模式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-01-30 10:08:33" itemprop="dateCreated datePublished" datetime="2020-01-30T10:08:33+08:00">2020-01-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-14 19:31:04" itemprop="dateModified" datetime="2021-01-14T19:31:04+08:00">2021-01-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>5.6k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>5 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114192912129.png" alt="image-20210114192912129" /></p>
+<a id="more"></a>
+<p><a href="https://design-patterns.readthedocs.io/zh_CN/latest/index.html" target="_blank" rel="noopener">图说设计模式</a></p>
+<h1 id="创建型design-pattern"><a class="markdownIt-Anchor" href="#创建型design-pattern"></a> 创建型(Design Pattern)</h1>
+<h2 id="1-简单工厂simple-factory"><a class="markdownIt-Anchor" href="#1-简单工厂simple-factory"></a> 1. 简单工厂(Simple Factory)</h2>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114192932043.png" alt="image-20210114192932043" /></p>
+<blockquote>
+<p>一个Factory根据传入的参数不同生产各种实例Product</p>
+</blockquote>
+<p>Java获取不同加密算法的密钥生成器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KeyGenerator keyGen=KeyGenerator.getInstance(<span class="string">"DESede"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="2-工厂方法factory-method"><a class="markdownIt-Anchor" href="#2-工厂方法factory-method"></a> 2. 工厂方法(Factory Method)</h2>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114192938475.png" alt="image-20210114192938475" /></p>
+<blockquote>
+<p>一个Factory有一个对应的Product</p>
+</blockquote>
+<p>JDBC</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Connection conn=DriverManager.getConnection(<span class="string">"jdbc:microsoft:sqlserver://localhost:1433; DatabaseName=DB;user=sa;password="</span>);</span><br><span class="line">Statement statement=conn.createStatement();</span><br><span class="line">ResultSet rs=statement.executeQuery(<span class="string">"select * from UserInfo"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="3-抽象工厂abstract-factory"><a class="markdownIt-Anchor" href="#3-抽象工厂abstract-factory"></a> 3. 抽象工厂(Abstract Factory)</h2>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114192947042.png" alt="image-20210114192947042" /></p>
+<h2 id="4-建造者模式builder"><a class="markdownIt-Anchor" href="#4-建造者模式builder"></a> 4. 建造者模式(Builder)</h2>
+<p>Builder作为抽象父类, 定义了ABC等若干的build方法</p>
+<p>在ConcreteBuilder中实例Product, 并且实现Builder中的build方法, 留一个return Product的对外方法</p>
+<p>由Director选取哪一种ConcreteBuilder进行build</p>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114192955091.png" alt="image-20210114192955091" /></p>
+<h2 id="5-单例模式singleton"><a class="markdownIt-Anchor" href="#5-单例模式singleton"></a> 5. 单例模式(Singleton)</h2>
+<p>保证一个类只有一个实例, 并且提供一个访问该实例的全局访问点</p>
+<ul>
+<li>任务管理器</li>
+<li>回收站</li>
+<li>配置文件读取</li>
+</ul>
+<ol>
+<li>构造函数私有</li>
+<li>靠一个get的static方法return出去一个static的成员</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Created by chunibyo on 2/27/20.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> INC_05_SINGLETON_SINGLETON_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INC_05_SINGLETON_SINGLETON_H</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> &#123;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="keyword">static</span> Singleton *singleton;</span><br><span class="line"></span><br><span class="line">    Singleton() = <span class="keyword">default</span>;</span><br><span class="line"></span><br><span class="line">    ~Singleton() &#123;</span><br><span class="line">        <span class="keyword">delete</span> singleton;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> Singleton *<span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (singleton == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            singleton = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> singleton;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Singleton *Singleton::singleton = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//INC_05_SINGLETON_SINGLETON_H</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="结构型structural-pattern"><a class="markdownIt-Anchor" href="#结构型structural-pattern"></a> 结构型(Structural Pattern)</h1>
+<h2 id="1-适配器模式adapter"><a class="markdownIt-Anchor" href="#1-适配器模式adapter"></a> 1. 适配器模式(Adapter)</h2>
+<p>把需要与外界交互那个接口继承下来, 再在继承下来的<code>Adapter</code>里面声明多个<code>Adaptee</code>进行交互</p>
+<p>比如说想要调用<code>XXuse()</code>方法, 但是只有<code>use()</code>方法, 就可以在子类里面调用了</p>
+<p><strong>注意</strong>: C++父类使用子类方法是在父类的virtual方法情况下, 与Java不同</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Adapter.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Adapter::use() &#123;</span><br><span class="line">    adaptee-&gt;specific_use();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Adapter::Adapter(Adaptee *adptee) &#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;adaptee = adptee;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-装饰器模式decorator"><a class="markdownIt-Anchor" href="#3-装饰器模式decorator"></a> 3. 装饰器模式(Decorator)</h2>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193008855.png" alt="image-20210114193008855" /></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Component</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteComponent</span> :</span> <span class="keyword">public</span> Component &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"拍照"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Decorator</span> :</span> <span class="keyword">public</span> Component &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Component *component;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">Decorator</span><span class="params">(Component *_component)</span> </span>&#123;</span><br><span class="line">        component = _component;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteDecorator</span> :</span> <span class="keyword">public</span> Decorator &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    explicit ConcreteDecorator(Component *_component) : Decorator(_component) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"美颜"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        component-&gt;operation();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    (<span class="keyword">new</span> ConcreteComponent())-&gt;operation();</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    (<span class="keyword">new</span> ConcreteDecorator(<span class="keyword">new</span> ConcreteComponent()))-&gt;operation();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193020275.png" alt="image-20210114193020275" /></p>
+<h2 id="4-外观模式facade"><a class="markdownIt-Anchor" href="#4-外观模式facade"></a> 4. 外观模式(Facade)</h2>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193027870.png" alt="image-20210114193027870" /></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">system</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">systemA</span> :</span> <span class="keyword">public</span> system &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">'A'</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">systemB</span> :</span> <span class="keyword">public</span> system &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">'B'</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">systemC</span> :</span> <span class="keyword">public</span> system &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">'C'</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Facade</span> &#123;</span></span><br><span class="line">    systemA *system_a;</span><br><span class="line">    systemB *system_b;</span><br><span class="line">    systemC *system_c;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">Facade</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        system_a = <span class="keyword">new</span> systemA();</span><br><span class="line">        system_b = <span class="keyword">new</span> systemB();</span><br><span class="line">        system_c = <span class="keyword">new</span> systemC();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        system_a-&gt;operation();</span><br><span class="line">        system_b-&gt;operation();</span><br><span class="line">        system_c-&gt;operation();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">virtual</span> ~Facade() &#123;</span><br><span class="line">        <span class="keyword">delete</span> system_a;</span><br><span class="line">        <span class="keyword">delete</span> system_b;</span><br><span class="line">        <span class="keyword">delete</span> system_c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    (<span class="keyword">new</span> Facade())-&gt;operation();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-享元模式flyweight"><a class="markdownIt-Anchor" href="#5-享元模式flyweight"></a> 5. 享元模式(Flyweight)</h2>
+<p>创建一个享元工厂来负责维护一个享元池(Flyweight Pool)用于存储具有相同内部状态的享元对象。</p>
+<p>享元模式的目的就是使用共享技术来实现大量细粒度对象的复用。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tree</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">string</span> name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">Tree</span><span class="params">(<span class="built_in">string</span> name)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; name &lt;&lt; <span class="string">" created"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">this</span>-&gt;name = <span class="built_in">std</span>::move(name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeFactory</span> &#123;</span></span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, Tree *&gt; m;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> Tree *<span class="title">getTree</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (m.find(name) != m.end()) <span class="keyword">return</span> m[name];</span><br><span class="line">        Tree *tree = <span class="keyword">new</span> Tree(name);</span><br><span class="line">        m[name] = tree;</span><br><span class="line">        <span class="keyword">return</span> tree;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, Tree *&gt; TreeFactory::m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    TreeFactory::getTree(<span class="string">"A"</span>);</span><br><span class="line">    TreeFactory::getTree(<span class="string">"B"</span>);</span><br><span class="line">    TreeFactory::getTree(<span class="string">"A"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="6-代理模式proxy"><a class="markdownIt-Anchor" href="#6-代理模式proxy"></a> 6. 代理模式(Proxy)</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Subject</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">request</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Proxy</span> :</span> <span class="keyword">public</span> Subject &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">beforeRequest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"before"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">afterRequest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"after"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Subject *subject;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">request</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        beforeRequest();</span><br><span class="line">        subject-&gt;request();</span><br><span class="line">        afterRequest();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Proxy() &#123;</span><br><span class="line">        subject = <span class="keyword">new</span> Subject();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    (<span class="keyword">new</span> Proxy())-&gt;request();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="行为模式behavioral-pattern"><a class="markdownIt-Anchor" href="#行为模式behavioral-pattern"></a> 行为模式(Behavioral Pattern)</h1>
+<h2 id="1-命令模式command"><a class="markdownIt-Anchor" href="#1-命令模式command"></a> 1. 命令模式(Command)</h2>
+<p>将命令封装成对象</p>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114193039850.png" alt="image-20210114193039850" /></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Receiver</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">action</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Receiver Action"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Command</span> &#123;</span></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    Receiver *receiver&#123;&#125;;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setReceiver</span><span class="params">(Receiver *_receiver)</span> </span>&#123;</span><br><span class="line">        receiver = _receiver;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteCommand</span> :</span> <span class="keyword">public</span> Command &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Command Execute"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        receiver-&gt;action();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Invoker</span> &#123;</span></span><br><span class="line">    Command *command;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">Invoker</span><span class="params">(Command *_command)</span> </span>&#123;</span><br><span class="line">        command = _command;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">call</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Command Invoke"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        command-&gt;execute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Command *cmd = <span class="keyword">new</span> ConcreteCommand();</span><br><span class="line">    cmd-&gt;setReceiver(<span class="keyword">new</span> Receiver());</span><br><span class="line">    (<span class="keyword">new</span> Invoker(cmd))-&gt;call();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/cpp/" rel="tag"><i class="fa fa-tag"></i> cpp</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/12/%E6%B5%8B%E8%AF%95/" rel="prev" title="测试">
+      <i class="fa fa-chevron-left"></i> 测试
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/02/camera/" rel="next" title="Camera">
+      Camera <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建型design-pattern"><span class="nav-number">1.</span> <span class="nav-text"> 创建型(Design Pattern)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-简单工厂simple-factory"><span class="nav-number">1.1.</span> <span class="nav-text"> 1. 简单工厂(Simple Factory)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-工厂方法factory-method"><span class="nav-number">1.2.</span> <span class="nav-text"> 2. 工厂方法(Factory Method)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-抽象工厂abstract-factory"><span class="nav-number">1.3.</span> <span class="nav-text"> 3. 抽象工厂(Abstract Factory)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-建造者模式builder"><span class="nav-number">1.4.</span> <span class="nav-text"> 4. 建造者模式(Builder)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-单例模式singleton"><span class="nav-number">1.5.</span> <span class="nav-text"> 5. 单例模式(Singleton)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构型structural-pattern"><span class="nav-number">2.</span> <span class="nav-text"> 结构型(Structural Pattern)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-适配器模式adapter"><span class="nav-number">2.1.</span> <span class="nav-text"> 1. 适配器模式(Adapter)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-装饰器模式decorator"><span class="nav-number">2.2.</span> <span class="nav-text"> 3. 装饰器模式(Decorator)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-外观模式facade"><span class="nav-number">2.3.</span> <span class="nav-text"> 4. 外观模式(Facade)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-享元模式flyweight"><span class="nav-number">2.4.</span> <span class="nav-text"> 5. 享元模式(Flyweight)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-代理模式proxy"><span class="nav-number">2.5.</span> <span class="nav-text"> 6. 代理模式(Proxy)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#行为模式behavioral-pattern"><span class="nav-number">3.</span> <span class="nav-text"> 行为模式(Behavioral Pattern)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-命令模式command"><span class="nav-number">3.1.</span> <span class="nav-text"> 1. 命令模式(Command)</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Chunibyo"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Chunibyo</p>
+  <div class="site-description" itemprop="description">先生能否卖我几斤仁义道德?</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chunibyo-wly" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chunibyo-wly" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chunibyo.wly@gmail.com" title="E-Mail → mailto:chunibyo.wly@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-:author"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chunibyo</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">Symbols count total: </span>
+    <span title="Symbols count total">51k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    <span title="Reading time total">46 mins.</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+
+
+  
+
+</body>
+</html>
