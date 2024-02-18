@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>Chunibyo</title>
+      <link>https://chunibyo-wly.github.io</link>
+      <description>Last 10 notes on Chunibyo</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>微积分</title>
+    <link>https://chunibyo-wly.github.io/E-%E9%80%9A%E8%AF%86/%E5%BE%AE%E7%A7%AF%E5%88%86</link>
+    <guid>https://chunibyo-wly.github.io/E-%E9%80%9A%E8%AF%86/%E5%BE%AE%E7%A7%AF%E5%88%86</guid>
+    <description>链式法则 (Multi-variable Chain Rule) § 普通的链式法则 § dtdw​=dxdw​dtdx​ 多元函数链式法则 § 两个中间变量 + 一个独立变量 § dtdw​=∂x∂w​dtdx​+∂y∂w​dtdy​ 两个中间变量 + 两个独立变量 § drdw​=∂x∂w​∂r∂x​+∂y∂w​∂r∂y​ .</description>
+    <pubDate>Sun, 18 Feb 2024 12:03:07 GMT</pubDate>
+  </item><item>
+    <title>Symmetry Loss</title>
+    <link>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/Symmetry-Loss</link>
+    <guid>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/Symmetry-Loss</guid>
+    <description> 度量对称轴将多边形切割成两份后的对称损失(SIou) L，令切分成两份的多边形面积分别为 S1​ 和 S2​ ，两个面积分别对其余凸包上的点求导。 L 对多边形上的点 x 坐标求偏导 S2​=S−S1​ L=(SS1​−S2​​)2=(S2S1​−S​)2 ∂L=2∗S2S1​−S​∗∂S2S1​−S​ ∂S2S1​−S​=∂(2SS1​​−1)=2S2∂S1​∗S−∂S∗S1​​ ∂L=4∗S3(2S1​−S)∗(∂S1​∗S−∂S∗S1​)​ 原版 GIoU 损失与梯度推导 S 表示预测凸包的面积, Sgt​ 表示真值面积(不会产生梯度), I 表示交集多边形面积, U 表示并集多边形面积 L=UI​−CC−U​=UI​+CU​−1 U=S+Sgt​−I ∂U=∂S−∂I ∂L=U2(∂I∗U−∂U∗I)​+C2∂U∗C−∂C∗U​ ∂L=U2(∂I∗U−(∂S−∂I)∗I)​+C∂S−∂I​−C2∂C∗U​ 将两者合并后损失和梯度可以分别表示为 L=GIoU−SIoU ∂L=∂LGIoU​−∂LSIoU​ 非独立自变量梯度计算 Transclude of 微积分#两个中间变量--一个独立变量 设预测点 P1​ 对称点 P2​=H(P1​) dp1​dIoU​=∂p1​∂IoU​dp1​dp1​​+∂p2​∂IoU​dp1​dp2​​=∂p1​∂IoU​+∂p2​∂IoU​⋅dp1​dp2​​ dp1​dIoU​.</description>
+    <pubDate>Tue, 30 Jan 2024 12:23:00 GMT</pubDate>
+  </item><item>
+    <title>Open3D issue</title>
+    <link>https://chunibyo-wly.github.io/C-%E9%A1%B9%E7%9B%AE/Open3D-issue</link>
+    <guid>https://chunibyo-wly.github.io/C-%E9%A1%B9%E7%9B%AE/Open3D-issue</guid>
+    <description>代码维护.</description>
+    <pubDate>Tue, 16 Jan 2024 17:19:00 GMT</pubDate>
+  </item><item>
+    <title>A robust statistics approach for plane detection in unorganized point clouds</title>
+    <link>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/A-robust-statistics-approach-for-plane-detection-in-unorganized-point-clouds</link>
+    <guid>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/A-robust-statistics-approach-for-plane-detection-in-unorganized-point-clouds</guid>
+    <description>We introduce a fast deterministic technique for plane detection in unorganized point clouds that is robust to noise and virtually independent of parameter tuning.</description>
+    <pubDate>Tue, 16 Jan 2024 04:29:00 GMT</pubDate>
+  </item><item>
+    <title>Open3D</title>
+    <link>https://chunibyo-wly.github.io/C-%E9%A1%B9%E7%9B%AE/Open3D</link>
+    <guid>https://chunibyo-wly.github.io/C-%E9%A1%B9%E7%9B%AE/Open3D</guid>
+    <description>代码阅读.</description>
+    <pubDate>Tue, 16 Jan 2024 04:27:00 GMT</pubDate>
+  </item><item>
+    <title>Fast 3D Line Segment Detection From Unorganized Point Cloud</title>
+    <link>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/3DLineDetection</link>
+    <guid>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/3DLineDetection</guid>
+    <description> 代码注释地址。 Point Cloud Segmentation § Normal Calculation 先用 KNN 找临近点。 然后对这些点使用 PCA。 得到向量 n，曲率λ，点尺度s(临近点间距离) Region Growing &amp;&amp; Region Merging Plane Based 3D Line Detection § 3D-2D Projection 把上面区域生长拿到的平面点都取出来投影到估计的平面上。 根据第一个投影的点建立二维坐标系然后建立栅格。 2D Line Detection 上述栅格或者说二值图腐蚀膨胀。 findContours 对每个 contour 进行递归的求解直线段。 2D-3D Re-projection Post-processing § Outliers Removal remove non-structural planes: 两个最长直线段所在方向的所有直线段长度加和，判断是否大于阈值 remove non-structural lines: 当有大量结构化特征时，可以直接保留下来，或者单条线段质量足够好 Line Merging 计算两个端点到另一条直线的垂直距离判断是否要合并。 计算两条直线间的 gap 比例判断是否要合并。 合并的时候需要注意代码中直线段以向量形式存储，要注意方向问题。 .</description>
+    <pubDate>Thu, 02 Feb 2023 12:46:40 GMT</pubDate>
+  </item><item>
+    <title>deepin screen recorder</title>
+    <link>https://chunibyo-wly.github.io/Y-%E5%AD%98%E6%A1%A3/A-%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE/deepin-screen-recorder</link>
+    <guid>https://chunibyo-wly.github.io/Y-%E5%AD%98%E6%A1%A3/A-%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE/deepin-screen-recorder</guid>
+    <description> qt vscode debug 配置 这个项目由两个进程组成，之间通过 dbus 进行沟通。 { &quot;version&quot;: &quot;2.0.0&quot;, &quot;tasks&quot;: [ { &quot;type&quot;: &quot;shell&quot;, &quot;label&quot;: &quot;qmake build makefile&quot;, &quot;command&quot;: &quot;/usr/bin/qmake&quot;, &quot;args&quot;: [ &quot;.</description>
+    <pubDate>Mon, 30 Jan 2023 13:44:13 GMT</pubDate>
+  </item><item>
+    <title>Super Generalized 4PCS for 3D Registration</title>
+    <link>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/S4PCS</link>
+    <guid>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/S4PCS</guid>
+    <description> 问题：在尺度不确定的场景下，复杂度还是 o(n2)，后续算法也有这个问题。 这篇文章核心思想是使用八叉树和球与长方体相交算法， 解决在已知查询第二个点云 q 长度为 d 时复杂度为 o(n2) 问题。 4pcs 与 s4pcs 实现了不同的 ExtractPairs，4pcs 与多尺度的 s4pcs 都是使用的 o(n2) 复杂度逐点搜索长度。 核心算法在类 IntersectionFunctor 的 process 方法中。 首先将点云按照最长边缩放到单位长度。 然后遍历每一个点 (primitive)，将与球体相交的方块进行多次分裂 分为提前停止分裂的和最后一次分裂两部分的 长方体 (node) 存储进结果。 split 算法 首先将 xyz 投影到同一维度上，用 中值 的左右两侧表示第几块 首先按 x 分成 2 段 然后按 y 再将 x 的2段分为 4 段 同样 z 会得到 8 段 .</description>
+    <pubDate>Sun, 27 Nov 2022 13:32:28 GMT</pubDate>
+  </item><item>
+    <title>mmcv CUDA 单元测试</title>
+    <link>https://chunibyo-wly.github.io/Y-%E5%AD%98%E6%A1%A3/A-%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE/mmcv-CUDA-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95</link>
+    <guid>https://chunibyo-wly.github.io/Y-%E5%AD%98%E6%A1%A3/A-%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE/mmcv-CUDA-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95</guid>
+    <description> mmcv 提供中使用 CUDA 算子作为 Pytorch 扩展。 并且提供了 Python 层的对 CUDA Kernel 的单元测试。 为了对更小的函数进行单元测试，尝试将 CUDA 文件单独从仓库中分离出来。 参考这个仓库。 但是 cuda 代码中使用了 Pytorch C++ 依赖。 mmcv 中使用的是 setuptools 进行的编译，但是使用 cmake 一直没有配置成功。 于是使用 libtorch 进行依赖代替。 project(cuda_gtest_plugin_examples) cmake_minimum_required(VERSION 2.</description>
+    <pubDate>Sun, 31 Jul 2022 06:21:34 GMT</pubDate>
+  </item><item>
+    <title>4PCS</title>
+    <link>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/4PCS</link>
+    <guid>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/4PCS</guid>
+    <description>4-points Congruent Sets for Robust Surface Registration.</description>
+    <pubDate>Thu, 16 Jun 2022 06:57:41 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>
