@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>Chunibyo</title>
+      <link>https://chunibyo-wly.github.io</link>
+      <description>Last 10 notes on Chunibyo</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>微积分</title>
+    <link>https://chunibyo-wly.github.io/E-%E9%80%9A%E8%AF%86/%E5%BE%AE%E7%A7%AF%E5%88%86</link>
+    <guid>https://chunibyo-wly.github.io/E-%E9%80%9A%E8%AF%86/%E5%BE%AE%E7%A7%AF%E5%88%86</guid>
+    <description>链式法则 (Multi-variable Chain Rule) § 普通的链式法则 § dtdw​=dxdw​dtdx​ 多元函数链式法则 § 两个中间变量 + 一个独立变量 § dtdw​=∂x∂w​dtdx​+∂y∂w​dtdy​ 两个中间变量 + 两个独立变量 § drdw​=∂x∂w​∂r∂x​+∂y∂w​∂r∂y​ .</description>
+    <pubDate>Mon, 02 Dec 2024 05:33:02 GMT</pubDate>
+  </item><item>
+    <title>wsl</title>
+    <link>https://chunibyo-wly.github.io/E-%E9%80%9A%E8%AF%86/wsl</link>
+    <guid>https://chunibyo-wly.github.io/E-%E9%80%9A%E8%AF%86/wsl</guid>
+    <description>Daemon § Let wsl start without user login. Use tmux to create a fake window and keep writing Logs. &amp; &#039;C:\Program Files\WSL\wsl.exe&#039; -e /home/chunibyo/.</description>
+    <pubDate>Sun, 27 Oct 2024 15:29:00 GMT</pubDate>
+  </item><item>
+    <title>CGAL</title>
+    <link>https://chunibyo-wly.github.io/C-%E9%A1%B9%E7%9B%AE/CGAL</link>
+    <guid>https://chunibyo-wly.github.io/C-%E9%A1%B9%E7%9B%AE/CGAL</guid>
+    <description>The Computational Geometry Algorithms Library.</description>
+    <pubDate>Fri, 25 Oct 2024 01:23:00 GMT</pubDate>
+  </item><item>
+    <title>SVG</title>
+    <link>https://chunibyo-wly.github.io/E-%E9%80%9A%E8%AF%86/SVG</link>
+    <guid>https://chunibyo-wly.github.io/E-%E9%80%9A%E8%AF%86/SVG</guid>
+    <description>Scalable Vector Graphics.</description>
+    <pubDate>Sat, 06 Apr 2024 14:12:00 GMT</pubDate>
+  </item><item>
+    <title>Symmetry Loss</title>
+    <link>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/Symmetry-Loss</link>
+    <guid>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/Symmetry-Loss</guid>
+    <description> 度量对称轴将多边形切割成两份后的对称损失(SIou) L，令切分成两份的多边形面积分别为 S1​ 和 S2​ ，两个面积分别对其余凸包上的点求导。 L 对多边形上的点 x 坐标求偏导 S2​=S−S1​ L=(SS1​−S2​​)2=(S2S1​−S​)2 ∂L=2∗S2S1​−S​∗∂S2S1​−S​ ∂S2S1​−S​=∂(2SS1​​−1)=2S2∂S1​∗S−∂S∗S1​​ ∂L=4∗S3(2S1​−S)∗(∂S1​∗S−∂S∗S1​)​ 原版 GIoU 损失与梯度推导 S 表示预测凸包的面积, Sgt​ 表示真值面积(不会产生梯度), I 表示交集多边形面积, U 表示并集多边形面积 L=UI​−CC−U​=UI​+CU​−1 U=S+Sgt​−I ∂U=∂S−∂I ∂L=U2(∂I∗U−∂U∗I)​+C2∂U∗C−∂C∗U​ ∂L=U2(∂I∗U−(∂S−∂I)∗I)​+C∂S−∂I​−C2∂C∗U​ 将两者合并后损失和梯度可以分别表示为 L=GIoU−SIoU ∂L=∂LGIoU​−∂LSIoU​ 非独立自变量梯度计算 Transclude of 微积分#两个中间变量--一个独立变量 设预测点 P1​ 对称点 P2​=H(P1​) dp1​dIoU​=∂p1​∂IoU​dp1​dp1​​+∂p2​∂IoU​dp1​dp2​​=∂p1​∂IoU​+∂p2​∂IoU​⋅dp1​dp2​​ dp1​dIoU​.</description>
+    <pubDate>Tue, 30 Jan 2024 12:23:00 GMT</pubDate>
+  </item><item>
+    <title>Open3D issue</title>
+    <link>https://chunibyo-wly.github.io/C-%E9%A1%B9%E7%9B%AE/Open3D-issue</link>
+    <guid>https://chunibyo-wly.github.io/C-%E9%A1%B9%E7%9B%AE/Open3D-issue</guid>
+    <description>代码维护.</description>
+    <pubDate>Tue, 16 Jan 2024 17:19:00 GMT</pubDate>
+  </item><item>
+    <title>A robust statistics approach for plane detection in unorganized point clouds</title>
+    <link>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/A-robust-statistics-approach-for-plane-detection-in-unorganized-point-clouds</link>
+    <guid>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/A-robust-statistics-approach-for-plane-detection-in-unorganized-point-clouds</guid>
+    <description>We introduce a fast deterministic technique for plane detection in unorganized point clouds that is robust to noise and virtually independent of parameter tuning.</description>
+    <pubDate>Tue, 16 Jan 2024 04:29:00 GMT</pubDate>
+  </item><item>
+    <title>Open3D</title>
+    <link>https://chunibyo-wly.github.io/C-%E9%A1%B9%E7%9B%AE/Open3D</link>
+    <guid>https://chunibyo-wly.github.io/C-%E9%A1%B9%E7%9B%AE/Open3D</guid>
+    <description>代码阅读.</description>
+    <pubDate>Tue, 16 Jan 2024 04:27:00 GMT</pubDate>
+  </item><item>
+    <title>Fast 3D Line Segment Detection From Unorganized Point Cloud</title>
+    <link>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/3DLineDetection</link>
+    <guid>https://chunibyo-wly.github.io/A-%E8%AE%BA%E6%96%87/3DLineDetection</guid>
+    <description> 代码注释地址。 Point Cloud Segmentation § Normal Calculation 先用 KNN 找临近点。 然后对这些点使用 PCA。 得到向量 n，曲率λ，点尺度s(临近点间距离) Region Growing &amp;&amp; Region Merging Plane Based 3D Line Detection § 3D-2D Projection 把上面区域生长拿到的平面点都取出来投影到估计的平面上。 根据第一个投影的点建立二维坐标系然后建立栅格。 2D Line Detection 上述栅格或者说二值图腐蚀膨胀。 findContours 对每个 contour 进行递归的求解直线段。 2D-3D Re-projection Post-processing § Outliers Removal remove non-structural planes: 两个最长直线段所在方向的所有直线段长度加和，判断是否大于阈值 remove non-structural lines: 当有大量结构化特征时，可以直接保留下来，或者单条线段质量足够好 Line Merging 计算两个端点到另一条直线的垂直距离判断是否要合并。 计算两条直线间的 gap 比例判断是否要合并。 合并的时候需要注意代码中直线段以向量形式存储，要注意方向问题。 .</description>
+    <pubDate>Thu, 02 Feb 2023 12:46:40 GMT</pubDate>
+  </item><item>
+    <title>deepin screen recorder</title>
+    <link>https://chunibyo-wly.github.io/Y-%E5%AD%98%E6%A1%A3/A-%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE/deepin-screen-recorder</link>
+    <guid>https://chunibyo-wly.github.io/Y-%E5%AD%98%E6%A1%A3/A-%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE/deepin-screen-recorder</guid>
+    <description> qt vscode debug 配置 这个项目由两个进程组成，之间通过 dbus 进行沟通。 { &quot;version&quot;: &quot;2.0.0&quot;, &quot;tasks&quot;: [ { &quot;type&quot;: &quot;shell&quot;, &quot;label&quot;: &quot;qmake build makefile&quot;, &quot;command&quot;: &quot;/usr/bin/qmake&quot;, &quot;args&quot;: [ &quot;.</description>
+    <pubDate>Mon, 30 Jan 2023 13:44:13 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>
