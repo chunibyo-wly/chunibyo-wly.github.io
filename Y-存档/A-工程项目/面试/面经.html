@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html><head><title>春招记录</title><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta property="og:title" content="春招记录"/><meta property="og:description" content="… 时间公司简历笔试一面二面三面HR面03/02mihoyo✔❌bilibili❌斗鱼✔03/04阿里提前批❌03/10头条(运维)✔✔✔❌网易雷火(服务器)✔❌阿里提前批(飞天)✔❌03/16CVTE(c++)❌深信服(c++)✔❌腾讯(后台)✔✔❌03/19拼多多(服务器)美团(运维)✔✔❌Thoughtworks✔✔猿辅导(服务器)❌作业帮(运维)✔✔✔✔作业帮(C++)03/20快手(后台)❌华为(C++)❌百度(C++)✔✔✔❌西山居(服务器)七牛云(后端)360(C++)✔❌03/27阿里(C++)04/07腾讯(业务运维)✔❌ MY OWN § A端: 开发界面 B端: Business, 商家, 商业用户 C端: Consumer, 消费者, 个人和家庭用户 腾讯一面(3."/><meta property="og:image" content="https://chunibyo-wly.github.io/static/og-image.png"/><meta property="og:width" content="1200"/><meta property="og:height" content="675"/><link rel="icon" href="../../../static/icon.png"/><meta name="description" content="… 时间公司简历笔试一面二面三面HR面03/02mihoyo✔❌bilibili❌斗鱼✔03/04阿里提前批❌03/10头条(运维)✔✔✔❌网易雷火(服务器)✔❌阿里提前批(飞天)✔❌03/16CVTE(c++)❌深信服(c++)✔❌腾讯(后台)✔✔❌03/19拼多多(服务器)美团(运维)✔✔❌Thoughtworks✔✔猿辅导(服务器)❌作业帮(运维)✔✔✔✔作业帮(C++)03/20快手(后台)❌华为(C++)❌百度(C++)✔✔✔❌西山居(服务器)七牛云(后端)360(C++)✔❌03/27阿里(C++)04/07腾讯(业务运维)✔❌ MY OWN § A端: 开发界面 B端: Business, 商家, 商业用户 C端: Consumer, 消费者, 个人和家庭用户 腾讯一面(3."/><meta name="generator" content="Quartz"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link href="../../../index.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://fonts.googleapis.com/css2?family=IBM Plex Mono&amp;family=Noto Serif Georgian:wght@400;700&amp;family=Noto Serif Georgian:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet" type="text/css" spa-preserve/><script src="../../../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch("../../../static/contentIndex.json").then(data => data.json())</script></head><body data-slug="Y-存档/A-工程项目/面试/面经"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h1 class="page-title "><a href="../../..">Chunibyo</a></h1><div class="spacer mobile-only"></div><div class="search "><div id="search-icon"><p>Search</p><div></div><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search</title><desc id="desc">Search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></div><div id="search-container"><div id="search-space"><input autocomplete="off" id="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div id="results-container"></div></div></div></div><div class="darkmode "><input class="toggle" id="darkmode-toggle" type="checkbox" tabindex="-1"/><label id="toggle-label-light" for="darkmode-toggle" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve"><title>Light mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg></label><label id="toggle-label-dark" for="darkmode-toggle" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve"><title>Dark mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></label></div><div class="explorer desktop-only"><button type="button" id="explorer" data-behavior="collapse" data-collapsed="collapsed" data-savestate="true" data-tree="[{&quot;path&quot;:&quot;A-论文&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;C-项目&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;D-HKU&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;E-通识&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/CodeWars&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/Linux&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/前端&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/数据库&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/语法&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/面试&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/项目&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/B-计算机视觉&quot;,&quot;collapsed&quot;:true}]"><h1>Explorer</h1><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-content"><ul class="overflow" id="explorer-ul"><li><div class="folder-outer open"><ul style="padding-left:0;" class="content" data-folderul><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="A-论文"><button class="folder-button"><span class="folder-title">A-论文</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="A-论文"><li><a href="../../../A-论文/4PCS" data-for="A-论文/4PCS">4PCS</a></li><li><a href="../../../A-论文/A-robust-statistics-approach-for-plane-detection-in-unorganized-point-clouds" data-for="A-论文/A-robust-statistics-approach-for-plane-detection-in-unorganized-point-clouds">A robust statistics approach for plane detection in unorganized point clouds</a></li><li><a href="../../../A-论文/A-Survey-on-Data-Compression-Techniques-for-Automotive-LiDAR-Point-Clouds" data-for="A-论文/A-Survey-on-Data-Compression-Techniques-for-Automotive-LiDAR-Point-Clouds">A Survey on Data Compression Techniques for Automotive LiDAR Point Clouds</a></li><li><a href="../../../A-论文/3DLineDetection" data-for="A-论文/3DLineDetection">Fast 3D Line Segment Detection From Unorganized Point Cloud</a></li><li><a href="../../../A-论文/S4PCS" data-for="A-论文/S4PCS">Super Generalized 4PCS for 3D Registration</a></li><li><a href="../../../A-论文/Symmetry-Loss" data-for="A-论文/Symmetry-Loss">Symmetry Loss</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="C-项目"><button class="folder-button"><span class="folder-title">C-项目</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="C-项目"><li><a href="../../../C-项目/CGAL" data-for="C-项目/CGAL">CGAL</a></li><li><a href="../../../C-项目/Open3D" data-for="C-项目/Open3D">Open3D</a></li><li><a href="../../../C-项目/Open3D-issue" data-for="C-项目/Open3D-issue">Open3D issue</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="D-HKU"><button class="folder-button"><span class="folder-title">D-HKU</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="D-HKU"><li><a href="../../../D-HKU/HPC-使用" data-for="D-HKU/HPC-使用">HPC</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="E-通识"><button class="folder-button"><span class="folder-title">E-通识</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="E-通识"><li><a href="../../../E-通识/CUDA" data-for="E-通识/CUDA">CUDA</a></li><li><a href="../../../E-通识/Llama" data-for="E-通识/Llama">Llama</a></li><li><a href="../../../E-通识/SVG" data-for="E-通识/SVG">SVG</a></li><li><a href="../../../E-通识/wsl" data-for="E-通识/wsl">wsl</a></li><li><a href="../../../E-通识/微积分" data-for="E-通识/微积分">微积分</a></li><li><a href="../../../E-通识/点云" data-for="E-通识/点云">点云</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档"><button class="folder-button"><span class="folder-title">Y-存档</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目"><button class="folder-button"><span class="folder-title">A-工程项目</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/CodeWars"><button class="folder-button"><span class="folder-title">CodeWars</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/CodeWars"><li><a href="../../../Y-存档/A-工程项目/CodeWars/codewars-URLshortener" data-for="Y-存档/A-工程项目/CodeWars/codewars-URLshortener">codewars URLshortener</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/Linux"><button class="folder-button"><span class="folder-title">Linux</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/Linux"><li><a href="../../../Y-存档/A-工程项目/Linux/Linux" data-for="Y-存档/A-工程项目/Linux/Linux">Linux</a></li><li><a href="../../../Y-存档/A-工程项目/Linux/proc记录" data-for="Y-存档/A-工程项目/Linux/proc记录">proc记录</a></li><li><a href="../../../Y-存档/A-工程项目/Linux/Terraria" data-for="Y-存档/A-工程项目/Linux/Terraria">Terraria</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/前端"><button class="folder-button"><span class="folder-title">前端</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/前端"><li><a href="../../../Y-存档/A-工程项目/前端/js-request" data-for="Y-存档/A-工程项目/前端/js-request">Http请求</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/数据库"><button class="folder-button"><span class="folder-title">数据库</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/数据库"><li><a href="../../../Y-存档/A-工程项目/数据库/MySQL" data-for="Y-存档/A-工程项目/数据库/MySQL">MySQL复习</a></li><li><a href="../../../Y-存档/A-工程项目/数据库/Redis设计与实现" data-for="Y-存档/A-工程项目/数据库/Redis设计与实现">Redis设计与实现</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/语法"><button class="folder-button"><span class="folder-title">语法</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/语法"><li><a href="../../../Y-存档/A-工程项目/语法/cpp" data-for="Y-存档/A-工程项目/语法/cpp">c++复习</a></li><li><a href="../../../Y-存档/A-工程项目/语法/java" data-for="Y-存档/A-工程项目/语法/java">java基础</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/面试"><button class="folder-button"><span class="folder-title">面试</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/面试"><li><a href="../../../Y-存档/A-工程项目/面试/STL" data-for="Y-存档/A-工程项目/面试/STL">STL源码剖析</a></li><li><a href="../../../Y-存档/A-工程项目/面试/Vim" data-for="Y-存档/A-工程项目/面试/Vim">Vim</a></li><li><a href="../../../Y-存档/A-工程项目/面试/OperatingSystem" data-for="Y-存档/A-工程项目/面试/OperatingSystem">操作系统复习</a></li><li><a href="../../../Y-存档/A-工程项目/面试/面经" data-for="Y-存档/A-工程项目/面试/面经">春招记录</a></li><li><a href="../../../Y-存档/A-工程项目/面试/ComputerNetwork" data-for="Y-存档/A-工程项目/面试/ComputerNetwork">计算机网络复习</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/项目"><button class="folder-button"><span class="folder-title">项目</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/项目"><li><a href="../../../Y-存档/A-工程项目/项目/alicevision" data-for="Y-存档/A-工程项目/项目/alicevision">alicevision</a></li><li><a href="../../../Y-存档/A-工程项目/项目/deepin-screen-recorder" data-for="Y-存档/A-工程项目/项目/deepin-screen-recorder">deepin screen recorder</a></li><li><a href="../../../Y-存档/A-工程项目/项目/mmcv-CUDA-单元测试" data-for="Y-存档/A-工程项目/项目/mmcv-CUDA-单元测试">mmcv CUDA 单元测试</a></li><li><a href="../../../Y-存档/A-工程项目/项目/remark" data-for="Y-存档/A-工程项目/项目/remark">remark</a></li><li><a href="../../../Y-存档/A-工程项目/项目/设计模式" data-for="Y-存档/A-工程项目/项目/设计模式">设计模式</a></li></ul></div></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/B-计算机视觉"><button class="folder-button"><span class="folder-title">B-计算机视觉</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/B-计算机视觉"><li><a href="../../../Y-存档/B-计算机视觉/camera" data-for="Y-存档/B-计算机视觉/camera">Camera</a></li><li><a href="../../../Y-存档/B-计算机视觉/Open3D" data-for="Y-存档/B-计算机视觉/Open3D">Open3D Release v0.1.0</a></li><li><a href="../../../Y-存档/B-计算机视觉/点云" data-for="Y-存档/B-计算机视觉/点云">点云</a></li></ul></div></li></ul></div></li><li><a href="../../../测试" data-for="测试">测试</a></li></ul></div></li><li id="explorer-end"></li></ul></div></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container " aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../../Y-存档/">Y 存档</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../../Y-存档/A-工程项目/">A 工程项目</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../../Y-存档/A-工程项目/面试/">面试</a></div></nav><h1 class="article-title ">春招记录</h1><p class="content-meta ">Mar 02, 2020, 24 min read</p></div></div><article class="popover-hint"><p>…</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">时间</th><th>公司</th><th style="text-align:center;">简历</th><th style="text-align:center;">笔试</th><th style="text-align:center;">一面</th><th style="text-align:center;">二面</th><th style="text-align:center;">三面</th><th>HR面</th></tr></thead><tbody><tr><td style="text-align:center;">03/02</td><td>mihoyo</td><td style="text-align:center;">✔</td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;"></td><td>bilibili</td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;"></td><td>斗鱼</td><td style="text-align:center;">✔</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;">03/04</td><td>阿里提前批</td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;">03/10</td><td>头条(运维)</td><td style="text-align:center;">✔</td><td style="text-align:center;">✔</td><td style="text-align:center;">✔</td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;"></td><td>网易雷火(服务器)</td><td style="text-align:center;">✔</td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;"></td><td>阿里提前批(飞天)</td><td style="text-align:center;">✔</td><td style="text-align:center;"></td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;">03/16</td><td>CVTE(c++)</td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;"></td><td>深信服(c++)</td><td style="text-align:center;">✔</td><td style="text-align:center;"></td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;"></td><td>腾讯(后台)</td><td style="text-align:center;">✔</td><td style="text-align:center;"></td><td style="text-align:center;">✔</td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;">03/19</td><td>拼多多(服务器)</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;"></td><td>美团(运维)</td><td style="text-align:center;">✔</td><td style="text-align:center;">✔</td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;"></td><td>Thoughtworks</td><td style="text-align:center;">✔</td><td style="text-align:center;">✔</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;"></td><td>猿辅导(服务器)</td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;"></td><td>作业帮(运维)</td><td style="text-align:center;">✔</td><td style="text-align:center;"></td><td style="text-align:center;">✔</td><td style="text-align:center;">✔</td><td style="text-align:center;"></td><td>✔</td></tr><tr><td style="text-align:center;"></td><td>作业帮(C++)</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;">03/20</td><td>快手(后台)</td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;"></td><td>华为(C++)</td><td style="text-align:center;"></td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;"></td><td>百度(C++)</td><td style="text-align:center;">✔</td><td style="text-align:center;">✔</td><td style="text-align:center;">✔</td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;"></td><td>西山居(服务器)</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;"></td><td>七牛云(后端)</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;"></td><td>360(C++)</td><td style="text-align:center;">✔</td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;">03/27</td><td>阿里(C++)</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;"></td><td></td></tr><tr><td style="text-align:center;">04/07</td><td>腾讯(业务运维)</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;">✔</td><td style="text-align:center;">❌</td><td style="text-align:center;"></td><td></td></tr></tbody></table></div>
+<h1 id="my-own">MY OWN<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#my-own" class="internal alias"> §</a></h1>
+<p>A端: 开发界面</p>
+<p>B端: Business, 商家, 商业用户</p>
+<p>C端: Consumer, 消费者, 个人和家庭用户</p>
+<h2 id="腾讯一面322">腾讯一面(3.22)<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#腾讯一面322" class="internal alias"> §</a></h2>
+<ol>
+<li>
+<p>TEG: Technology and Engineering Group</p>
+</li>
+<li>
+<p>面向对象, 多态</p>
+</li>
+<li>
+<p>虚函数</p>
+<ol>
+<li>概念
+<ol>
+<li>虚函数是为了允许用基类的指针来调用子类的这个函数</li>
+<li>纯虚函数是为了实现一个接口, 起到一个规范的作用</li>
+</ol>
+</li>
+<li>对于虚函数来说, 父类和子类都有各自的版本。由多态方式调用的时候动态绑定</li>
+<li>虚函数是C++中用于实现多态(polymorphism)的机制。核心理念就是通过基类访问派生类定义的函数。</li>
+<li>如果指针指向的是子类对象, 将调用子类的析构函数, 然后自动调用基类的析构函数</li>
+<li>意义
+<ol>
+<li>为了安全, 因为避免任何需要明确但是因为不小心而导致的未知的结果, 提醒子类去做应做的实现</li>
+<li>为了编码的效率</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>虚函数表</p>
+</li>
+<li>
+<p>快排, 堆排</p>
+</li>
+<li>
+<p>网络字节序, 大小端</p>
+<ol>
+<li>大端: 高位在前, 人类读写数值的方法</li>
+<li>小端: 低位在前
+<img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/bg2016112201.gif" alt="img"/></li>
+<li>除了计算机的内部处理, 其他的场合几乎都是大端字节序, 比如网络传输和文件储存</li>
+<li><strong>“只有读取的时候，才必须区分字节序，其他情况都不用考虑。”</strong></li>
+<li>历史原因是CPU架构不同, 为了规范所以让网络字节序为大端</li>
+<li><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200323233818841.png" alt="image-20200323233818841"/></li>
+</ol>
+</li>
+<li>
+<p>进程调度</p>
+<ol>
+<li>先来先服务, 短作业等待时间过长</li>
+<li>短作业优先, 长作业饿死</li>
+<li>最短剩余时间</li>
+</ol>
+</li>
+<li>
+<p>内存管理</p>
+<ol>
+<li>只读部分
+<ol>
+<li>.text: 代码段</li>
+<li>.rodata: 常量</li>
+</ol>
+</li>
+<li>读写部分
+<ol>
+<li>.data: 初始化了全局变量, 静态变量</li>
+<li>.bss: 未初始化的全局变量, 静态变量</li>
+<li>heap: malloc, free</li>
+<li>stack: 函数调用, 生命周期被限制的变量</li>
+</ol>
+</li>
+<li>页面置换算法
+<ol>
+<li>先进先出</li>
+<li>先进先出·改</li>
+<li>最近最久未使用(LRU)</li>
+<li>时间片轮转</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>阻塞, 非阻塞, 同步, 异步</p>
+</li>
+<li>
+<p>服务器容灾</p>
+<ol>
+<li>高可用: 两台机器, 备份机一直发hello包, 主机未应答的话, 主动接管业务</li>
+<li>冷备: 手动启动配置备份机</li>
+<li>容错: A运行时, 通过软件同步复制操作到B, A崩溃后, B立刻托管业务, 成本变高</li>
+</ol>
+</li>
+<li>
+<p>索引优化</p>
+<ol>
+<li>最左前缀匹配
+a = 1 and b = 2 and c > 3 and d = 4, (a, b, c, d)索引用不到d</li>
+<li>count(distinct col) / count(*) 越大越好, 最大是唯一键的1</li>
+<li>索引列不参与计算</li>
+<li>拓展索引, 不要新建索引</li>
+</ol>
+</li>
+<li>
+<p>limit优化</p>
+<ol>
+<li>
+<p>limit的逻辑</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="sql" data-theme="github-dark github-light"><code data-language="sql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">select</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> *</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> from</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> table_name </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">limit</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> 10000</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">,</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">10</span></span></code></pre></figure>
+<ol>
+<li>从数据表中读取第N条数据添加到数据集中</li>
+<li>重复第一步直到 N = 10000 + 10</li>
+<li>根据 offset 抛弃前面 10000 条数</li>
+<li>返回剩余的 10 条数据</li>
+</ol>
+</li>
+<li>
+<p>自增索引</p>
+</li>
+<li>
+<p>先把索引列查找出来</p>
+</li>
+<li>
+<p>inner join</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="腾讯二面">腾讯二面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#腾讯二面" class="internal alias"> §</a></h2>
+<ol>
+<li>
+<p>进程通信</p>
+<ol>
+<li>共享内存: 不需要系统调用, 所以效率最高, 但是没有同步互斥机制</li>
+</ol>
+</li>
+<li>
+<p>范式</p>
+<ol>
+<li>第一范式: 每个属性不可再分</li>
+<li>第二范式: 消除了非主属性对于码的部分函数依赖
+实体的属性完全依赖于主关键字，即：不能存在仅依赖主关键字的一部分
+(学号, 课程号, 得分, 课程名)</li>
+<li>第三范式: 消除数据库中关键字之间的依赖关系
+消除传递依赖
+(学号, 系别, 系主任)</li>
+<li>BCNF范式: 不允许主键的一部分被另一部分或其它部分决定
+(学生, 老师, 课程)</li>
+</ol>
+</li>
+<li>
+<p>uuid不重复的原理</p>
+<ol>
+<li>时间戳</li>
+<li>名字的MD5散列</li>
+</ol>
+</li>
+</ol>
+<h2 id="腾讯业务运维一面">腾讯(业务运维)一面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#腾讯业务运维一面" class="internal alias"> §</a></h2>
+<ol>
+<li>mysql修改字段名</li>
+<li>mysql修改字段值</li>
+<li>查看IO
+<a href="https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/iostat.html" class="external">iostat<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+<li>修改DNS服务器ip
+<ol>
+<li>非永久解决方案: <code>/etc/resolv.conf</code></li>
+<li>永久解决方案: <code>/etc/dhcp/dhclient.conf</code></li>
+</ol>
+</li>
+</ol>
+<h2 id="腾讯业务运维二面">腾讯(业务运维)二面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#腾讯业务运维二面" class="internal alias"> §</a></h2>
+<ol>
+<li>
+<p>TCP端口一共多少个
+16位, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">65536</span></span></span></span>, 所以是0-65535</p>
+</li>
+<li>
+<p>端口分类</p>
+<ol>
+<li>公认端口: 0-1023</li>
+<li>注册端口: 松散的绑定一些服务</li>
+<li>动态和私有端口: 49152-65535, 可用于任意软件与任何其他的软件通信的端口数，使用因特网的传输控制协议，或用户传输协议。</li>
+</ol>
+</li>
+<li>
+<p>文件权限:</p>
+<p>拥有者, 拥有者所在用户组, 其他用户</p>
+</li>
+<li>
+<p>如何判断tcp超时</p>
+<ol>
+<li>3次ACK快重传</li>
+<li>α·SRTT +（1 - α）·RTT</li>
+<li>容易混淆的知识
+<ol>
+<li>MSL: maximum segment lifetime, 最大报文生存时间</li>
+<li>TTL: time to live, 路由的跳数</li>
+<li>RTT: round trip time, 往返时延, 数据包回环一圈的时间</li>
+<li>RTO: Retransmission Time Out, 重传超时</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>tcp 可靠性</p>
+<ol>
+<li>校验和</li>
+<li>字节编号</li>
+<li>数据段确认
+<ol>
+<li>一次发送滑动窗口大小个数据段</li>
+<li>对连续接受的数据段的最后一个序号进行确认</li>
+<li>不连续的已经接受的缓存</li>
+<li>超时重传</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>如何创建进程</p>
+<ol>
+<li>fork(): 复制当前进程, 返回父进程和子进程ID一共两次</li>
+<li>vfork(): 产生子进程和父进程共享地址空间</li>
+<li>clone(): clone可以让你有选择性的继承父进程的资源</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/06.png" alt="img"/></p>
+</li>
+<li>
+<p>mysql服务的连接过程
+<img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200413074535469.png" alt="image-20200413074535469"/></p>
+</li>
+</ol>
+<h2 id="腾讯业务运维三面">腾讯(业务运维)三面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#腾讯业务运维三面" class="internal alias"> §</a></h2>
+<ol>
+<li>
+<p>bash是如何执行命令的</p>
+<ol>
+<li>
+<p>执行交互式命令</p>
+<ol>
+<li>fork当前进程并且exec执行命令</li>
+<li>内建命令不创建新进程<code>cd</code>, <code>alias</code>, <code>export</code></li>
+</ol>
+</li>
+<li>
+<p>执行脚本</p>
+<ol>
+<li>
+<p><code>./script.sh</code>(需要可执行权限): fork成子进程, exec系统调用</p>
+<ol>
+<li>用<code>script.sh</code>程序代码替换子进程代码</li>
+<li>从<code>_start</code>开始执行</li>
+</ol>
+</li>
+<li>
+<p><code>/bin/sh ./script.sh</code>(不需要可执行权限)</p>
+<ol>
+<li>用解释器程序代码替换子进程代码</li>
+<li>从 解释器的<code>_start</code>开始执行</li>
+</ol>
+</li>
+<li>
+<p>实例</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-dark github-light"><code data-language="bash" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">#!/bin/sh</span></span>
+<span data-line><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">cd</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> ..</span></span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">ls</span></span></code></pre></figure>
+<ol>
+<li>交互Shell（<code>bash</code>）<code>fork</code>/<code>exec</code>一个子Shell（<code>sh</code>）用于执行脚本，父进程<code>bash</code>等待子进程<code>sh</code>终止</li>
+<li><code>sh</code>读取脚本中的<code>cd ..</code>命令，调用相应的函数执行内建命令，改变当前工作目录为上一级目录</li>
+<li><code>sh</code>读取脚本中的<code>ls</code>命令，<code>fork</code>/<code>exec</code>这个程序，列出当前工作目录下的文件，<code>sh</code>等待<code>ls</code>终止</li>
+<li><code>ls</code>终止后，<code>sh</code>继续执行，读到脚本文件末尾，<code>sh</code>终止</li>
+<li><code>sh</code>终止后，<code>bash</code>继续执行，打印提示符等待用户输入</li>
+<li><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/shellscript.shellexec.png" alt="Shell脚本的执行过程"/></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>fork底层</p>
+</li>
+<li>
+<p>查看某个进程的系统调用
+<code>strace -p pid</code></p>
+</li>
+<li>
+<p>用户态和内核态是如何切换的</p>
+</li>
+<li>
+<p>分配给进程的资源包括什么, 又是如何分配的</p>
+</li>
+<li>
+<p>进程调度算法</p>
+<ol>
+<li>先来先服务</li>
+<li>短作业优先</li>
+<li>最高响应比(响应比 = 1+作业等待时间/作业处理时间)</li>
+<li>优先级调度</li>
+</ol>
+</li>
+<li>
+<p>时间片轮转算法
+5ms - 800ms</p>
+</li>
+</ol>
+<h2 id="深信服c一面">深信服(C++)一面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#深信服c一面" class="internal alias"> §</a></h2>
+<ol>
+<li>
+<p>为什么会有hash冲突
+根据输入值变成固定的长度，必然存在不同的输入产生相同的值</p>
+</li>
+<li>
+<p>time33算法</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="java" data-theme="github-dark github-light"><code data-language="java" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">public</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> int</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> time33</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">char</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">[] str) {</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    int</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> hash </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> 0</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    for</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> (</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">char</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> c </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">:</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> str) {</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">        hash </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> hash </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">*</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> 33</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> +</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> c;</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    }</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    return</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> hash;</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span></code></pre></figure>
+</li>
+</ol>
+<h2 id="百度c一面">百度(C++)一面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#百度c一面" class="internal alias"> §</a></h2>
+<ol>
+<li>tcp建立连接为什么需要三次
+<ol>
+<li>为什么不需要四次(ii, iii可以合并)
+<ol>
+<li>A —syn+seq(A)=x—> B</li>
+<li>B ----ack=x+1--- —> A</li>
+<li>B —syn+seq(B)=y—> A</li>
+<li>A ----ack=y+1------> B</li>
+</ol>
+</li>
+<li>为什么不能是两次(不能就B的初始序列号达成一致)
+<ol>
+<li>A —syn+seq(A)=x—> B</li>
+<li>B —syn+seq(B)=y+ack=x+1—> A</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>tcp断开连接为什么需要四次
+<ol>
+<li>第二次挥手完成的时候，服务端可能还有数据要发送</li>
+<li>所以只能先发送ack确认</li>
+</ol>
+</li>
+<li>内存排布</li>
+<li>进程资源是如何隔离的
+<ol>
+<li>namespace是Linux提供的资源隔离机制。只有在同一个namespace下的进程可以相互联系，但无法感受到外部进程的存在，营造出处于一个独立的系统环境中的错觉，从而实现了隔离。</li>
+<li>cgroup提供
+<ol>
+<li>资源限制</li>
+<li>优先级控制</li>
+<li>资源统计</li>
+<li>任务控制</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>死锁的条件
+<ol>
+<li>互斥: 一个资源只能被一个进程占用</li>
+<li>请求和保持等待: 一个进程因请求被占用资源而发生阻塞时，对已获得的资源保持占有</li>
+<li>不可抢占</li>
+<li>循环等待: 所等待的进程必定会形成一个环路</li>
+</ol>
+</li>
+<li>死锁的预防
+<ol>
+<li>打破互斥: 实际意义不大</li>
+<li>打破请求和保持等待: 一次性申请需要的全部资源
+<ol>
+<li>进程是动态的，不可能提前预知资源多少</li>
+<li>资源利用率低，降低了资源使用的并发性</li>
+</ol>
+</li>
+<li>打破不可抢占: 允许分配已占有的资源</li>
+<li>打破循环等待：资源有序分配</li>
+</ol>
+</li>
+<li>死锁的避免
+<ol>
+<li>银行家算法</li>
+</ol>
+</li>
+<li>死锁的检测
+<ol>
+<li>发生死锁时，最小代价恢复运行</li>
+<li>发现环路说明有死锁</li>
+</ol>
+</li>
+<li>死锁的恢复
+<ol>
+<li>按照进程优先级撤销进程</li>
+</ol>
+</li>
+</ol>
+<h2 id="百度二面">百度二面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#百度二面" class="internal alias"> §</a></h2>
+<ol>
+<li>
+<p>GC</p>
+<ol>
+<li>引用计数法</li>
+<li>mark sweep</li>
+<li>维护不需要GC的</li>
+</ol>
+</li>
+<li>
+<p>线程安全的单例模式</p>
+<ol>
+<li>
+<p>饿汉版</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="cpp" data-theme="github-dark github-light"><code data-language="cpp" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">#include</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> &lt;bits/stdc++.h></span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">using</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> namespace</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> std</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">class</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> single</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> {</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">private:</span></span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">    single</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">() </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> default</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">    ~single</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">() </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> default</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    static</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> single </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">*</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">instance;</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">public:</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    int</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> val </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> 2</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    static</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> single</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> *</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">getInstance</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">() {</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">        return</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> instance;</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    }</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">};</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">single </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">*</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">single</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">::instance </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> new</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> single</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">();</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">int</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> main</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">() {</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    cout </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">&lt;&lt;</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> single</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">::</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">getInstance</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">()->val </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">&lt;&lt;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> endl;</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span>
+<span data-line> </span></code></pre></figure>
+</li>
+<li>
+<p>懒汉版</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="cpp" data-theme="github-dark github-light"><code data-language="cpp" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">#include</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> &lt;bits/stdc++.h></span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">using</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> namespace</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> std</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">class</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> single</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> {</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">private:</span></span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">    single</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">() </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> default</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">    ~single</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">() </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> default</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    static</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> single </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">*</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">instance;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    static</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> mutex _mutex;</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">public:</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    int</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> val </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> 2</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    static</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> single</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> *</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">getInstance</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">() {</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">        if</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> (instance </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">==</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> nullptr</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">) {</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">            unique_lock</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">&lt;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">mutex</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">></span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> lock</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(_mutex);</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">            if</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> (instance </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">==</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> nullptr</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">)</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">                instance </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> new</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> single</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">();</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">        }</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">        return</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> instance;</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    }</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">};</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">single </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">*</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">single</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">::instance </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> nullptr</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">mutex </span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">single</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">::_mutex;</span></span>
+<span data-line> </span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">int</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> main</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">() {</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    cout </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">&lt;&lt;</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> single</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">::</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">getInstance</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">()->val </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">&lt;&lt;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> endl;</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span>
+<span data-line> </span></code></pre></figure>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="作业帮运维一面">作业帮(运维)一面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#作业帮运维一面" class="internal alias"> §</a></h2>
+<ol>
+<li>软硬链接区别
+<ol>
+<li>硬连接共享inode</li>
+<li>若原来的文件删除了，软链接不可访问，硬链接可以访问</li>
+<li>软链接可以跨磁盘，硬连接不行</li>
+</ol>
+</li>
+<li>如何在log文件打开的情况下删除</li>
+<li>运维的工作
+<ol>
+<li>对全平台的业务的监控与部署</li>
+<li>服务部署的效率化与自动化</li>
+<li>降低运维的成本</li>
+<li>一整套服务的生命周期的管理</li>
+</ol>
+</li>
+</ol>
+<h2 id="作业帮运维二面">作业帮(运维)二面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#作业帮运维二面" class="internal alias"> §</a></h2>
+<ol>
+<li>
+<p>常见http请求头</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>请求头</th><th>说明</th></tr></thead><tbody><tr><td>Accept</td><td>文件类型(text/css)</td></tr><tr><td>Accept-Encoding</td><td>压缩方式(gzip)</td></tr><tr><td>Accept-Language</td><td>zh, cn</td></tr><tr><td>User-Agent</td><td>操作系统，浏览器</td></tr><tr><td>method</td><td></td></tr></tbody></table></div>
+</li>
+<li>
+<p>常见http响应头</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>响应头</th><th>说明</th></tr></thead><tbody><tr><td>Content-Type</td><td>文件类型(text/css)</td></tr><tr><td>Content-Encoding</td><td>压缩方式(gzip)</td></tr><tr><td>Content-Language</td><td></td></tr><tr><td>status</td><td>状态码(200)</td></tr><tr><td>method</td><td></td></tr></tbody></table></div>
+</li>
+<li>
+<p>301与302, 常见状态码</p>
+<ol>
+<li>301: 永久重定向(<strong>http</strong>://<a href="http://www.baidu.com%E8%B7%B3%E8%BD%AC" class="external">www.baidu.com跳转<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a><strong>https</strong>://<a href="http://www.baidu.com" class="external">www.baidu.com<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>)</li>
+<li>302: 临时跳转(未登陆的用户访问用户中心重定向到登录页面)</li>
+<li>400: 客户端请求有语法错误</li>
+<li>403: 服务端收到请求, 但是拒绝提供服务</li>
+<li>404: 请求的资源不存在</li>
+</ol>
+</li>
+<li>
+<p>cookie 和 session区别</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th></th><th>cookie</th><th>session</th></tr></thead><tbody><tr><td>存取方式</td><td>ASCII字符串</td><td>任意类型</td></tr><tr><td>隐私策略</td><td>客户端可见</td><td>存储在服务器</td></tr><tr><td>有效期</td><td>时间可以设置比较长</td><td>不可能又多又长</td></tr><tr><td>跨域</td><td>支持</td><td>不支持</td></tr></tbody></table></div>
+</li>
+<li>
+<p>websocket</p>
+<ol>
+<li>基于TCP的真正的全双工通信，客户端和服务器都可以正常接受与发送数据</li>
+<li>建立TCP连接后，不需要HTTP header</li>
+<li>通信协议符为(ws, wss)</li>
+</ol>
+</li>
+<li>
+<p>事务是什么
+满足ACID的一组操作</p>
+</li>
+<li>
+<p>为什么需要事务
+保证数据库中数据的完整性和正确性</p>
+</li>
+</ol>
+<h2 id="字节运维二面">字节(运维)二面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#字节运维二面" class="internal alias"> §</a></h2>
+<ol>
+<li>聚簇索引
+聚簇索引的数据的物理存放顺序与索引顺序是一致，IO时间变少</li>
+</ol>
+<h1 id="暑期实习面经"><a href="https://www.nowcoder.com/discuss/375967?type=post&amp;order=time&amp;pos=&amp;page=1" class="external">暑期实习面经<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a><a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#暑期实习面经" class="internal alias"> §</a></h1>
+<h2 id="阿里一面">阿里一面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#阿里一面" class="internal alias"> §</a></h2>
+<ol>
+<li>
+<p>const</p>
+<ol>
+<li>
+<p>const修饰普通变量: 常量不能修改(注意编译器优化, volatile)</p>
+</li>
+<li>
+<p>const修饰指针变量</p>
+<ol>
+<li>
+<p>修饰指针指向的内容: 内容不可变</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="cpp" data-theme="github-dark github-light"><code data-language="cpp" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">const</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> int</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> *</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">p </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> 8</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span></code></pre></figure>
+</li>
+<li>
+<p>修饰指针: 指针不可变</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="cpp" data-theme="github-dark github-light"><code data-language="cpp" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">int*</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> const</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> p </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> &amp;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">a;</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">*</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">p </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> 9</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"> // 正确</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">p </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> &amp;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">b;</span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"> // 错误</span></span></code></pre></figure>
+</li>
+<li>
+<p>修饰指针和指针指向的内容: 均不可变</p>
+</li>
+</ol>
+</li>
+<li>
+<p>const参数传递</p>
+<ol>
+<li>
+<p>按值传递的参数: 可以当没有必要(本来就是拷贝)</p>
+</li>
+<li>
+<p>指针参数</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="cpp" data-theme="github-dark github-light"><code data-language="cpp" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">void</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> Cpf</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">int</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> *const</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> a</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">)</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">{</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    cout</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">&lt;&lt;*</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">a</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">&lt;&lt;</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot; &quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    *</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">a </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> 9</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span></code></pre></figure>
+</li>
+<li>
+<p>自定义类型的参数</p>
+</li>
+</ol>
+</li>
+<li>
+<p>const函数返回值</p>
+<ol>
+<li>
+<p>const修饰内置类型: 是否修饰作用一样</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="cpp" data-theme="github-dark github-light"><code data-language="cpp" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">const</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> int</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> Cmf</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">()</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">{</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    return</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> 1</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span></code></pre></figure>
+</li>
+<li>
+<p>const修饰函数指针</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="cpp" data-theme="github-dark github-light"><code data-language="cpp" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">const</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> char</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> *</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">getStr</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">() {</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    return</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> &quot;dddd&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">const</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> char</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> *</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">str </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> getStr</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">();</span></span></code></pre></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>const修饰成员函数
+const 修饰类成员函数，其目的是防止成员函数修改被调用对象的值</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="cpp" data-theme="github-dark github-light"><code data-language="cpp" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">class</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> {</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    int</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> get_cm</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">()</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">const</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    {</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">       return</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> _cm;</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    }</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span></code></pre></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>多态</p>
+<p>一个接口, 多种行为</p>
+<ol>
+<li>编译时多态: 函数重载与模板(静态)</li>
+<li>运行时多态: 虚函数(动态)</li>
+</ol>
+<p>析构函数: 在多态基类中使用虚析构函数</p>
+</li>
+<li>
+<p>指针和引用</p>
+<ol>
+<li>
+<p>代码</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="cpp" data-theme="github-dark github-light"><code data-language="cpp" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">int</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> a</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">1</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">int</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> *</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">p</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=&amp;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">a;</span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"> // p是指针</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">int</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> a</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">1</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">int</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> &amp;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">b</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">a;</span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">  // b是引用, 和a相同</span></span></code></pre></figure>
+</li>
+<li>
+<p>可以有const指针，但是没有const引用</p>
+</li>
+<li>
+<p>指针可以有多级，但是引用只能是一级</p>
+</li>
+<li>
+<p>指针可以改变，但引用不可改变</p>
+</li>
+<li>
+<p>“sizeof引用”得到的是所指向的变量(对象)的大小，而”sizeof指针”得到的是指针本身的大小</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="cpp" data-theme="github-dark github-light"><code data-language="cpp" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">int</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> b</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=&amp;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">a;</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">sizeof</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(b);</span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"> // 4</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">sizeof</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">int</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> *</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">);</span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"> // 8(64位)</span></span></code></pre></figure>
+</li>
+<li>
+<p>函数参数</p>
+<ol>
+<li>
+<p>指针本质还是值传递</p>
+</li>
+<li>
+<p>引用传递的是实参本身</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="cpp" data-theme="github-dark github-light"><code data-language="cpp" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">void</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> test</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">int</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> &amp;</span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">a</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">)</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">{</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">　　cout</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">&lt;&lt;&amp;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">a</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">&lt;&lt;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">endl;</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">int</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> main</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">void</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">)</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">{</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    int</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> a</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">1</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    cout</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">&lt;&lt;&amp;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">a</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">&lt;&lt;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">endl;</span></span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">    test</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(a);</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    return</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> 0</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">// 0x7ffdf0564b14</span></span>
+<span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">// 0x7ffdf0564b14</span></span></code></pre></figure>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>判断链表是否循环
+leetcode141</p>
+</li>
+</ol>
+<h1 id="cvte-c"><a href="https://www.nowcoder.com/discuss/384664?type=post&amp;order=time&amp;pos=&amp;page=1&amp;subType=2" class="external">CVTE C++<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a><a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#cvte-c" class="internal alias"> §</a></h1>
+<h2 id="一面">一面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#一面" class="internal alias"> §</a></h2>
+<ol>
+<li>
+<p>RTSP协议
+RTSP(Real-TimeStream Protocol )被用于建立的控制媒体流的传输，它为多媒体服务扮演“网络远程控制”的角色。尽管有时可以把RTSP控制信息和媒体数据流交织在一起传送，但一般情况RTSP本身并不用于转送媒体流数据。媒体数据的传送可通过RTP/RTCP等协议来完成。</p>
+<p>实时传输控制协议(Real-time ControlProtocol，RTCP)与RTP共同定义在1996年提出的RFC 1889中，是和 RTP一起工作的控制协议。RTCP单独运行在低层协议上，由低层协议提供数据与控制包的复用。</p>
+</li>
+<li>
+<p>基于UDP和TCP的传输有什么区别</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>TCP</th><th>UDP</th></tr></thead><tbody><tr><td>无状态面向连接</td><td>无连接面向报文</td></tr><tr><td>字节流模式</td><td>数据报模式</td></tr><tr><td>只能一对一</td><td>可以多对多</td></tr><tr><td>系统资源消耗大</td><td>****小</td></tr><tr><td>保证数据正确</td><td>可能丢包</td></tr><tr><td>保证数据顺序</td><td>可能丢包</td></tr><tr><td>流量控制,拥塞控制,<br/>超时重传,校验和</td><td>尽力交付</td></tr></tbody></table></div>
+</li>
+<li>
+<p>如何解决UDP传输乱序的问题?
+tcp的seq</p>
+</li>
+<li>
+<p>shared_ptr和unique_ptr有什么区别</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>shared_ptr</th><th>unique_ptr</th></tr></thead><tbody><tr><td>计数器</td><td>独有</td></tr><tr><td>make_shared</td><td>只能new</td></tr><tr><td></td><td></td></tr></tbody></table></div>
+</li>
+<li>
+<p>shared_ptr如何做到多个同时管理一个对象
+计数器, use_count, unique</p>
+</li>
+<li>
+<p>unique_ptr可以拷贝吗?为什么不能拷贝?
+拷贝构造函数是被删除的</p>
+</li>
+<li>
+<p>c++多态如何理解?
+一个接口, 多种行为</p>
+<ol>
+<li>编译时多态: 函数重载与模板(静态)</li>
+<li>运行时多态: 虚函数(动态)</li>
+</ol>
+</li>
+<li>
+<p>多进程和多线程的区别
+线程是CPU调度的基本单元
+进程是系统资源分配的基本单元</p>
+</li>
+<li>
+<p>如何在两个进程间共享一个对象</p>
+<ol>
+<li>共享内存</li>
+<li>管道</li>
+<li>MQ</li>
+</ol>
+</li>
+<li>
+<p>虚拟地址空间</p>
+<ol>
+<li>部分映射物理内存</li>
+<li>伪连续, 不需要物理内存连续</li>
+</ol>
+</li>
+</ol>
+<h2 id="电话面-二面">电话面 二面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#电话面-二面" class="internal alias"> §</a></h2>
+<ol>
+<li>mmap原理
+mmap将一个文件或者其它对象映射进内存, 文件被映射到多个页上
+<ol>
+<li>在用户虚拟地址空间中寻找空闲的满足要求的一段连续的虚拟地址空间,为映射做准备(由内核mmap系统调用完成)</li>
+<li>建立虚拟地址空间和文件或设备的物理地址之间的映射(设备驱动完成)</li>
+<li>缺页中断</li>
+</ol>
+</li>
+<li>直接写磁盘的性能损耗
+操作系统和C库函数通常会对写入的文件内容做缓存，以减少实际写文件的次数。直接调用系统函数fsync或C函数fflush将使系统的缓存机制失效，此时将强制把内容刷到磁盘上。除非必需，否则不要执行强制刷盘操作。</li>
+</ol>
+<h1 id="腾讯暑期实习面试"><a href="https://blog.csdn.net/weixin_41863129/article/details/105006828" class="external">腾讯暑期实习面试<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a><a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#腾讯暑期实习面试" class="internal alias"> §</a></h1>
+<h2 id="一面-1">一面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#一面-1" class="internal alias"> §</a></h2>
+<ol>
+<li>
+<p>进程线程通信</p>
+<ol>
+<li>进程: 管道, 有名管道, 信号量, 消息队列, 共享内存, 套接字</li>
+<li>线程: 锁, 信号量</li>
+</ol>
+</li>
+<li>
+<p>MySQL索引
+MySQL 5.5以前的默认存储引擎是MyISAM, MySQL 5.5之后的默认存储引擎是InnoDB</p>
+<ol>
+<li>MyISAM
+<ol>
+<li>没有事务</li>
+<li>全文索引(like %XXX)</li>
+<li>表级锁</li>
+<li>表压缩(io密集)</li>
+<li>count()</li>
+</ol>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:left;">特性</th><th style="text-align:left;">说明</th><th style="text-align:left;">InnoDB</th><th style="text-align:left;">MyISAM</th><th style="text-align:left;">MEMORY</th></tr></thead><tbody><tr><td style="text-align:left;">B树索引 (B-tree indexes)</td><td style="text-align:left;">自增ID物理连续性更高， 二叉树，红黑树高度不可控</td><td style="text-align:left;">√</td><td style="text-align:left;">√</td><td style="text-align:left;">√</td></tr><tr><td style="text-align:left;">R树索引 (R-tree indexes)</td><td style="text-align:left;">空间索引</td><td style="text-align:left;"></td><td style="text-align:left;">√</td><td style="text-align:left;"></td></tr><tr><td style="text-align:left;">哈希索引 (Hash indexes)</td><td style="text-align:left;">无法做范围查询</td><td style="text-align:left;">√</td><td style="text-align:left;"></td><td style="text-align:left;">√</td></tr><tr><td style="text-align:left;">全文索引 (Full-text indexes)</td><td style="text-align:left;"></td><td style="text-align:left;">√</td><td style="text-align:left;">√</td><td style="text-align:left;"></td></tr></tbody></table></div>
+<ol>
+<li>B树是多路树，红黑树是二叉树！红黑树一个节点只能存出一个值，B树一个节点可以存储多个值，红黑树的深度会更大,定位时 红黑树的查找次数会大一些。</li>
+<li>高度</li>
+<li>局部性原理</li>
+</ol>
+</li>
+<li>
+<p>MySQL的联合索引
+叶节点存储的则是三个关键字col1、col2、col3三个关键字的数据，且按照col1、col2、col3的顺序进行排序</p>
+</li>
+<li>
+<p>https是什么</p>
+<ol>
+<li>http的安全版本</li>
+<li>ssl(Transport Layer Security) -> tls(Transport Layer Security)</li>
+</ol>
+</li>
+<li>
+<p>https 过程</p>
+<ol>
+<li>TCP三次握手(1.5-RTT)</li>
+</ol>
+</li>
+<li>
+<p>TLS四次握手(2-RTT)</p>
+</li>
+<li>
+<p>HTTP交互 (1-RTT), 真正传输数据的</p>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200519165142493.png" alt="image-20200519165142493"/></p>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200519165246955.png" alt="image-20200519165246955"/></p>
+</li>
+<li>
+<p>服务端的状态码</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">状态码</th><th style="text-align:center;"></th></tr></thead><tbody><tr><td style="text-align:center;">2XX</td><td style="text-align:center;">成功</td></tr><tr><td style="text-align:center;">3XX</td><td style="text-align:center;">重定向</td></tr><tr><td style="text-align:center;">4XX</td><td style="text-align:center;">客户端错误</td></tr><tr><td style="text-align:center;">5XX</td><td style="text-align:center;">服务端错误</td></tr></tbody></table></div>
+</li>
+<li>
+<p>加密算法有哪些</p>
+<ol>
+<li>对称加密: DES, 3DES, AES</li>
+<li>非对称加密: RSA, DSA</li>
+<li>SHA-1, MD5</li>
+</ol>
+</li>
+<li>
+<p>CA证书</p>
+<ol>
+<li>A服务器产生公钥私钥后向root ca发送请求</li>
+<li>root ca发送用自己的私钥加密的A服务器的证书</li>
+<li>浏览器一般带有权威认证机构的公钥</li>
+<li>这个公钥可以用来解密证书证明自己是自己</li>
+</ol>
+</li>
+<li>
+<p>restful接口</p>
+<ol>
+<li>API与用户的通信协议，总是使用HTTPs协议</li>
+<li>每个网址代表一种资源(resource)</li>
+<li>动词</li>
+</ol>
+</li>
+<li>
+<p>get和post区别</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>GET</th><th>POST</th></tr></thead><tbody><tr><td>一般是获取</td><td>一般是发送</td></tr><tr><td>数据url可见</td><td></td></tr><tr><td>&lt;=2kb</td><td>一般无限制</td></tr><tr><td>安全性低, 无加密</td><td></td></tr></tbody></table></div>
+</li>
+<li>
+<p>http1.0, 1.1, 2.0</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>HTTP</th><th></th></tr></thead><tbody><tr><td>1.0</td><td>新增了POST, 一次请求一次连接</td></tr><tr><td>1.1</td><td>keep-alive, 管道, 分块</td></tr><tr><td>2.0</td><td>二进制, 多路复用, 主动推送, 头部压缩</td></tr></tbody></table></div>
+</li>
+<li>
+<p>TCP怎么可靠传输
+拥塞控制, 流量控制, 校验和, 超时重传, 字节编号</p>
+</li>
+<li>
+<p>滑动窗口是什么
+接收方通过 TCP 报文段中的窗口字段告诉发送方自己的窗口大小，发送方根据这个值和其它信息设置自己的窗口大小</p>
+</li>
+<li>
+<p>拥塞窗口
+拥塞窗口只是一个状态变量，实际决定发送方能发送多少数据的是发送方窗口</p>
+</li>
+</ol>
+<h2 id="二面">二面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#二面" class="internal alias"> §</a></h2>
+<ol>
+<li>
+<p>浏览器输入一个网址，发生的事情</p>
+</li>
+<li>
+<p>cdn是什么
+<strong>大号的缓存代理</strong></p>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/cdn_1.png" alt="img"/></p>
+</li>
+</ol></article></div><div class="right sidebar"><div class="graph "><h3>Graph View</h3><div class="graph-outer"><div id="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[]}"></div><svg version="1.1" id="global-graph-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+	s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+	c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+	C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+	c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+	v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+	s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+	C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+	S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+	s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+	s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></div><div id="global-graph-outer"><div id="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[]}"></div></div></div><div class="toc desktop-only"><button type="button" id="toc" class><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="toc-content"><ul class="overflow"><li class="depth-0"><a href="#my-own" data-for="my-own">MY OWN</a></li><li class="depth-1"><a href="#腾讯一面322" data-for="腾讯一面322">腾讯一面(3.22)</a></li><li class="depth-1"><a href="#腾讯二面" data-for="腾讯二面">腾讯二面</a></li><li class="depth-1"><a href="#腾讯业务运维一面" data-for="腾讯业务运维一面">腾讯(业务运维)一面</a></li><li class="depth-1"><a href="#腾讯业务运维二面" data-for="腾讯业务运维二面">腾讯(业务运维)二面</a></li><li class="depth-1"><a href="#腾讯业务运维三面" data-for="腾讯业务运维三面">腾讯(业务运维)三面</a></li><li class="depth-1"><a href="#深信服c一面" data-for="深信服c一面">深信服(C++)一面</a></li><li class="depth-1"><a href="#百度c一面" data-for="百度c一面">百度(C++)一面</a></li><li class="depth-1"><a href="#百度二面" data-for="百度二面">百度二面</a></li><li class="depth-1"><a href="#作业帮运维一面" data-for="作业帮运维一面">作业帮(运维)一面</a></li><li class="depth-1"><a href="#作业帮运维二面" data-for="作业帮运维二面">作业帮(运维)二面</a></li><li class="depth-1"><a href="#字节运维二面" data-for="字节运维二面">字节(运维)二面</a></li><li class="depth-0"><a href="#暑期实习面经" data-for="暑期实习面经">暑期实习面经</a></li><li class="depth-1"><a href="#阿里一面" data-for="阿里一面">阿里一面</a></li><li class="depth-0"><a href="#cvte-c" data-for="cvte-c">CVTE C++</a></li><li class="depth-1"><a href="#一面" data-for="一面">一面</a></li><li class="depth-1"><a href="#电话面-二面" data-for="电话面-二面">电话面 二面</a></li><li class="depth-0"><a href="#腾讯暑期实习面试" data-for="腾讯暑期实习面试">腾讯暑期实习面试</a></li><li class="depth-1"><a href="#一面-1" data-for="一面-1">一面</a></li><li class="depth-1"><a href="#二面" data-for="二面">二面</a></li></ul></div></div><div class="backlinks "><h3>Backlinks</h3><ul class="overflow"><li>No backlinks found</li></ul></div></div></div><footer class><hr/><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.1.4</a>, © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></body><script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/copy-tex.min.js" type="application/javascript"></script><script type="application/javascript">// quartz/components/scripts/quartz/components/scripts/callout.inline.ts
+function toggleCallout() {
+  const outerBlock = this.parentElement;
+  outerBlock.classList.toggle(`is-collapsed`);
+  const collapsed = outerBlock.classList.contains(`is-collapsed`);
+  const height = collapsed ? this.scrollHeight : outerBlock.scrollHeight;
+  outerBlock.style.maxHeight = height + `px`;
+  let current = outerBlock;
+  let parent = outerBlock.parentElement;
+  while (parent) {
+    if (!parent.classList.contains(`callout`)) {
+      return;
+    }
+    const collapsed2 = parent.classList.contains(`is-collapsed`);
+    const height2 = collapsed2 ? parent.scrollHeight : parent.scrollHeight + current.scrollHeight;
+    parent.style.maxHeight = height2 + `px`;
+    current = parent;
+    parent = parent.parentElement;
+  }
+}
+function setupCallout() {
+  const collapsible = document.getElementsByClassName(
+    `callout is-collapsible`
+  );
+  for (const div of collapsible) {
+    const title = div.firstElementChild;
+    if (title) {
+      title.removeEventListener(`click`, toggleCallout);
+      title.addEventListener(`click`, toggleCallout);
+      const collapsed = div.classList.contains(`is-collapsed`);
+      const height = collapsed ? title.scrollHeight : div.scrollHeight;
+      div.style.maxHeight = height + `px`;
+    }
+  }
+}
+document.addEventListener(`nav`, setupCallout);
+window.addEventListener(`resize`, setupCallout);
+</script><script type="module">
+          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+          const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
+          mermaid.initialize({
+            startOnLoad: false,
+            securityLevel: 'loose',
+            theme: darkMode ? 'dark' : 'default'
+          });
+          document.addEventListener('nav', async () => {
+            await mermaid.run({
+              querySelector: '.mermaid'
+            })
+          });
+          </script><script src="../../../postscript.js" type="module"></script></html>
