@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html><head><title>MySQL复习</title><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta property="og:title" content="MySQL复习"/><meta property="og:description" content="1. 事务 § 满足ACID的一组操作, 使用Commit和Rollback操作 MySQLd 每个查询都是AUTOCOMMIT Atomicity(原子性): 全部成功，要么全部失败 Consistency(一致性): AB两账户无论转账, 总额不会改变 Isolation(隔离性): 多个用户并发访问数据库时, 多个并发事务之间相互隔离 Durability(持久性): 一旦事务提交，则其所做的修改将会永远保存到数据库中 二."/><meta property="og:image" content="https://chunibyo-wly.github.io/static/og-image.png"/><meta property="og:width" content="1200"/><meta property="og:height" content="675"/><link rel="icon" href="../../../static/icon.png"/><meta name="description" content="1. 事务 § 满足ACID的一组操作, 使用Commit和Rollback操作 MySQLd 每个查询都是AUTOCOMMIT Atomicity(原子性): 全部成功，要么全部失败 Consistency(一致性): AB两账户无论转账, 总额不会改变 Isolation(隔离性): 多个用户并发访问数据库时, 多个并发事务之间相互隔离 Durability(持久性): 一旦事务提交，则其所做的修改将会永远保存到数据库中 二."/><meta name="generator" content="Quartz"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link href="../../../index.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://fonts.googleapis.com/css2?family=IBM Plex Mono&amp;family=Noto Serif Georgian:wght@400;700&amp;family=Noto Serif Georgian:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet" type="text/css" spa-preserve/><script src="../../../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch("../../../static/contentIndex.json").then(data => data.json())</script></head><body data-slug="Y-存档/A-工程项目/数据库/MySQL"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h1 class="page-title "><a href="../../..">Chunibyo</a></h1><div class="spacer mobile-only"></div><div class="search "><div id="search-icon"><p>Search</p><div></div><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search</title><desc id="desc">Search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></div><div id="search-container"><div id="search-space"><input autocomplete="off" id="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div id="results-container"></div></div></div></div><div class="darkmode "><input class="toggle" id="darkmode-toggle" type="checkbox" tabindex="-1"/><label id="toggle-label-light" for="darkmode-toggle" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve"><title>Light mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg></label><label id="toggle-label-dark" for="darkmode-toggle" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve"><title>Dark mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></label></div><div class="explorer desktop-only"><button type="button" id="explorer" data-behavior="collapse" data-collapsed="collapsed" data-savestate="true" data-tree="[{&quot;path&quot;:&quot;A-论文&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;C-项目&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;D-HKU&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;E-通识&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/CodeWars&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/Linux&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/前端&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/数据库&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/语法&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/面试&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/项目&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/B-计算机视觉&quot;,&quot;collapsed&quot;:true}]"><h1>Explorer</h1><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-content"><ul class="overflow" id="explorer-ul"><li><div class="folder-outer open"><ul style="padding-left:0;" class="content" data-folderul><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="A-论文"><button class="folder-button"><span class="folder-title">A-论文</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="A-论文"><li><a href="../../../A-论文/4PCS" data-for="A-论文/4PCS">4PCS</a></li><li><a href="../../../A-论文/A-robust-statistics-approach-for-plane-detection-in-unorganized-point-clouds" data-for="A-论文/A-robust-statistics-approach-for-plane-detection-in-unorganized-point-clouds">A robust statistics approach for plane detection in unorganized point clouds</a></li><li><a href="../../../A-论文/A-Survey-on-Data-Compression-Techniques-for-Automotive-LiDAR-Point-Clouds" data-for="A-论文/A-Survey-on-Data-Compression-Techniques-for-Automotive-LiDAR-Point-Clouds">A Survey on Data Compression Techniques for Automotive LiDAR Point Clouds</a></li><li><a href="../../../A-论文/3DLineDetection" data-for="A-论文/3DLineDetection">Fast 3D Line Segment Detection From Unorganized Point Cloud</a></li><li><a href="../../../A-论文/S4PCS" data-for="A-论文/S4PCS">Super Generalized 4PCS for 3D Registration</a></li><li><a href="../../../A-论文/Symmetry-Loss" data-for="A-论文/Symmetry-Loss">Symmetry Loss</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="C-项目"><button class="folder-button"><span class="folder-title">C-项目</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="C-项目"><li><a href="../../../C-项目/CGAL" data-for="C-项目/CGAL">CGAL</a></li><li><a href="../../../C-项目/Open3D" data-for="C-项目/Open3D">Open3D</a></li><li><a href="../../../C-项目/Open3D-issue" data-for="C-项目/Open3D-issue">Open3D issue</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="D-HKU"><button class="folder-button"><span class="folder-title">D-HKU</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="D-HKU"><li><a href="../../../D-HKU/HPC-使用" data-for="D-HKU/HPC-使用">HPC</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="E-通识"><button class="folder-button"><span class="folder-title">E-通识</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="E-通识"><li><a href="../../../E-通识/CUDA" data-for="E-通识/CUDA">CUDA</a></li><li><a href="../../../E-通识/Llama" data-for="E-通识/Llama">Llama</a></li><li><a href="../../../E-通识/SVG" data-for="E-通识/SVG">SVG</a></li><li><a href="../../../E-通识/wsl" data-for="E-通识/wsl">wsl</a></li><li><a href="../../../E-通识/微积分" data-for="E-通识/微积分">微积分</a></li><li><a href="../../../E-通识/点云" data-for="E-通识/点云">点云</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档"><button class="folder-button"><span class="folder-title">Y-存档</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目"><button class="folder-button"><span class="folder-title">A-工程项目</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/CodeWars"><button class="folder-button"><span class="folder-title">CodeWars</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/CodeWars"><li><a href="../../../Y-存档/A-工程项目/CodeWars/codewars-URLshortener" data-for="Y-存档/A-工程项目/CodeWars/codewars-URLshortener">codewars URLshortener</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/Linux"><button class="folder-button"><span class="folder-title">Linux</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/Linux"><li><a href="../../../Y-存档/A-工程项目/Linux/Linux" data-for="Y-存档/A-工程项目/Linux/Linux">Linux</a></li><li><a href="../../../Y-存档/A-工程项目/Linux/proc记录" data-for="Y-存档/A-工程项目/Linux/proc记录">proc记录</a></li><li><a href="../../../Y-存档/A-工程项目/Linux/Terraria" data-for="Y-存档/A-工程项目/Linux/Terraria">Terraria</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/前端"><button class="folder-button"><span class="folder-title">前端</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/前端"><li><a href="../../../Y-存档/A-工程项目/前端/js-request" data-for="Y-存档/A-工程项目/前端/js-request">Http请求</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/数据库"><button class="folder-button"><span class="folder-title">数据库</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/数据库"><li><a href="../../../Y-存档/A-工程项目/数据库/MySQL" data-for="Y-存档/A-工程项目/数据库/MySQL">MySQL复习</a></li><li><a href="../../../Y-存档/A-工程项目/数据库/Redis设计与实现" data-for="Y-存档/A-工程项目/数据库/Redis设计与实现">Redis设计与实现</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/语法"><button class="folder-button"><span class="folder-title">语法</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/语法"><li><a href="../../../Y-存档/A-工程项目/语法/cpp" data-for="Y-存档/A-工程项目/语法/cpp">c++复习</a></li><li><a href="../../../Y-存档/A-工程项目/语法/java" data-for="Y-存档/A-工程项目/语法/java">java基础</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/面试"><button class="folder-button"><span class="folder-title">面试</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/面试"><li><a href="../../../Y-存档/A-工程项目/面试/STL" data-for="Y-存档/A-工程项目/面试/STL">STL源码剖析</a></li><li><a href="../../../Y-存档/A-工程项目/面试/Vim" data-for="Y-存档/A-工程项目/面试/Vim">Vim</a></li><li><a href="../../../Y-存档/A-工程项目/面试/OperatingSystem" data-for="Y-存档/A-工程项目/面试/OperatingSystem">操作系统复习</a></li><li><a href="../../../Y-存档/A-工程项目/面试/面经" data-for="Y-存档/A-工程项目/面试/面经">春招记录</a></li><li><a href="../../../Y-存档/A-工程项目/面试/ComputerNetwork" data-for="Y-存档/A-工程项目/面试/ComputerNetwork">计算机网络复习</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/项目"><button class="folder-button"><span class="folder-title">项目</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/项目"><li><a href="../../../Y-存档/A-工程项目/项目/alicevision" data-for="Y-存档/A-工程项目/项目/alicevision">alicevision</a></li><li><a href="../../../Y-存档/A-工程项目/项目/deepin-screen-recorder" data-for="Y-存档/A-工程项目/项目/deepin-screen-recorder">deepin screen recorder</a></li><li><a href="../../../Y-存档/A-工程项目/项目/mmcv-CUDA-单元测试" data-for="Y-存档/A-工程项目/项目/mmcv-CUDA-单元测试">mmcv CUDA 单元测试</a></li><li><a href="../../../Y-存档/A-工程项目/项目/remark" data-for="Y-存档/A-工程项目/项目/remark">remark</a></li><li><a href="../../../Y-存档/A-工程项目/项目/设计模式" data-for="Y-存档/A-工程项目/项目/设计模式">设计模式</a></li></ul></div></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/B-计算机视觉"><button class="folder-button"><span class="folder-title">B-计算机视觉</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/B-计算机视觉"><li><a href="../../../Y-存档/B-计算机视觉/camera" data-for="Y-存档/B-计算机视觉/camera">Camera</a></li><li><a href="../../../Y-存档/B-计算机视觉/Open3D" data-for="Y-存档/B-计算机视觉/Open3D">Open3D Release v0.1.0</a></li><li><a href="../../../Y-存档/B-计算机视觉/点云" data-for="Y-存档/B-计算机视觉/点云">点云</a></li></ul></div></li></ul></div></li><li><a href="../../../测试" data-for="测试">测试</a></li></ul></div></li><li id="explorer-end"></li></ul></div></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container " aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../../Y-存档/">Y 存档</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../../Y-存档/A-工程项目/">A 工程项目</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../../Y-存档/A-工程项目/数据库/">数据库</a></div></nav><h1 class="article-title ">MySQL复习</h1><p class="content-meta ">Mar 14, 2020, 7 min read</p><ul class="tags "><li><a href="../../../tags/mysql" class="internal tag-link">#mysql</a></li></ul></div></div><article class="popover-hint"><p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190010572.png" alt="image-20210114190010572"/></p>
+
+<h1 id="1-事务">1. 事务<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-事务" class="internal alias"> §</a></h1>
+<p>满足ACID的一组操作, 使用Commit和Rollback操作</p>
+<p>MySQLd 每个查询都是AUTOCOMMIT</p>
+<ul>
+<li>Atomicity(原子性): 全部成功，要么全部失败</li>
+<li>Consistency(一致性): AB两账户无论转账, 总额不会改变</li>
+<li>Isolation(隔离性): 多个用户并发访问数据库时, 多个并发事务之间相互隔离</li>
+<li>Durability(持久性): 一旦事务提交，则其所做的修改将会永远保存到数据库中</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190223714.png" alt="image-20210114190223714"/></p>
+<h1 id="二-范式">二. 范式<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#二-范式" class="internal alias"> §</a></h1>
+<p>一般满足3NF足够</p>
+<ul>
+<li>1NF: 属性不可分</li>
+<li>2NF: 属性完全依赖于主键(消除部分子函数依赖)</li>
+<li>3NF: 属性不依赖于其他非主属性(消除传递依赖)</li>
+<li>BCNF: 任何非主属性不能对主键子集依赖[消除对主码子集的依赖]</li>
+</ul>
+<h1 id="三-锁">三. 锁🔒<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#三-锁" class="internal alias"> §</a></h1>
+<h2 id="1-共享锁与排他锁">1. 共享锁与排他锁<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-共享锁与排他锁" class="internal alias"> §</a></h2>
+<ol>
+<li>共享锁: 多个事务对于同一数据可以共享一把锁，都能访问到数据，但是只能读不能修改。</li>
+<li>排他锁: 不能与其他所并存, 但是获取排他锁的事务是可以对数据就行读取和修改。</li>
+<li>update,delete,insert都会自动加上排他锁</li>
+<li>select语句默认不会加任何锁, 并且直接select不存在锁限制</li>
+<li>select
+<ol>
+<li>加共享锁: <code>select ... lock in share mode</code></li>
+<li>加排他锁: <code>select ...for update</code></li>
+</ol>
+</li>
+</ol>
+<h2 id="2-悲观锁与乐观锁">2. 悲观锁与乐观锁<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-悲观锁与乐观锁" class="internal alias"> §</a></h2>
+<p>悲观锁和乐观锁都是业务逻辑层次的定义，不同的设计可能会有不同的实现。</p>
+<ol>
+<li>
+<p>在mysql层常用的悲观锁实现方式是加一个排他锁。</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span>begin;</span></span>
+<span data-line><span>select * from account where id = 1 for update;</span></span>
+<span data-line><span>update account set balance=150 where id =1;</span></span>
+<span data-line><span>commit;</span></span></code></pre></figure>
+</li>
+<li>
+<p>乐观锁是指在获取数据时候不加锁，乐观的认为操作不会有冲突，在update的时候再去检查冲突。</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span>begin;</span></span>
+<span data-line><span>select balance from account where id=1;</span></span>
+<span data-line><span>-- 得到balance=100;然后计算balance=100+50=150</span></span>
+<span data-line><span>update account set balance = 150 where id=1 and balance = 100;</span></span>
+<span data-line><span>commit;</span></span></code></pre></figure>
+</li>
+</ol>
+<h1 id="四-并发一致性">四. 并发一致性<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#四-并发一致性" class="internal alias"> §</a></h1>
+<h2 id="1-丢失修改">1. 丢失修改<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-丢失修改" class="internal alias"> §</a></h2>
+<p>解决办法: 事务+查询共享锁</p>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190235850.png" alt="image-20210114190235850"/></p>
+<h2 id="2-脏读">2. 脏读<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-脏读" class="internal alias"> §</a></h2>
+<p>解决办法:</p>
+<ol>
+<li>把数据库的事务隔离级别调整到 READ_COMMITTED</li>
+<li>共享锁select</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190251744.png" alt="image-20210114190251744"/></p>
+<h2 id="3-不可重复读">3. 不可重复读<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-不可重复读" class="internal alias"> §</a></h2>
+<p>解决办法:</p>
+<ol>
+<li>数据库的事务隔离级别调整到REPEATABLE_READ</li>
+<li>select共享锁</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190255850.png" alt="img"/></p>
+<h2 id="4-幻读">4. 幻读<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-幻读" class="internal alias"> §</a></h2>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114190308856.png" alt="image-20210114190308856"/></p>
+<h1 id="五-数据类型">五. 数据类型<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#五-数据类型" class="internal alias"> §</a></h1>
+<h2 id="1-整形">1. 整形<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-整形" class="internal alias"> §</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;"></th><th style="text-align:center;">Tinyint</th><th style="text-align:center;">smallint</th><th style="text-align:center;">mediumint</th><th style="text-align:center;">int</th><th style="text-align:center;">bigint</th></tr></thead><tbody><tr><td style="text-align:center;">bit</td><td style="text-align:center;">1*8</td><td style="text-align:center;">2*8</td><td style="text-align:center;">3*8</td><td style="text-align:center;">4*8</td><td style="text-align:center;">8*8</td></tr></tbody></table></div>
+<h2 id="2-浮点型">2. 浮点型<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-浮点型" class="internal alias"> §</a></h2>
+<p>FLOAT, DOUBLE(浮点类型)
+DECIMAL(高精度小数类型, CPU不原生支持)</p>
+<h2 id="3-字符串">3. 字符串<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-字符串" class="internal alias"> §</a></h2>
+<p>CHAR, VARCHAR</p>
+<h2 id="4-时间和日期">4. 时间和日期<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-时间和日期" class="internal alias"> §</a></h2>
+<ol>
+<li>DATETIME(8字节)“2008-01-16 22:37:08”</li>
+<li>TIMESTAMP(4字节), 与时区有关</li>
+</ol>
+<h1 id="六-索引">六. 索引<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#六-索引" class="internal alias"> §</a></h1>
+<ol>
+<li>对于非常小的表、大部分情况下简单的全表扫描比建立索引更高效。</li>
+<li>对于中到大型的表，索引就非常有效。</li>
+<li>但是对于特大型的表，建立和维护索引的代价将会随之增长。
+需要用到一种技术可以直接区分出需要查询的一组数据
+而不是一条记录一条记录地匹配，例如可以使用分区技术。</li>
+</ol>
+<p><strong>不同存储引擎具有不同的索引类型和实现</strong></p>
+<h2 id="1-b-tree">1. B-Tree<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-b-tree" class="internal alias"> §</a></h2>
+<h1 id="常用命令">常用命令<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#常用命令" class="internal alias"> §</a></h1>
+<ol>
+<li>
+<p>user, host字段在mysql.user表里</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span>select user, host from mysql.user;</span></span></code></pre></figure>
+</li>
+<li>
+<p>赋权</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span>grant select on practice.* to 'chunibyo'@'%';</span></span>
+<span data-line><span>flush privileges</span></span></code></pre></figure>
+</li>
+<li>
+<p>有用户切换了他们的ip地址</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span>RENAME USER user@ipaddress1 TO user@ipaddress2;	</span></span></code></pre></figure>
+</li>
+<li>
+<p>查看当前使用数据库</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span>select database();</span></span></code></pre></figure>
+<p>查看所有数据库</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span>show databases;</span></span></code></pre></figure>
+</li>
+<li>
+<p>格式化日期</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span>select date_format(now(), '%y-%m-%d %H:%i:%s');</span></span></code></pre></figure>
+</li>
+<li>
+<p>事务</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span>begin;</span></span>
+<span data-line><span>XXXXX</span></span>
+<span data-line><span>commit; / rollback;</span></span></code></pre></figure>
+</li>
+<li>
+<p>alter</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span>删除teacher表name字段</span></span>
+<span data-line><span>alter table teacher drop name;</span></span>
+<span data-line><span></span></span>
+<span data-line><span>添加teacher表name字段</span></span>
+<span data-line><span>alter table teacher add name INT;</span></span>
+<span data-line><span></span></span>
+<span data-line><span>alter table teacher modify name char(10);</span></span></code></pre></figure>
+</li>
+<li>
+<p>UNION</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span>SELECT customerNumber</span></span>
+<span data-line><span>FROM orders</span></span>
+<span data-line><span>UNION ALL</span></span>
+<span data-line><span>SELECT customerNumber</span></span>
+<span data-line><span>FROM payments</span></span></code></pre></figure>
+<p>默认<code>distinct</code></p>
+</li>
+<li>
+<p>GROUP BY</p>
+<p>根据一个或多个列对结果集进行分组。在分组的列上我们可以使用 COUNT, SUM, AVG,等函数。</p>
+</li>
+<li>
+<p>JOIN</p>
+<ol>
+<li>
+<p>INNER JOIN</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span>SELECT *</span></span>
+<span data-line><span>FROM productlines</span></span>
+<span data-line><span>         INNER JOIN products on productlines.productLine = products.productLine;</span></span></code></pre></figure>
+</li>
+<li>
+<p>LEFT JOIN</p>
+</li>
+<li>
+<p>RIGHT JOIN</p>
+</li>
+</ol>
+</li>
+<li>
+<p>NULL</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span># 正确</span></span>
+<span data-line><span>SELECT *</span></span>
+<span data-line><span>FROM productlines</span></span>
+<span data-line><span>WHERE htmlDescription IS NULL;</span></span>
+<span data-line><span></span></span>
+<span data-line><span># 错误</span></span>
+<span data-line><span>SELECT *</span></span>
+<span data-line><span>FROM productlines</span></span>
+<span data-line><span>WHERE htmlDescription = NULL;</span></span></code></pre></figure>
+</li>
+</ol>
+<h1 id="sql-50题">sql 50题<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#sql-50题" class="internal alias"> §</a></h1>
+<ol>
+<li>
+<p>查询” 01 “课程比” 02 “课程成绩高的学生的信息及课程分数</p>
+</li>
+<li>
+<p>查询同时存在” 01 “课程和” 02 “课程的情况</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span>select *</span></span>
+<span data-line><span>from (select SId from SC where SC.CId = '01') as t1,</span></span>
+<span data-line><span>     (select SId from SC where SC.Cid = '02') as t2</span></span>
+<span data-line><span>where t1.SId = t2.SId;</span></span></code></pre></figure>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114191200711.png" alt="image-20210114191200711"/></p>
+</li>
+<li>
+<p>查询存在” 01 “课程但可能不存在” 02 “课程的情况(不存在时显示为 null )</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span>select t1.SId, t1.CId, t2.CId</span></span>
+<span data-line><span>from (select * from SC where CId = '01') as t1</span></span>
+<span data-line><span>         left join</span></span>
+<span data-line><span>         (select * from SC where CId = '02') as t2</span></span>
+<span data-line><span>         on t1.SId = t2.SId;</span></span></code></pre></figure>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20210114191325355.png" alt="image-20210114191325355"/></p>
+</li>
+<li>
+<p>查询各科成绩最高分、最低分和平均分</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span># 14</span></span>
+<span data-line><span>select SC.CId,</span></span>
+<span data-line><span>       max(SC.score)                                              as max_score,</span></span>
+<span data-line><span>       min(SC.score)                                              as min_score,</span></span>
+<span data-line><span>       AVG(SC.score)                                              as avg_score,</span></span>
+<span data-line><span>       count(*)                                                   as number,</span></span>
+<span data-line><span>       sum(IF(SC.score >= 60, 1, 0)) / count(*)                   as D,</span></span>
+<span data-line><span>       sum(IF(SC.score >= 70 and SC.score &lt; 80, 1, 0)) / count(*) as C,</span></span>
+<span data-line><span>       sum(IF(SC.score >= 80 and SC.score &lt; 90, 1, 0)) / count(*) as B,</span></span>
+<span data-line><span>       sum(IF(SC.score >= 90, 1, 0)) / count(*)                   as A</span></span>
+<span data-line><span>from SC</span></span>
+<span data-line><span>GROUP BY SC.CId</span></span>
+<span data-line><span>ORDER BY count(*) DESC, SC.CId</span></span></code></pre></figure>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200318100206507.png" alt="image-20200318100206507"/></p>
+</li>
+<li>
+<p>各科成绩进行排序，并显示排名， Score 重复时保留名次空缺</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="mysql" data-theme="github-dark github-light"><code data-language="mysql" data-theme="github-dark github-light" style="display:grid;"><span data-line><span># 15</span></span>
+<span data-line><span>select a.CId, a.SId, a.score, count(b.CId) + 1 as _rank</span></span>
+<span data-line><span>from SC as a</span></span>
+<span data-line><span>         left join SC as b</span></span>
+<span data-line><span>                   on a.CId = b.CId and a.score &lt; b.score</span></span>
+<span data-line><span>group by a.CId, a.SId, a.score</span></span>
+<span data-line><span>order by a.CId ASC, a.score DESC</span></span></code></pre></figure>
+<p><img src="https://raw.githubusercontent.com/chunibyo-wly/image-storage/master/image-20200318115216776.png" alt="image-20200318115216776"/></p>
+</li>
+<li>
+<p>查询学生的总成绩，并进行排名，总分重复时不保留名次空缺</p>
+</li>
+</ol></article></div><div class="right sidebar"><div class="graph "><h3>Graph View</h3><div class="graph-outer"><div id="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[]}"></div><svg version="1.1" id="global-graph-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+	s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+	c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+	C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+	c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+	v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+	s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+	C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+	S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+	s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+	s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></div><div id="global-graph-outer"><div id="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[]}"></div></div></div><div class="toc desktop-only"><button type="button" id="toc" class><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="toc-content"><ul class="overflow"><li class="depth-0"><a href="#1-事务" data-for="1-事务">1. 事务</a></li><li class="depth-0"><a href="#二-范式" data-for="二-范式">二. 范式</a></li><li class="depth-0"><a href="#三-锁" data-for="三-锁">三. 锁🔒</a></li><li class="depth-1"><a href="#1-共享锁与排他锁" data-for="1-共享锁与排他锁">1. 共享锁与排他锁</a></li><li class="depth-1"><a href="#2-悲观锁与乐观锁" data-for="2-悲观锁与乐观锁">2. 悲观锁与乐观锁</a></li><li class="depth-0"><a href="#四-并发一致性" data-for="四-并发一致性">四. 并发一致性</a></li><li class="depth-1"><a href="#1-丢失修改" data-for="1-丢失修改">1. 丢失修改</a></li><li class="depth-1"><a href="#2-脏读" data-for="2-脏读">2. 脏读</a></li><li class="depth-1"><a href="#3-不可重复读" data-for="3-不可重复读">3. 不可重复读</a></li><li class="depth-1"><a href="#4-幻读" data-for="4-幻读">4. 幻读</a></li><li class="depth-0"><a href="#五-数据类型" data-for="五-数据类型">五. 数据类型</a></li><li class="depth-1"><a href="#1-整形" data-for="1-整形">1. 整形</a></li><li class="depth-1"><a href="#2-浮点型" data-for="2-浮点型">2. 浮点型</a></li><li class="depth-1"><a href="#3-字符串" data-for="3-字符串">3. 字符串</a></li><li class="depth-1"><a href="#4-时间和日期" data-for="4-时间和日期">4. 时间和日期</a></li><li class="depth-0"><a href="#六-索引" data-for="六-索引">六. 索引</a></li><li class="depth-1"><a href="#1-b-tree" data-for="1-b-tree">1. B-Tree</a></li><li class="depth-0"><a href="#常用命令" data-for="常用命令">常用命令</a></li><li class="depth-0"><a href="#sql-50题" data-for="sql-50题">sql 50题</a></li></ul></div></div><div class="backlinks "><h3>Backlinks</h3><ul class="overflow"><li>No backlinks found</li></ul></div></div></div><footer class><hr/><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.1.4</a>, © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></body><script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/copy-tex.min.js" type="application/javascript"></script><script type="application/javascript">// quartz/components/scripts/quartz/components/scripts/callout.inline.ts
+function toggleCallout() {
+  const outerBlock = this.parentElement;
+  outerBlock.classList.toggle(`is-collapsed`);
+  const collapsed = outerBlock.classList.contains(`is-collapsed`);
+  const height = collapsed ? this.scrollHeight : outerBlock.scrollHeight;
+  outerBlock.style.maxHeight = height + `px`;
+  let current = outerBlock;
+  let parent = outerBlock.parentElement;
+  while (parent) {
+    if (!parent.classList.contains(`callout`)) {
+      return;
+    }
+    const collapsed2 = parent.classList.contains(`is-collapsed`);
+    const height2 = collapsed2 ? parent.scrollHeight : parent.scrollHeight + current.scrollHeight;
+    parent.style.maxHeight = height2 + `px`;
+    current = parent;
+    parent = parent.parentElement;
+  }
+}
+function setupCallout() {
+  const collapsible = document.getElementsByClassName(
+    `callout is-collapsible`
+  );
+  for (const div of collapsible) {
+    const title = div.firstElementChild;
+    if (title) {
+      title.removeEventListener(`click`, toggleCallout);
+      title.addEventListener(`click`, toggleCallout);
+      const collapsed = div.classList.contains(`is-collapsed`);
+      const height = collapsed ? title.scrollHeight : div.scrollHeight;
+      div.style.maxHeight = height + `px`;
+    }
+  }
+}
+document.addEventListener(`nav`, setupCallout);
+window.addEventListener(`resize`, setupCallout);
+</script><script type="module">
+          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+          const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
+          mermaid.initialize({
+            startOnLoad: false,
+            securityLevel: 'loose',
+            theme: darkMode ? 'dark' : 'default'
+          });
+          document.addEventListener('nav', async () => {
+            await mermaid.run({
+              querySelector: '.mermaid'
+            })
+          });
+          </script><script src="../../../postscript.js" type="module"></script></html>
