@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>Chunibyo</title>
+      <link>https://chunibyo-wly.github.io</link>
+      <description>Last 10 notes on Chunibyo</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>ch01_introduction</title>
+    <link>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch01_introduction</link>
+    <guid>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch01_introduction</guid>
+    <description>Kimi 2.5 生成.</description>
+    <pubDate>Mon, 23 Mar 2026 09:06:00 GMT</pubDate>
+  </item><item>
+    <title>ch02_probability</title>
+    <link>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch02_probability</link>
+    <guid>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch02_probability</guid>
+    <description>Kimi 2.5 生成.</description>
+    <pubDate>Mon, 23 Mar 2026 09:06:00 GMT</pubDate>
+  </item><item>
+    <title>ch03_linear_gaussian</title>
+    <link>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch03_linear_gaussian</link>
+    <guid>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch03_linear_gaussian</guid>
+    <description>Kimi 2.5 生成.</description>
+    <pubDate>Mon, 23 Mar 2026 09:06:00 GMT</pubDate>
+  </item><item>
+    <title>ch03_linear_gaussian_optimized</title>
+    <link>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch03_linear_gaussian_optimized</link>
+    <guid>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch03_linear_gaussian_optimized</guid>
+    <description>Kimi 2.5 生成.</description>
+    <pubDate>Mon, 23 Mar 2026 09:06:00 GMT</pubDate>
+  </item><item>
+    <title>ch04_nonlinear</title>
+    <link>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch04_nonlinear</link>
+    <guid>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch04_nonlinear</guid>
+    <description>Kimi 2.5 生成.</description>
+    <pubDate>Mon, 23 Mar 2026 09:06:00 GMT</pubDate>
+  </item><item>
+    <title>ch04_nonlinear_optimized</title>
+    <link>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch04_nonlinear_optimized</link>
+    <guid>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch04_nonlinear_optimized</guid>
+    <description>Kimi 2.5 生成.</description>
+    <pubDate>Mon, 23 Mar 2026 09:06:00 GMT</pubDate>
+  </item><item>
+    <title>ch05_nonidealities</title>
+    <link>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch05_nonidealities</link>
+    <guid>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch05_nonidealities</guid>
+    <description>Kimi 2.5 生成.</description>
+    <pubDate>Mon, 23 Mar 2026 09:06:00 GMT</pubDate>
+  </item><item>
+    <title>ch06_variational</title>
+    <link>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch06_variational</link>
+    <guid>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch06_variational</guid>
+    <description>Kimi 2.5 生成.</description>
+    <pubDate>Mon, 23 Mar 2026 09:06:00 GMT</pubDate>
+  </item><item>
+    <title>ch06_variational_optimized</title>
+    <link>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch06_variational_optimized</link>
+    <guid>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch06_variational_optimized</guid>
+    <description>Kimi 2.5 生成.</description>
+    <pubDate>Mon, 23 Mar 2026 09:06:00 GMT</pubDate>
+  </item><item>
+    <title>ch07_3d_geometry</title>
+    <link>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch07_3d_geometry</link>
+    <guid>https://chunibyo-wly.github.io/F-%E4%B9%A6%E7%B1%8D/State-Estimation-for-Robotics/ch07_3d_geometry</guid>
+    <description>Kimi 2.5 生成.</description>
+    <pubDate>Mon, 23 Mar 2026 09:06:00 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>

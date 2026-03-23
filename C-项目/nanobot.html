@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html><head><title>AI Agent 框架深度解析：nanobot vs bub</title><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta property="og:title" content="AI Agent 框架深度解析：nanobot vs bub"/><meta property="og:description" content="Kimi 2.5 生成."/><meta property="og:image" content="https://chunibyo-wly.github.io/static/og-image.png"/><meta property="og:width" content="1200"/><meta property="og:height" content="675"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="Kimi 2.5 生成."/><meta name="generator" content="Quartz"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link href="../index.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://fonts.googleapis.com/css2?family=IBM Plex Mono&amp;family=Noto Serif Georgian:wght@400;700&amp;family=Noto Serif Georgian:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet" type="text/css" spa-preserve/><script src="../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script></head><body data-slug="C-项目/nanobot"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h1 class="page-title "><a href="..">Chunibyo</a></h1><div class="spacer mobile-only"></div><div class="search "><div id="search-icon"><p>Search</p><div></div><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search</title><desc id="desc">Search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></div><div id="search-container"><div id="search-space"><input autocomplete="off" id="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div id="results-container"></div></div></div></div><div class="darkmode "><input class="toggle" id="darkmode-toggle" type="checkbox" tabindex="-1"/><label id="toggle-label-light" for="darkmode-toggle" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve"><title>Light mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg></label><label id="toggle-label-dark" for="darkmode-toggle" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve"><title>Dark mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></label></div><div class="explorer desktop-only"><button type="button" id="explorer" data-behavior="collapse" data-collapsed="collapsed" data-savestate="true" data-tree="[{&quot;path&quot;:&quot;A-论文&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;C-项目&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;D-HKU&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;E-通识&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;F-书籍&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;F-书籍/State-Estimation-for-Robotics&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/CodeWars&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/Linux&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/前端&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/数据库&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/语法&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/面试&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/项目&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/B-计算机视觉&quot;,&quot;collapsed&quot;:true}]"><h1>Explorer</h1><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-content"><ul class="overflow" id="explorer-ul"><li><div class="folder-outer open"><ul style="padding-left:0;" class="content" data-folderul><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="A-论文"><button class="folder-button"><span class="folder-title">A-论文</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="A-论文"><li><a href="../A-论文/4PCS" data-for="A-论文/4PCS">4PCS</a></li><li><a href="../A-论文/A-robust-statistics-approach-for-plane-detection-in-unorganized-point-clouds" data-for="A-论文/A-robust-statistics-approach-for-plane-detection-in-unorganized-point-clouds">A robust statistics approach for plane detection in unorganized point clouds</a></li><li><a href="../A-论文/A-Survey-on-Data-Compression-Techniques-for-Automotive-LiDAR-Point-Clouds" data-for="A-论文/A-Survey-on-Data-Compression-Techniques-for-Automotive-LiDAR-Point-Clouds">A Survey on Data Compression Techniques for Automotive LiDAR Point Clouds</a></li><li><a href="../A-论文/3DLineDetection" data-for="A-论文/3DLineDetection">Fast 3D Line Segment Detection From Unorganized Point Cloud</a></li><li><a href="../A-论文/S4PCS" data-for="A-论文/S4PCS">Super Generalized 4PCS for 3D Registration</a></li><li><a href="../A-论文/Symmetry-Loss" data-for="A-论文/Symmetry-Loss">Symmetry Loss</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="C-项目"><button class="folder-button"><span class="folder-title">C-项目</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="C-项目"><li><a href="../C-项目/nanobot" data-for="C-项目/nanobot">AI Agent 框架深度解析：nanobot vs bub</a></li><li><a href="../C-项目/CGAL" data-for="C-项目/CGAL">CGAL</a></li><li><a href="../C-项目/Open3D" data-for="C-项目/Open3D">Open3D</a></li><li><a href="../C-项目/Open3D-issue" data-for="C-项目/Open3D-issue">Open3D issue</a></li><li><a href="../C-项目/OpenClaw-架构深度解析：多通道-AI-网关的工作原理" data-for="C-项目/OpenClaw-架构深度解析：多通道-AI-网关的工作原理">OpenClaw 架构深度解析：多通道 AI 网关的工作原理</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="D-HKU"><button class="folder-button"><span class="folder-title">D-HKU</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="D-HKU"><li><a href="../D-HKU/HPC-使用" data-for="D-HKU/HPC-使用">HPC</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="E-通识"><button class="folder-button"><span class="folder-title">E-通识</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="E-通识"><li><a href="../E-通识/CUDA" data-for="E-通识/CUDA">CUDA</a></li><li><a href="../E-通识/Llama" data-for="E-通识/Llama">Llama</a></li><li><a href="../E-通识/SVG" data-for="E-通识/SVG">SVG</a></li><li><a href="../E-通识/wsl" data-for="E-通识/wsl">wsl</a></li><li><a href="../E-通识/微积分" data-for="E-通识/微积分">微积分</a></li><li><a href="../E-通识/点云" data-for="E-通识/点云">点云</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="F-书籍"><button class="folder-button"><span class="folder-title">F-书籍</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="F-书籍"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="F-书籍/State-Estimation-for-Robotics"><button class="folder-button"><span class="folder-title">State Estimation for Robotics (2nd ed.)</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="F-书籍/State-Estimation-for-Robotics"><li><a href="../F-书籍/State-Estimation-for-Robotics/ch01_introduction" data-for="F-书籍/State-Estimation-for-Robotics/ch01_introduction">ch01_introduction</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch02_probability" data-for="F-书籍/State-Estimation-for-Robotics/ch02_probability">ch02_probability</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch03_linear_gaussian" data-for="F-书籍/State-Estimation-for-Robotics/ch03_linear_gaussian">ch03_linear_gaussian</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch03_linear_gaussian_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch03_linear_gaussian_optimized">ch03_linear_gaussian_optimized</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch04_nonlinear" data-for="F-书籍/State-Estimation-for-Robotics/ch04_nonlinear">ch04_nonlinear</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch04_nonlinear_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch04_nonlinear_optimized">ch04_nonlinear_optimized</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch05_nonidealities" data-for="F-书籍/State-Estimation-for-Robotics/ch05_nonidealities">ch05_nonidealities</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch06_variational" data-for="F-书籍/State-Estimation-for-Robotics/ch06_variational">ch06_variational</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch06_variational_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch06_variational_optimized">ch06_variational_optimized</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch07_3d_geometry" data-for="F-书籍/State-Estimation-for-Robotics/ch07_3d_geometry">ch07_3d_geometry</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch08_lie_groups" data-for="F-书籍/State-Estimation-for-Robotics/ch08_lie_groups">ch08_lie_groups</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch08_lie_groups_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch08_lie_groups_optimized">ch08_lie_groups_optimized</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch09_pose_estimation" data-for="F-书籍/State-Estimation-for-Robotics/ch09_pose_estimation">ch09_pose_estimation</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch09_pose_estimation_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch09_pose_estimation_optimized">ch09_pose_estimation_optimized</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch10_pose_point" data-for="F-书籍/State-Estimation-for-Robotics/ch10_pose_point">ch10_pose_point</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch10_pose_point_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch10_pose_point_optimized">ch10_pose_point_optimized</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch11_continuous_time" data-for="F-书籍/State-Estimation-for-Robotics/ch11_continuous_time">ch11_continuous_time</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch11_continuous_time_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch11_continuous_time_optimized">ch11_continuous_time_optimized</a></li></ul></div></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档"><button class="folder-button"><span class="folder-title">Y-存档</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目"><button class="folder-button"><span class="folder-title">A-工程项目</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/CodeWars"><button class="folder-button"><span class="folder-title">CodeWars</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/CodeWars"><li><a href="../Y-存档/A-工程项目/CodeWars/codewars-URLshortener" data-for="Y-存档/A-工程项目/CodeWars/codewars-URLshortener">codewars URLshortener</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/Linux"><button class="folder-button"><span class="folder-title">Linux</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/Linux"><li><a href="../Y-存档/A-工程项目/Linux/Linux" data-for="Y-存档/A-工程项目/Linux/Linux">Linux</a></li><li><a href="../Y-存档/A-工程项目/Linux/proc记录" data-for="Y-存档/A-工程项目/Linux/proc记录">proc记录</a></li><li><a href="../Y-存档/A-工程项目/Linux/Terraria" data-for="Y-存档/A-工程项目/Linux/Terraria">Terraria</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/前端"><button class="folder-button"><span class="folder-title">前端</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/前端"><li><a href="../Y-存档/A-工程项目/前端/js-request" data-for="Y-存档/A-工程项目/前端/js-request">Http请求</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/数据库"><button class="folder-button"><span class="folder-title">数据库</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/数据库"><li><a href="../Y-存档/A-工程项目/数据库/MySQL" data-for="Y-存档/A-工程项目/数据库/MySQL">MySQL复习</a></li><li><a href="../Y-存档/A-工程项目/数据库/Redis设计与实现" data-for="Y-存档/A-工程项目/数据库/Redis设计与实现">Redis设计与实现</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/语法"><button class="folder-button"><span class="folder-title">语法</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/语法"><li><a href="../Y-存档/A-工程项目/语法/cpp" data-for="Y-存档/A-工程项目/语法/cpp">c++复习</a></li><li><a href="../Y-存档/A-工程项目/语法/java" data-for="Y-存档/A-工程项目/语法/java">java基础</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/面试"><button class="folder-button"><span class="folder-title">面试</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/面试"><li><a href="../Y-存档/A-工程项目/面试/STL" data-for="Y-存档/A-工程项目/面试/STL">STL源码剖析</a></li><li><a href="../Y-存档/A-工程项目/面试/Vim" data-for="Y-存档/A-工程项目/面试/Vim">Vim</a></li><li><a href="../Y-存档/A-工程项目/面试/OperatingSystem" data-for="Y-存档/A-工程项目/面试/OperatingSystem">操作系统复习</a></li><li><a href="../Y-存档/A-工程项目/面试/面经" data-for="Y-存档/A-工程项目/面试/面经">春招记录</a></li><li><a href="../Y-存档/A-工程项目/面试/ComputerNetwork" data-for="Y-存档/A-工程项目/面试/ComputerNetwork">计算机网络复习</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/项目"><button class="folder-button"><span class="folder-title">项目</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/项目"><li><a href="../Y-存档/A-工程项目/项目/alicevision" data-for="Y-存档/A-工程项目/项目/alicevision">alicevision</a></li><li><a href="../Y-存档/A-工程项目/项目/deepin-screen-recorder" data-for="Y-存档/A-工程项目/项目/deepin-screen-recorder">deepin screen recorder</a></li><li><a href="../Y-存档/A-工程项目/项目/mmcv-CUDA-单元测试" data-for="Y-存档/A-工程项目/项目/mmcv-CUDA-单元测试">mmcv CUDA 单元测试</a></li><li><a href="../Y-存档/A-工程项目/项目/remark" data-for="Y-存档/A-工程项目/项目/remark">remark</a></li><li><a href="../Y-存档/A-工程项目/项目/设计模式" data-for="Y-存档/A-工程项目/项目/设计模式">设计模式</a></li></ul></div></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/B-计算机视觉"><button class="folder-button"><span class="folder-title">B-计算机视觉</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/B-计算机视觉"><li><a href="../Y-存档/B-计算机视觉/camera" data-for="Y-存档/B-计算机视觉/camera">Camera</a></li><li><a href="../Y-存档/B-计算机视觉/Open3D" data-for="Y-存档/B-计算机视觉/Open3D">Open3D Release v0.1.0</a></li><li><a href="../Y-存档/B-计算机视觉/点云" data-for="Y-存档/B-计算机视觉/点云">点云</a></li></ul></div></li></ul></div></li><li><a href="../测试" data-for="测试">测试</a></li></ul></div></li><li id="explorer-end"></li></ul></div></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container " aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../C-项目/">C 项目</a></div></nav><h1 class="article-title ">AI Agent 框架深度解析：nanobot vs bub</h1><p class="content-meta ">Mar 22, 2026, 14 min read</p><ul class="tags "><li><a href="../tags/llm" class="internal tag-link">#llm</a></li><li><a href="../tags/agent" class="internal tag-link">#agent</a></li></ul></div></div><article class="popover-hint"><h1 id="ai-agent-框架深度解析nanobot-vs-bub">AI Agent 框架深度解析：nanobot vs bub<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#ai-agent-框架深度解析nanobot-vs-bub" class="internal alias"> §</a></h1>
+<blockquote>
+<p>从 ReAct 理论到生产级实现的完整技术分析。</p>
+</blockquote>
+<hr/>
+<h2 id="目录">目录<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#目录" class="internal alias"> §</a></h2>
+<ol>
+<li><a href="#1-%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80" class="internal alias">理论基础：什么是 AI Agent</a></li>
+<li><a href="#2-react-%E6%A8%A1%E5%BC%8F" class="internal alias">ReAct：让 LLM 自主工作的核心模式</a></li>
+<li><a href="#3-tool-call-%E8%AE%AD%E7%BB%83%E5%8E%9F%E7%90%86" class="internal alias">Tool Call 的三层分工与训练证据</a></li>
+<li><a href="#4-nanobot-%E6%9E%B6%E6%9E%84" class="internal alias">nanobot：MessageBus 驱动的个人助理框架</a></li>
+<li><a href="#5-bub-%E6%9E%B6%E6%9E%84" class="internal alias">bub：Hook-first 的群聊协作框架</a></li>
+<li><a href="#6-%E8%AE%B0%E5%BF%86%E7%AE%A1%E7%90%86" class="internal alias">记忆管理的两种哲学</a></li>
+<li><a href="#7-%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94" class="internal alias">横向对比</a></li>
+<li><a href="#8-%E5%BB%B6%E4%BC%B8%E9%98%85%E8%AF%BB" class="internal alias">延伸阅读</a></li>
+</ol>
+<hr/>
+<h2 id="1-理论基础">1. 理论基础<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-理论基础" class="internal alias"> §</a></h2>
+<h3 id="11-ai-agent-的定义">1.1 AI Agent 的定义<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-ai-agent-的定义" class="internal alias"> §</a></h3>
+<blockquote>
+<p>“An agent is anything that can be viewed as perceiving its environment through sensors and acting upon that environment through actuators.”</p>
+<p>— Russell &amp; Norvig, <em>Artificial Intelligence: A Modern Approach</em> (4th ed., 2020)</p>
+</blockquote>
+<p>LLM-based Agent 是这一经典定义在大语言模型时代的具体实现：</p>
+<ul>
+<li><strong>感知</strong>：接收用户消息、工具执行结果、记忆内容</li>
+<li><strong>推理</strong>：LLM 处理上下文，决定下一步行动</li>
+<li><strong>行动</strong>：调用工具（文件读写、代码执行、网络请求）</li>
+</ul>
+<h3 id="12-chain-of-thought-的奠基作用">1.2 Chain-of-Thought 的奠基作用<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-chain-of-thought-的奠基作用" class="internal alias"> §</a></h3>
+<p><strong>论文</strong>：<em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>
+<strong>作者</strong>：Jason Wei et al.（Google Research）
+<strong>ArXiv</strong>：<a href="https://arxiv.org/abs/2201.11903" class="external">2201.11903<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>（2022）</p>
+<p>CoT 证明了通过在 prompt 中插入推理步骤，LLM 能够解决此前无法处理的复杂问题。这是 ReAct 模式的直接前驱——ReAct 将 CoT 的”内部推理”与”外部行动”结合。</p>
+<pre><code>CoT：   Thought → Thought → Thought → Answer
+ReAct： Thought → Action → Observation → Thought → Action → Answer
+</code></pre>
+<hr/>
+<h2 id="2-react-模式">2. ReAct 模式<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-react-模式" class="internal alias"> §</a></h2>
+<p><strong>论文</strong>：<em>ReAct: Synergizing Reasoning and Acting in Language Models</em>
+<strong>作者</strong>：Shunyu Yao, Jeffrey Zhao et al.（Princeton / Google Research）
+<strong>ArXiv</strong>：<a href="https://arxiv.org/abs/2210.03629" class="external">2210.03629<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>（ICLR 2023）
+<strong>项目页</strong>：<a href="https://react-lm.github.io" class="external">react-lm.github.io<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p>
+<h3 id="21-核心思想">2.1 核心思想<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#21-核心思想" class="internal alias"> §</a></h3>
+<p>ReAct 将两个能力交织在一起：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>能力</th><th>来源</th><th>作用</th></tr></thead><tbody><tr><td><strong>Re</strong>asoning（推理）</td><td>Chain-of-Thought</td><td>让模型解释自己的决策，减少幻觉</td></tr><tr><td><strong>Act</strong>ing（行动）</td><td>工具调用</td><td>让模型获取外部信息，执行真实操作</td></tr></tbody></table></div>
+<h3 id="22-标准轨迹格式">2.2 标准轨迹格式<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#22-标准轨迹格式" class="internal alias"> §</a></h3>
+<pre><code>Question: 科罗拉多造山运动的海拔范围是多少？
+
+Thought 1: 我需要搜索科罗拉多造山运动，找到东部延伸到哪里...
+Action 1:  Search[Colorado orogeny]
+Observation 1: 科罗拉多造山运动是一次山地形成事件...
+
+Thought 2: 没有提到东部。我需要查找 eastern sector。
+Action 2:  Lookup[eastern sector]
+Observation 2: 东部延伸至高平原...
+
+Thought 5: 高平原海拔从 1,800 到 7,000 英尺。
+Action 5:  Finish[1,800 to 7,000 ft]
+</code></pre>
+<h3 id="23-react-在-nanobot-中的直接映射">2.3 ReAct 在 nanobot 中的直接映射<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#23-react-在-nanobot-中的直接映射" class="internal alias"> §</a></h3>
+<p>ReAct 的轨迹格式对应 nanobot <code>_run_agent_loop</code>（<code>loop.py:195</code>）的 while 循环：</p>
+<pre><code>Thought N    → LLM 生成内容（response.content）
+Action N     → LLM 决定调用工具（response.tool_calls）      loop.py:206
+Observation N → 工具执行结果追加回 messages                 loop.py:230
+</code></pre>
+<h3 id="24-react-在-bub-中的映射">2.4 ReAct 在 bub 中的映射<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#24-react-在-bub-中的映射" class="internal alias"> §</a></h3>
+<p>bub 的 <code>_agent_loop</code>（<code>agent.py</code>）委托给 <code>republic</code> 库的 <code>tape.run_tools_async()</code>：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-dark github-light"><code data-language="python" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">output </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> await</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> tape.run_tools_async(prompt, system_prompt, tools)</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">if</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> output.kind </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">==</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> &quot;text&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">:    </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">return</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> output.text        </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># ReAct 终止</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">if</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> output.kind </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">==</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> &quot;tools&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">:   next_prompt </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> &quot;Continue the task.&quot;</span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">  # 继续</span></span></code></pre></figure>
+<p><strong>关键区别</strong>：nanobot 自己实现 while 循环；bub 把循环委托给 <code>republic</code>，自己只处理退出条件。</p>
+<hr/>
+<h2 id="3-tool-call-训练原理">3. Tool Call 训练原理<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-tool-call-训练原理" class="internal alias"> §</a></h2>
+<h3 id="31-工具能力不是涌现的">3.1 工具能力不是涌现的<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#31-工具能力不是涌现的" class="internal alias"> §</a></h3>
+<p>ToolLLM 论文直接指出：</p>
+<blockquote>
+<p>“现有指令微调数据集（Alpaca、FLAN 等）<strong>几乎完全忽视了工具使用</strong>。”</p>
+<p>— Qin et al., <em>ToolLLM</em>, <a href="https://arxiv.org/abs/2307.16789" class="external">arXiv:2307.16789<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>（ICLR 2024）</p>
+</blockquote>
+<p>这意味着：<strong>没有专门的工具调用训练数据，模型不会使用工具</strong>。</p>
+<h3 id="32-toolformer自监督标注meta-ai2023">3.2 Toolformer：自监督标注（Meta AI，2023）<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#32-toolformer自监督标注meta-ai2023" class="internal alias"> §</a></h3>
+<p><strong>ArXiv</strong>：<a href="https://arxiv.org/abs/2302.04761" class="external">2302.04761<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p>
+<p>核心方法：在 Common Crawl 语料里自动插入 API 调用标记，筛选标准是插入后 next-token loss 降低。</p>
+<p>训练数据格式：</p>
+<pre><code>During ArXiv Dives on Friday,
+&lt;API>Calendar() → 02/09/2024&lt;/API> February 9th...
+</code></pre>
+<p>推理机制：模型生成到 <code>→</code> 就暂停 → 真正调用 API → 插入结果 → 继续生成。
+<strong>这和 nanobot/bub 的 agent loop 结构完全相同</strong>，只是外层循环在 Python 代码里。</p>
+<h3 id="33-openai-function-callingfine-tune-的直接声明">3.3 OpenAI Function Calling：Fine-tune 的直接声明<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#33-openai-function-callingfine-tune-的直接声明" class="internal alias"> §</a></h3>
+<p><strong>官方公告</strong>（2023年6月13日）：<a href="https://openai.com/index/function-calling-and-other-api-updates/" class="external">openai.com/index/function-calling<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p>
+<blockquote>
+<p>“These models have been <strong>fine-tuned</strong> to both detect when a function needs to be called and to respond with JSON that adheres to the function signature.”</p>
+</blockquote>
+<p>OpenAI <a href="https://cookbook.openai.com/examples/fine_tuning_for_function_calling" class="external">Cookbook<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> 公开了训练数据格式：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="json" data-theme="github-dark github-light"><code data-language="json" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">{</span></span>
+<span data-line><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">  &quot;messages&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: [</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    {</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">&quot;role&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;user&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">, </span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">&quot;content&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;天气怎么样？&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">},</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    {</span></span>
+<span data-line><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">      &quot;role&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;assistant&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">,</span></span>
+<span data-line><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">      &quot;tool_calls&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: [{</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">&quot;function&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: {</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">&quot;name&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;get_weather&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">, </span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">&quot;arguments&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;{</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">\&quot;</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">city</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">\&quot;</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">: </span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">\&quot;</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">Beijing</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">\&quot;</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">}&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}}]</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    },</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    {</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">&quot;role&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;tool&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">, </span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">&quot;tool_call_id&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;...&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">, </span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">&quot;content&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;晴天，26°C&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">  ],</span></span>
+<span data-line><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">  &quot;tools&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: [{</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">&quot;name&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;get_weather&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">, </span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">&quot;description&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;...&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">, </span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">&quot;parameters&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: {</span><span style="--shiki-dark:#FDAEB7;--shiki-light:#B31D28;--shiki-dark-font-style:italic;--shiki-light-font-style:italic;">...</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}}]</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span></code></pre></figure>
+<p><code>tool_calls</code> 就是监督学习的 ground-truth 标签。<strong>训练数据格式 = 运行时格式</strong>，这不是巧合，而是设计原则。</p>
+<h3 id="34-anthropic-claude-model-card-声明">3.4 Anthropic Claude Model Card 声明<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#34-anthropic-claude-model-card-声明" class="internal alias"> §</a></h3>
+<blockquote>
+<p>“Claude models are <strong>thoroughly trained</strong> to utilize them (search tools and other databases).”</p>
+<p>— <a href="https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3.pdf" class="external">Claude 3 Model Card<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p>
+</blockquote>
+<h3 id="35-description-为何有效">3.5 description 为何有效<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#35-description-为何有效" class="internal alias"> §</a></h3>
+<p>LLM 在训练时见过数万条 <code>(tool description → 正确调用)</code> 样本对，因此：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="json" data-theme="github-dark github-light"><code data-language="json" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">{</span></span>
+<span data-line><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">  &quot;name&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;edit_file&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">,</span></span>
+<span data-line><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">  &quot;description&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;Edit a file by replacing old_text with new_text. Supports minor whitespace differences.&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">,</span></span>
+<span data-line><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">  &quot;parameters&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: {</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">&quot;path&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;...&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">, </span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">&quot;old_text&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;...&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">, </span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">&quot;new_text&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;...&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span></code></pre></figure>
+<p>模型能读懂这段 JSON，并在合适时机调用它——<strong>本质上和写好函数文档没有区别</strong>。</p>
+<hr/>
+<h2 id="4-nanobot-架构">4. nanobot 架构<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-nanobot-架构" class="internal alias"> §</a></h2>
+<h3 id="41-整体架构">4.1 整体架构<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#41-整体架构" class="internal alias"> §</a></h3>
+<pre><code>Chat Channels（Telegram / Discord / Slack 等）
+        │
+        ▼
+  MessageBus（asyncio.Queue pair: inbound / outbound）   bus/queue.py
+        │         ← 唯一耦合点，channel 永不直接调 agent
+        ▼
+  AgentLoop                                               agent/loop.py
+  ├─ ContextBuilder   — system prompt + message history   agent/context.py
+  ├─ ToolRegistry     — 工具注册与执行分发                 agent/tools/registry.py
+  ├─ SessionManager   — JSONL 会话持久化                  session/manager.py
+  ├─ MemoryConsolidator — token 触发的历史压缩             agent/memory.py
+  ├─ SubagentManager  — 后台子 agent                       agent/subagent.py
+  └─ LLMProvider      — LiteLLM / Azure / Codex           providers/
+
+并发服务（gateway 模式）：
+  ├─ CronService      — croniter 定时任务                  cron/
+  └─ HeartbeatService — 每 30min 读 HEARTBEAT.md           heartbeat/
+</code></pre>
+<h3 id="42-核心react-while-循环">4.2 核心：ReAct while 循环<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#42-核心react-while-循环" class="internal alias"> §</a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-dark github-light"><code data-language="python" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># agent/loop.py:195</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">while</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> iteration </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">&lt;</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> self</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">.max_iterations:   </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># 默认 40 轮</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    response </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> await</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> provider.chat_with_retry(</span></span>
+<span data-line><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">        messages</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">messages,           </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># 累积的完整上下文</span></span>
+<span data-line><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">        tools</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">tool_defs,             </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># 所有工具的 JSON Schema</span></span>
+<span data-line><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">        model</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">self</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">.model,</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    )                                                    </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># loop.py:200</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    if</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> response.has_tool_calls:                          </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># loop.py:206</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">        messages </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> context.add_assistant_message(</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">...</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">)    </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># loop.py:219</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">        for</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> tool_call </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">in</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> response.tool_calls:</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">            result </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> await</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> tools.execute(               </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># loop.py:229</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">                tool_call.name, tool_call.arguments)</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">            messages </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> context.add_tool_result(         </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># loop.py:230</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">                messages, tool_call.id, result)</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    else</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">:</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">        final_content </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> response.content                </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># loop.py:245</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">        break</span></span></code></pre></figure>
+<p><strong>messages 始终是完整上下文</strong>，每轮 LLM 都能看到：</p>
+<pre><code>[system: SOUL.md + MEMORY.md + 工具列表]
+[user: 用户消息]
+[assistant: tool_call(read_file)]
+[tool: 文件内容...]
+[assistant: tool_call(exec)]
+[tool: 执行结果...]
+[assistant: 最终回答]  ← 触发 break
+</code></pre>
+<h3 id="43-工具系统">4.3 工具系统<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#43-工具系统" class="internal alias"> §</a></h3>
+<p>每个工具继承 <code>Tool</code> 基类（<code>agent/tools/base.py</code>）：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-dark github-light"><code data-language="python" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">class</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> Tool</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">ABC</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">):</span></span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">    @</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">property</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> def</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> name</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">self</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">)</span><span style="--shiki-dark:#FDAEB7;--shiki-light:#B31D28;--shiki-dark-font-style:italic;--shiki-light-font-style:italic;"> -> str: ...</span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">          # LLM 用这个名字调用</span></span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">    @</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">property</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> def</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> description</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">self</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">)</span><span style="--shiki-dark:#FDAEB7;--shiki-light:#B31D28;--shiki-dark-font-style:italic;--shiki-light-font-style:italic;"> -> str: ...</span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">   # LLM 靠此决定是否调用</span></span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">    @</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">property</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> def</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> parameters</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">self</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">)</span><span style="--shiki-dark:#FDAEB7;--shiki-light:#B31D28;--shiki-dark-font-style:italic;--shiki-light-font-style:italic;"> -> dict: ...</span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">   # JSON Schema，LLM 按此填参</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    async</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> def</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> execute</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(self, </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">**</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">kwargs) -> Any: </span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">...</span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"> # 真正的执行逻辑</span></span></code></pre></figure>
+<p>内置工具一览：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>工具</th><th>文件位置</th><th>说明</th></tr></thead><tbody><tr><td><code>read_file</code></td><td>filesystem.py:67</td><td>带分页的文件读取</td></tr><tr><td><code>write_file</code></td><td>filesystem.py:160</td><td>写文件，自动创建目录</td></tr><tr><td><code>edit_file</code></td><td>filesystem.py:224</td><td>精确字符串替换</td></tr><tr><td><code>list_dir</code></td><td>filesystem.py:323</td><td>列目录（支持递归）</td></tr><tr><td><code>exec</code></td><td>shell.py:43</td><td>shell 命令执行</td></tr><tr><td><code>web_search</code></td><td>web.py:78</td><td>联网搜索</td></tr><tr><td><code>web_fetch</code></td><td>web.py:221</td><td>URL 抓取（HTML→Markdown）</td></tr><tr><td><code>message</code></td><td>message.py:41</td><td>主动向用户推送（不等循环结束）</td></tr><tr><td><code>spawn</code></td><td>spawn.py:28</td><td>派生后台子 agent</td></tr><tr><td><code>cron</code></td><td>cron.py:36</td><td>定时任务管理</td></tr></tbody></table></div>
+<h3 id="44-安全设计">4.4 安全设计<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#44-安全设计" class="internal alias"> §</a></h3>
+<p><code>restrict_to_workspace=True</code> 时（<code>config.json: tools.restrict_to_workspace</code>）：</p>
+<ul>
+<li><code>filesystem.py:23</code>：<code>_resolve_path</code> 对 workspace 外路径抛 <code>PermissionError</code></li>
+<li><code>shell.py:161</code>：拦截 <code>../</code> 和 <code>..\</code> 路径穿越</li>
+</ul>
+<p>始终启用的 exec 安全卫士（<code>shell.py:26-36</code>）：<code>rm -rf</code>、<code>mkfs</code>、<code>dd if=</code>、<code>shutdown</code>、fork bomb。</p>
+<p>SSRF 防护：<code>security/network.py</code> 在 web 工具和 exec 工具里均检查内网 URL。</p>
+<hr/>
+<h2 id="5-bub-架构">5. bub 架构<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-bub-架构" class="internal alias"> §</a></h2>
+<h3 id="51-设计哲学">5.1 设计哲学<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#51-设计哲学" class="internal alias"> §</a></h3>
+<blockquote>
+<p>“a common shape for agents that live alongside people”</p>
+</blockquote>
+<p>bub 专为<strong>多人群聊、多 agent 协作</strong>场景设计，核心理念：</p>
+<ol>
+<li><strong>Hook-first</strong>：框架本身 ~200 行，所有行为都是 hookspec，可被外部插件覆盖</li>
+<li><strong>无特权核心</strong>：<code>BuiltinImpl</code> 只是第一个注册的普通插件</li>
+<li><strong>Tape 即事实</strong>：上下文不是压缩的历史摘要，而是 append-only 的事件日志</li>
+</ol>
+<h3 id="52-整体架构">5.2 整体架构<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#52-整体架构" class="internal alias"> §</a></h3>
+<pre><code>Chat Channels（Telegram / CLI）
+        │
+        ▼
+  ChannelManager                                      channels/manager.py
+  ├─ BufferedMessageHandler（防抖 + 批处理）          channels/handler.py
+  └─ asyncio.Queue
+        │
+        ▼
+  BubFramework.process_inbound()                      framework.py
+        │
+  HookRuntime（pluggy）                               hook_runtime.py
+        │
+  Turn Pipeline（全为 hookspec，可替换）：
+    resolve_session → load_state → build_prompt
+    → run_model → save_state → render_outbound → dispatch_outbound
+</code></pre>
+<h3 id="53-hook-执行模式">5.3 Hook 执行模式<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#53-hook-执行模式" class="internal alias"> §</a></h3>
+<p><code>HookRuntime</code>（<code>hook_runtime.py</code>）实现两种 pluggy 执行模式：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>模式</th><th>适用 Hook</th><th>语义</th></tr></thead><tbody><tr><td><code>call_first</code></td><td><code>resolve_session</code>, <code>run_model</code>, <code>build_prompt</code></td><td>第一个非 None 获胜，后注册插件优先</td></tr><tr><td><code>call_many</code></td><td><code>load_state</code>, <code>render_outbound</code>, <code>save_state</code></td><td>所有插件都执行，结果合并</td></tr></tbody></table></div>
+<h3 id="54-agent-内部循环">5.4 Agent 内部循环<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#54-agent-内部循环" class="internal alias"> §</a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-dark github-light"><code data-language="python" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># agent.py: _agent_loop</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">for</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> step </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">in</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> range</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">1</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">, </span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">self</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">.settings.max_steps </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">+</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> 1</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">):   </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># 默认 50 步</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    output </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> await</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> tape.run_tools_async(</span></span>
+<span data-line><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">        prompt</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">next_prompt,</span></span>
+<span data-line><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">        system_prompt</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">self</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">._system_prompt(</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">...</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">),</span></span>
+<span data-line><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">        tools</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">model_tools(tools),</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    )</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    outcome </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> _resolve_tool_auto_result(output)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    if</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> outcome.kind </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">==</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> &quot;text&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">:     </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">return</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> outcome.text          </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># 终止</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    if</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> outcome.kind </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">==</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> &quot;continue&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: next_prompt </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> &quot;Continue the task.&quot;</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    else</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">:                          </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">raise</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> RuntimeError</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(outcome.error)</span></span></code></pre></figure>
+<h3 id="55-forktapestore事务性-turn">5.5 ForkTapeStore：事务性 Turn<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#55-forktapestore事务性-turn" class="internal alias"> §</a></h3>
+<pre><code>FileTapeStore（磁盘 ~/.bub/tapes/*.jsonl）
+    └─ ForkTapeStore（contextvars in-memory 分叉）
+           turn 开始 → 写入分叉（store.py:fork）
+           turn 成功 → merge_back 到磁盘
+           turn 失败 → 丢弃分叉，磁盘无副作用
+</code></pre>
+<p>这使得每次 turn 具有<strong>原子性</strong>：要么完整记录，要么完全不记录。</p>
+<h3 id="56-anchor-机制上下文窗口管理">5.6 Anchor 机制（上下文窗口管理）<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#56-anchor-机制上下文窗口管理" class="internal alias"> §</a></h3>
+<pre><code>tape: [e1][e2][anchor_A][e3][e4][anchor_B][e5][e6]
+                                     ↑
+                         TapeContext 只选这里之后的条目 → [e5][e6]
+</code></pre>
+<p><code>tape.handoff</code> 工具插入 anchor，显式标记 phase 边界。这是 bub 管理上下文长度的唯一机制——<strong>手动、显式、由模型或用户触发</strong>。</p>
+<h3 id="57-群聊设计">5.7 群聊设计<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#57-群聊设计" class="internal alias"> §</a></h3>
+<p><strong>防抖</strong>（<code>BufferedMessageHandler</code>）：</p>
+<pre><code>[msg1 at 0ms][msg2 at 200ms][msg3 at 400ms]
+        → debounce 1s → merge → [batch_message]
+</code></pre>
+<p><strong>群聊过滤</strong>：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-dark github-light"><code data-language="python" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">@</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">property</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">def</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> is_active</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(self) -> </span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">bool</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">:</span></span>
+<span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">    # 只有被 @mention 或直接回复 bot 才触发 agent</span></span>
+<span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">    # 其他消息在 active_time_window (60s) 内静默接收，超时丢弃</span></span></code></pre></figure>
+<p><strong>subagent 三种模式</strong>：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>模式</th><th>session</th><th>tape 归宿</th></tr></thead><tbody><tr><td><code>inherit</code></td><td>同一 session</td><td>合并回当前 tape</td></tr><tr><td><code>temp</code></td><td><code>temp/xxx</code></td><td>不合并，临时隔离</td></tr><tr><td>指定 session ID</td><td>任意</td><td>合并到目标 tape</td></tr></tbody></table></div>
+<h3 id="58-comma-command">5.8 Comma-command<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#58-comma-command" class="internal alias"> §</a></h3>
+<pre><code>,fs.read path=README.md  →  直接执行工具，绕过 LLM，不消耗 token
+</code></pre>
+<hr/>
+<h2 id="6-记忆管理">6. 记忆管理<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-记忆管理" class="internal alias"> §</a></h2>
+<h3 id="61-nanobot自动压缩--双文件摘要">6.1 nanobot：自动压缩 + 双文件摘要<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#61-nanobot自动压缩--双文件摘要" class="internal alias"> §</a></h3>
+<p><strong>触发</strong>：prompt token 数 ≥ <code>context_window_tokens</code>（默认 65536）。</p>
+<pre><code>估算 prompt token 数（memory.py:276）
+  │
+  ├─ &lt; 上限 → 退出
+  └─ ≥ 上限 → 压缩循环（最多 5 轮）
+       ├─ pick_consolidation_boundary()   memory.py:254
+       │    找到能移除足够 token 的 user-turn 边界
+       ├─ chunk = messages[last_consolidated:boundary]
+       ├─ LLM forced tool_choice=save_memory（memory.py:139）
+       │    ├─ history_entry → HISTORY.md（append）
+       │    └─ memory_update → MEMORY.md（全量覆写）
+       ├─ session.last_consolidated = boundary
+       └─ 继续估算，直到 ≤ 上限 // 2
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>文件</th><th>格式</th><th>用途</th></tr></thead><tbody><tr><td><code>MEMORY.md</code></td><td>Markdown 事实列表</td><td>每次注入 system prompt</td></tr><tr><td><code>HISTORY.md</code></td><td><code>[YYYY-MM-DD HH:MM]</code> 段落</td><td>grep 搜索历史</td></tr></tbody></table></div>
+<p>降级保护：连续 3 次失败后 <code>_raw_archive</code>，直接 dump 原始 messages 文本，确保数据不丢。</p>
+<p>理论支持：MemGPT 分层记忆设计（<a href="https://arxiv.org/abs/2310.08560" class="external">arXiv:2310.08560<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>）。</p>
+<h3 id="62-bub显式-anchor--tape-搜索">6.2 bub：显式 Anchor + Tape 搜索<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#62-bub显式-anchor--tape-搜索" class="internal alias"> §</a></h3>
+<p>bub <strong>没有自动压缩</strong>：</p>
+<ol>
+<li>模型调用 <code>tape.handoff</code> 插入 anchor，上下文窗口重置</li>
+<li><code>tape.search</code> 用 rapidfuzz 对历史做全文/模糊搜索</li>
+<li><code>tape.reset</code> 清空 tape（可归档）</li>
+</ol>
+<h3 id="63-哲学差异">6.3 哲学差异<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#63-哲学差异" class="internal alias"> §</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>维度</th><th>nanobot</th><th>bub</th></tr></thead><tbody><tr><td>触发方式</td><td><strong>自动</strong>（token 计数）</td><td><strong>手动</strong>（显式调用）</td></tr><tr><td>压缩方式</td><td>LLM 语义摘要</td><td>不压缩，anchor 截断</td></tr><tr><td>跨会话记忆</td><td>✅ MEMORY.md 持续累积</td><td>❌ tape 各自独立</td></tr><tr><td>失败保护</td><td>raw archive 降级</td><td>ForkTapeStore 原子性</td></tr><tr><td>理论对应</td><td>MemGPT 分层记忆</td><td>Event Sourcing 模式</td></tr></tbody></table></div>
+<hr/>
+<h2 id="7-横向对比">7. 横向对比<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-横向对比" class="internal alias"> §</a></h2>
+<h3 id="71-架构维度">7.1 架构维度<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#71-架构维度" class="internal alias"> §</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>维度</th><th>nanobot</th><th>bub</th></tr></thead><tbody><tr><td>核心抽象</td><td>MessageBus（Queue）</td><td>pluggy HookSpec</td></tr><tr><td>扩展方式</td><td>entry_points（channel）+ 继承（tool）</td><td>任意 hookspec 均可覆盖</td></tr><tr><td>agent loop</td><td>自己实现 while（loop.py:195）</td><td>委托给 republic</td></tr><tr><td>并发模型</td><td>asyncio task per session</td><td>asyncio task + contextvars fork</td></tr><tr><td>最大迭代</td><td>40（<code>max_iterations</code>）</td><td>50（<code>BUB_MAX_STEPS</code>）</td></tr></tbody></table></div>
+<h3 id="72-功能维度">7.2 功能维度<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#72-功能维度" class="internal alias"> §</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>功能</th><th>nanobot</th><th>bub</th></tr></thead><tbody><tr><td>自动记忆压缩</td><td>✅ LLM 语义摘要</td><td>❌ 手动 anchor</td></tr><tr><td>跨会话记忆</td><td>✅ MEMORY.md</td><td>❌</td></tr><tr><td>群聊防抖</td><td>❌</td><td>✅ BufferedMessageHandler</td></tr><tr><td>群聊过滤</td><td>❌</td><td>✅ is_active + time_window</td></tr><tr><td>定时任务</td><td>✅ CronService</td><td>❌</td></tr><tr><td>Comma-command</td><td>❌</td><td>✅ 绕过 LLM 直接执行</td></tr><tr><td>Workspace 安全</td><td>✅ restrict_to_workspace</td><td>❌</td></tr><tr><td>SSRF 防护</td><td>✅ network.py</td><td>❌</td></tr><tr><td>Turn 原子性</td><td>❌</td><td>✅ ForkTapeStore</td></tr><tr><td>后台 shell 轮询</td><td>❌</td><td>✅ bash.output</td></tr></tbody></table></div>
+<h3 id="73-适用场景">7.3 适用场景<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#73-适用场景" class="internal alias"> §</a></h3>
+<p><strong>选 nanobot</strong>：个人助理 · 一对一 IM · 需要长期记忆 · 需要定时任务 · 需要安全边界</p>
+<p><strong>选 bub</strong>：多人群聊 · 多 agent 协作 · 高度可定制 pipeline · 需要 turn 原子性</p>
+<hr/>
+<h2 id="8-延伸阅读">8. 延伸阅读<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-延伸阅读" class="internal alias"> §</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>论文</th><th>ArXiv</th><th>关联</th></tr></thead><tbody><tr><td>ReAct</td><td><a href="https://arxiv.org/abs/2210.03629" class="external">2210.03629<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>agent loop 理论基础</td></tr><tr><td>Chain-of-Thought</td><td><a href="https://arxiv.org/abs/2201.11903" class="external">2201.11903<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>推理能力奠基</td></tr><tr><td>Toolformer</td><td><a href="https://arxiv.org/abs/2302.04761" class="external">2302.04761<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>tool call 训练数据格式</td></tr><tr><td>ToolLLM</td><td><a href="https://arxiv.org/abs/2307.16789" class="external">2307.16789<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>16k+ API 微调</td></tr><tr><td>Gorilla</td><td><a href="https://arxiv.org/abs/2305.15334" class="external">2305.15334<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>RAT + API 微调</td></tr><tr><td>MemGPT</td><td><a href="https://arxiv.org/abs/2310.08560" class="external">2310.08560<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>分层记忆管理</td></tr><tr><td>HuggingGPT</td><td><a href="https://arxiv.org/abs/2303.17580" class="external">2303.17580<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></td><td>多模型协作 agent</td></tr></tbody></table></div></article></div><div class="right sidebar"><div class="graph "><h3>Graph View</h3><div class="graph-outer"><div id="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[]}"></div><svg version="1.1" id="global-graph-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+	s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+	c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+	C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+	c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+	v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+	s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+	C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+	S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+	s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+	s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></div><div id="global-graph-outer"><div id="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[]}"></div></div></div><div class="toc desktop-only"><button type="button" id="toc" class><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="toc-content"><ul class="overflow"><li class="depth-0"><a href="#ai-agent-框架深度解析nanobot-vs-bub" data-for="ai-agent-框架深度解析nanobot-vs-bub">AI Agent 框架深度解析：nanobot vs bub</a></li><li class="depth-1"><a href="#目录" data-for="目录">目录</a></li><li class="depth-1"><a href="#1-理论基础" data-for="1-理论基础">1. 理论基础</a></li><li class="depth-2"><a href="#11-ai-agent-的定义" data-for="11-ai-agent-的定义">1.1 AI Agent 的定义</a></li><li class="depth-2"><a href="#12-chain-of-thought-的奠基作用" data-for="12-chain-of-thought-的奠基作用">1.2 Chain-of-Thought 的奠基作用</a></li><li class="depth-1"><a href="#2-react-模式" data-for="2-react-模式">2. ReAct 模式</a></li><li class="depth-2"><a href="#21-核心思想" data-for="21-核心思想">2.1 核心思想</a></li><li class="depth-2"><a href="#22-标准轨迹格式" data-for="22-标准轨迹格式">2.2 标准轨迹格式</a></li><li class="depth-2"><a href="#23-react-在-nanobot-中的直接映射" data-for="23-react-在-nanobot-中的直接映射">2.3 ReAct 在 nanobot 中的直接映射</a></li><li class="depth-2"><a href="#24-react-在-bub-中的映射" data-for="24-react-在-bub-中的映射">2.4 ReAct 在 bub 中的映射</a></li><li class="depth-1"><a href="#3-tool-call-训练原理" data-for="3-tool-call-训练原理">3. Tool Call 训练原理</a></li><li class="depth-2"><a href="#31-工具能力不是涌现的" data-for="31-工具能力不是涌现的">3.1 工具能力不是涌现的</a></li><li class="depth-2"><a href="#32-toolformer自监督标注meta-ai2023" data-for="32-toolformer自监督标注meta-ai2023">3.2 Toolformer：自监督标注（Meta AI，2023）</a></li><li class="depth-2"><a href="#33-openai-function-callingfine-tune-的直接声明" data-for="33-openai-function-callingfine-tune-的直接声明">3.3 OpenAI Function Calling：Fine-tune 的直接声明</a></li><li class="depth-2"><a href="#34-anthropic-claude-model-card-声明" data-for="34-anthropic-claude-model-card-声明">3.4 Anthropic Claude Model Card 声明</a></li><li class="depth-2"><a href="#35-description-为何有效" data-for="35-description-为何有效">3.5 description 为何有效</a></li><li class="depth-1"><a href="#4-nanobot-架构" data-for="4-nanobot-架构">4. nanobot 架构</a></li><li class="depth-2"><a href="#41-整体架构" data-for="41-整体架构">4.1 整体架构</a></li><li class="depth-2"><a href="#42-核心react-while-循环" data-for="42-核心react-while-循环">4.2 核心：ReAct while 循环</a></li><li class="depth-2"><a href="#43-工具系统" data-for="43-工具系统">4.3 工具系统</a></li><li class="depth-2"><a href="#44-安全设计" data-for="44-安全设计">4.4 安全设计</a></li><li class="depth-1"><a href="#5-bub-架构" data-for="5-bub-架构">5. bub 架构</a></li><li class="depth-2"><a href="#51-设计哲学" data-for="51-设计哲学">5.1 设计哲学</a></li><li class="depth-2"><a href="#52-整体架构" data-for="52-整体架构">5.2 整体架构</a></li><li class="depth-2"><a href="#53-hook-执行模式" data-for="53-hook-执行模式">5.3 Hook 执行模式</a></li><li class="depth-2"><a href="#54-agent-内部循环" data-for="54-agent-内部循环">5.4 Agent 内部循环</a></li><li class="depth-2"><a href="#55-forktapestore事务性-turn" data-for="55-forktapestore事务性-turn">5.5 ForkTapeStore：事务性 Turn</a></li><li class="depth-2"><a href="#56-anchor-机制上下文窗口管理" data-for="56-anchor-机制上下文窗口管理">5.6 Anchor 机制（上下文窗口管理）</a></li><li class="depth-2"><a href="#57-群聊设计" data-for="57-群聊设计">5.7 群聊设计</a></li><li class="depth-2"><a href="#58-comma-command" data-for="58-comma-command">5.8 Comma-command</a></li><li class="depth-1"><a href="#6-记忆管理" data-for="6-记忆管理">6. 记忆管理</a></li><li class="depth-2"><a href="#61-nanobot自动压缩--双文件摘要" data-for="61-nanobot自动压缩--双文件摘要">6.1 nanobot：自动压缩 + 双文件摘要</a></li><li class="depth-2"><a href="#62-bub显式-anchor--tape-搜索" data-for="62-bub显式-anchor--tape-搜索">6.2 bub：显式 Anchor + Tape 搜索</a></li><li class="depth-2"><a href="#63-哲学差异" data-for="63-哲学差异">6.3 哲学差异</a></li><li class="depth-1"><a href="#7-横向对比" data-for="7-横向对比">7. 横向对比</a></li><li class="depth-2"><a href="#71-架构维度" data-for="71-架构维度">7.1 架构维度</a></li><li class="depth-2"><a href="#72-功能维度" data-for="72-功能维度">7.2 功能维度</a></li><li class="depth-2"><a href="#73-适用场景" data-for="73-适用场景">7.3 适用场景</a></li><li class="depth-1"><a href="#8-延伸阅读" data-for="8-延伸阅读">8. 延伸阅读</a></li></ul></div></div><div class="backlinks "><h3>Backlinks</h3><ul class="overflow"><li>No backlinks found</li></ul></div></div></div><footer class><hr/><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.1.4</a>, © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></body><script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/copy-tex.min.js" type="application/javascript"></script><script type="application/javascript">// quartz/components/scripts/quartz/components/scripts/callout.inline.ts
+function toggleCallout() {
+  const outerBlock = this.parentElement;
+  outerBlock.classList.toggle(`is-collapsed`);
+  const collapsed = outerBlock.classList.contains(`is-collapsed`);
+  const height = collapsed ? this.scrollHeight : outerBlock.scrollHeight;
+  outerBlock.style.maxHeight = height + `px`;
+  let current = outerBlock;
+  let parent = outerBlock.parentElement;
+  while (parent) {
+    if (!parent.classList.contains(`callout`)) {
+      return;
+    }
+    const collapsed2 = parent.classList.contains(`is-collapsed`);
+    const height2 = collapsed2 ? parent.scrollHeight : parent.scrollHeight + current.scrollHeight;
+    parent.style.maxHeight = height2 + `px`;
+    current = parent;
+    parent = parent.parentElement;
+  }
+}
+function setupCallout() {
+  const collapsible = document.getElementsByClassName(
+    `callout is-collapsible`
+  );
+  for (const div of collapsible) {
+    const title = div.firstElementChild;
+    if (title) {
+      title.removeEventListener(`click`, toggleCallout);
+      title.addEventListener(`click`, toggleCallout);
+      const collapsed = div.classList.contains(`is-collapsed`);
+      const height = collapsed ? title.scrollHeight : div.scrollHeight;
+      div.style.maxHeight = height + `px`;
+    }
+  }
+}
+document.addEventListener(`nav`, setupCallout);
+window.addEventListener(`resize`, setupCallout);
+</script><script type="module">
+          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+          const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
+          mermaid.initialize({
+            startOnLoad: false,
+            securityLevel: 'loose',
+            theme: darkMode ? 'dark' : 'default'
+          });
+          document.addEventListener('nav', async () => {
+            await mermaid.run({
+              querySelector: '.mermaid'
+            })
+          });
+          </script><script src="../postscript.js" type="module"></script></html>

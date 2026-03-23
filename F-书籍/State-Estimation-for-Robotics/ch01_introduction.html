@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html><head><title>ch01_introduction</title><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta property="og:title" content="ch01_introduction"/><meta property="og:description" content="Kimi 2.5 生成."/><meta property="og:image" content="https://chunibyo-wly.github.io/static/og-image.png"/><meta property="og:width" content="1200"/><meta property="og:height" content="675"/><link rel="icon" href="../../static/icon.png"/><meta name="description" content="Kimi 2.5 生成."/><meta name="generator" content="Quartz"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link href="../../index.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://fonts.googleapis.com/css2?family=IBM Plex Mono&amp;family=Noto Serif Georgian:wght@400;700&amp;family=Noto Serif Georgian:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet" type="text/css" spa-preserve/><script src="../../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch("../../static/contentIndex.json").then(data => data.json())</script></head><body data-slug="F-书籍/State-Estimation-for-Robotics/ch01_introduction"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h1 class="page-title "><a href="../..">Chunibyo</a></h1><div class="spacer mobile-only"></div><div class="search "><div id="search-icon"><p>Search</p><div></div><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search</title><desc id="desc">Search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></div><div id="search-container"><div id="search-space"><input autocomplete="off" id="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div id="results-container"></div></div></div></div><div class="darkmode "><input class="toggle" id="darkmode-toggle" type="checkbox" tabindex="-1"/><label id="toggle-label-light" for="darkmode-toggle" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve"><title>Light mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg></label><label id="toggle-label-dark" for="darkmode-toggle" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve"><title>Dark mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></label></div><div class="explorer desktop-only"><button type="button" id="explorer" data-behavior="collapse" data-collapsed="collapsed" data-savestate="true" data-tree="[{&quot;path&quot;:&quot;A-论文&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;C-项目&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;D-HKU&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;E-通识&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;F-书籍&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;F-书籍/State-Estimation-for-Robotics&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/CodeWars&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/Linux&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/前端&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/数据库&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/语法&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/面试&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/项目&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/B-计算机视觉&quot;,&quot;collapsed&quot;:true}]"><h1>Explorer</h1><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-content"><ul class="overflow" id="explorer-ul"><li><div class="folder-outer open"><ul style="padding-left:0;" class="content" data-folderul><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="A-论文"><button class="folder-button"><span class="folder-title">A-论文</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="A-论文"><li><a href="../../A-论文/4PCS" data-for="A-论文/4PCS">4PCS</a></li><li><a href="../../A-论文/A-robust-statistics-approach-for-plane-detection-in-unorganized-point-clouds" data-for="A-论文/A-robust-statistics-approach-for-plane-detection-in-unorganized-point-clouds">A robust statistics approach for plane detection in unorganized point clouds</a></li><li><a href="../../A-论文/A-Survey-on-Data-Compression-Techniques-for-Automotive-LiDAR-Point-Clouds" data-for="A-论文/A-Survey-on-Data-Compression-Techniques-for-Automotive-LiDAR-Point-Clouds">A Survey on Data Compression Techniques for Automotive LiDAR Point Clouds</a></li><li><a href="../../A-论文/3DLineDetection" data-for="A-论文/3DLineDetection">Fast 3D Line Segment Detection From Unorganized Point Cloud</a></li><li><a href="../../A-论文/S4PCS" data-for="A-论文/S4PCS">Super Generalized 4PCS for 3D Registration</a></li><li><a href="../../A-论文/Symmetry-Loss" data-for="A-论文/Symmetry-Loss">Symmetry Loss</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="C-项目"><button class="folder-button"><span class="folder-title">C-项目</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="C-项目"><li><a href="../../C-项目/nanobot" data-for="C-项目/nanobot">AI Agent 框架深度解析：nanobot vs bub</a></li><li><a href="../../C-项目/CGAL" data-for="C-项目/CGAL">CGAL</a></li><li><a href="../../C-项目/Open3D" data-for="C-项目/Open3D">Open3D</a></li><li><a href="../../C-项目/Open3D-issue" data-for="C-项目/Open3D-issue">Open3D issue</a></li><li><a href="../../C-项目/OpenClaw-架构深度解析：多通道-AI-网关的工作原理" data-for="C-项目/OpenClaw-架构深度解析：多通道-AI-网关的工作原理">OpenClaw 架构深度解析：多通道 AI 网关的工作原理</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="D-HKU"><button class="folder-button"><span class="folder-title">D-HKU</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="D-HKU"><li><a href="../../D-HKU/HPC-使用" data-for="D-HKU/HPC-使用">HPC</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="E-通识"><button class="folder-button"><span class="folder-title">E-通识</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="E-通识"><li><a href="../../E-通识/CUDA" data-for="E-通识/CUDA">CUDA</a></li><li><a href="../../E-通识/Llama" data-for="E-通识/Llama">Llama</a></li><li><a href="../../E-通识/SVG" data-for="E-通识/SVG">SVG</a></li><li><a href="../../E-通识/wsl" data-for="E-通识/wsl">wsl</a></li><li><a href="../../E-通识/微积分" data-for="E-通识/微积分">微积分</a></li><li><a href="../../E-通识/点云" data-for="E-通识/点云">点云</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="F-书籍"><button class="folder-button"><span class="folder-title">F-书籍</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="F-书籍"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="F-书籍/State-Estimation-for-Robotics"><button class="folder-button"><span class="folder-title">State Estimation for Robotics (2nd ed.)</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="F-书籍/State-Estimation-for-Robotics"><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch01_introduction" data-for="F-书籍/State-Estimation-for-Robotics/ch01_introduction">ch01_introduction</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch02_probability" data-for="F-书籍/State-Estimation-for-Robotics/ch02_probability">ch02_probability</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch03_linear_gaussian" data-for="F-书籍/State-Estimation-for-Robotics/ch03_linear_gaussian">ch03_linear_gaussian</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch03_linear_gaussian_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch03_linear_gaussian_optimized">ch03_linear_gaussian_optimized</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch04_nonlinear" data-for="F-书籍/State-Estimation-for-Robotics/ch04_nonlinear">ch04_nonlinear</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch04_nonlinear_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch04_nonlinear_optimized">ch04_nonlinear_optimized</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch05_nonidealities" data-for="F-书籍/State-Estimation-for-Robotics/ch05_nonidealities">ch05_nonidealities</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch06_variational" data-for="F-书籍/State-Estimation-for-Robotics/ch06_variational">ch06_variational</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch06_variational_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch06_variational_optimized">ch06_variational_optimized</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch07_3d_geometry" data-for="F-书籍/State-Estimation-for-Robotics/ch07_3d_geometry">ch07_3d_geometry</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch08_lie_groups" data-for="F-书籍/State-Estimation-for-Robotics/ch08_lie_groups">ch08_lie_groups</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch08_lie_groups_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch08_lie_groups_optimized">ch08_lie_groups_optimized</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch09_pose_estimation" data-for="F-书籍/State-Estimation-for-Robotics/ch09_pose_estimation">ch09_pose_estimation</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch09_pose_estimation_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch09_pose_estimation_optimized">ch09_pose_estimation_optimized</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch10_pose_point" data-for="F-书籍/State-Estimation-for-Robotics/ch10_pose_point">ch10_pose_point</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch10_pose_point_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch10_pose_point_optimized">ch10_pose_point_optimized</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch11_continuous_time" data-for="F-书籍/State-Estimation-for-Robotics/ch11_continuous_time">ch11_continuous_time</a></li><li><a href="../../F-书籍/State-Estimation-for-Robotics/ch11_continuous_time_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch11_continuous_time_optimized">ch11_continuous_time_optimized</a></li></ul></div></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档"><button class="folder-button"><span class="folder-title">Y-存档</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目"><button class="folder-button"><span class="folder-title">A-工程项目</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/CodeWars"><button class="folder-button"><span class="folder-title">CodeWars</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/CodeWars"><li><a href="../../Y-存档/A-工程项目/CodeWars/codewars-URLshortener" data-for="Y-存档/A-工程项目/CodeWars/codewars-URLshortener">codewars URLshortener</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/Linux"><button class="folder-button"><span class="folder-title">Linux</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/Linux"><li><a href="../../Y-存档/A-工程项目/Linux/Linux" data-for="Y-存档/A-工程项目/Linux/Linux">Linux</a></li><li><a href="../../Y-存档/A-工程项目/Linux/proc记录" data-for="Y-存档/A-工程项目/Linux/proc记录">proc记录</a></li><li><a href="../../Y-存档/A-工程项目/Linux/Terraria" data-for="Y-存档/A-工程项目/Linux/Terraria">Terraria</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/前端"><button class="folder-button"><span class="folder-title">前端</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/前端"><li><a href="../../Y-存档/A-工程项目/前端/js-request" data-for="Y-存档/A-工程项目/前端/js-request">Http请求</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/数据库"><button class="folder-button"><span class="folder-title">数据库</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/数据库"><li><a href="../../Y-存档/A-工程项目/数据库/MySQL" data-for="Y-存档/A-工程项目/数据库/MySQL">MySQL复习</a></li><li><a href="../../Y-存档/A-工程项目/数据库/Redis设计与实现" data-for="Y-存档/A-工程项目/数据库/Redis设计与实现">Redis设计与实现</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/语法"><button class="folder-button"><span class="folder-title">语法</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/语法"><li><a href="../../Y-存档/A-工程项目/语法/cpp" data-for="Y-存档/A-工程项目/语法/cpp">c++复习</a></li><li><a href="../../Y-存档/A-工程项目/语法/java" data-for="Y-存档/A-工程项目/语法/java">java基础</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/面试"><button class="folder-button"><span class="folder-title">面试</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/面试"><li><a href="../../Y-存档/A-工程项目/面试/STL" data-for="Y-存档/A-工程项目/面试/STL">STL源码剖析</a></li><li><a href="../../Y-存档/A-工程项目/面试/Vim" data-for="Y-存档/A-工程项目/面试/Vim">Vim</a></li><li><a href="../../Y-存档/A-工程项目/面试/OperatingSystem" data-for="Y-存档/A-工程项目/面试/OperatingSystem">操作系统复习</a></li><li><a href="../../Y-存档/A-工程项目/面试/面经" data-for="Y-存档/A-工程项目/面试/面经">春招记录</a></li><li><a href="../../Y-存档/A-工程项目/面试/ComputerNetwork" data-for="Y-存档/A-工程项目/面试/ComputerNetwork">计算机网络复习</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/项目"><button class="folder-button"><span class="folder-title">项目</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/项目"><li><a href="../../Y-存档/A-工程项目/项目/alicevision" data-for="Y-存档/A-工程项目/项目/alicevision">alicevision</a></li><li><a href="../../Y-存档/A-工程项目/项目/deepin-screen-recorder" data-for="Y-存档/A-工程项目/项目/deepin-screen-recorder">deepin screen recorder</a></li><li><a href="../../Y-存档/A-工程项目/项目/mmcv-CUDA-单元测试" data-for="Y-存档/A-工程项目/项目/mmcv-CUDA-单元测试">mmcv CUDA 单元测试</a></li><li><a href="../../Y-存档/A-工程项目/项目/remark" data-for="Y-存档/A-工程项目/项目/remark">remark</a></li><li><a href="../../Y-存档/A-工程项目/项目/设计模式" data-for="Y-存档/A-工程项目/项目/设计模式">设计模式</a></li></ul></div></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/B-计算机视觉"><button class="folder-button"><span class="folder-title">B-计算机视觉</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/B-计算机视觉"><li><a href="../../Y-存档/B-计算机视觉/camera" data-for="Y-存档/B-计算机视觉/camera">Camera</a></li><li><a href="../../Y-存档/B-计算机视觉/Open3D" data-for="Y-存档/B-计算机视觉/Open3D">Open3D Release v0.1.0</a></li><li><a href="../../Y-存档/B-计算机视觉/点云" data-for="Y-存档/B-计算机视觉/点云">点云</a></li></ul></div></li></ul></div></li><li><a href="../../测试" data-for="测试">测试</a></li></ul></div></li><li id="explorer-end"></li></ul></div></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container " aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../F-书籍/">F 书籍</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../F-书籍/State-Estimation-for-Robotics/">State Estimation for Robotics (2nd ed.)</a></div></nav><h1 class="article-title ">ch01_introduction</h1><p class="content-meta ">Mar 23, 2026, 13 min read</p><ul class="tags "><li><a href="../../tags/robotic" class="internal tag-link">#robotic</a></li></ul></div></div><article class="popover-hint"><h1 id="第一章状态估计导论">第一章　状态估计导论<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#第一章状态估计导论" class="internal alias"> §</a></h1>
+<h1 id="chapter-1--introduction-to-state-estimation">Chapter 1   Introduction to State Estimation<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#chapter-1--introduction-to-state-estimation" class="internal alias"> §</a></h1>
+<hr/>
+<h2 id="11-什么是状态估计--what-is-state-estimation">1.1 什么是状态估计？ / What Is State Estimation?<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-什么是状态估计--what-is-state-estimation" class="internal alias"> §</a></h2>
+<p><strong>中文</strong></p>
+<p>机器人总是在运动的世界里工作。无论是火星探测车、低空无人机，还是即将普及的自动驾驶汽车，它们都面临一个共同的核心问题：<strong>我在哪里？我的速度是多少？我的姿态是什么？</strong> 这一系列描述机器人运动状态的量，统称为<strong>状态（state）</strong>。</p>
+<p>如果状态已知，控制问题就变得相对简单——告诉机器人”向前走 1 米”之前，你必须先知道它现在在哪里。然而在真实世界里，传感器永远带有噪声，没有任何测量是精确的。<strong>状态估计（state estimation）</strong> 就是在传感器噪声下，利用一系列测量和关于系统动力学的先验知识，尽可能准确地重建系统状态的学问。</p>
+<blockquote>
+<p><strong>核心定义</strong></p>
+<p>状态估计是在给定一组测量序列以及系统的先验模型的条件下，重建系统底层状态的问题。</p>
+<p><em>Estimation is the problem of reconstructing the underlying state of a system given a sequence of measurements as well as a prior model of the system.</em></p>
+</blockquote>
+<hr/>
+<p><strong>English</strong></p>
+<p>Robots inherently deal with things that move in the world. We live in an era of rovers on Mars, drones surveying the Earth, and self-driving cars. Although specific robots have their subtleties, all applications share common challenges, particularly <strong>state estimation</strong>.</p>
+<p>The <strong>state</strong> of a robot is the minimal set of quantities—position, orientation, velocity—that fully describes its motion at any instant. Knowing the state is a prerequisite for control: you cannot command a robot to go somewhere without first knowing where it is. Yet in the real world every sensor is imperfect, so states can never be measured directly and exactly. State estimation is the discipline of doing the best we can with the noisy sensors we have.</p>
+<hr/>
+<h2 id="12-简史从航海到卡尔曼滤波--a-brief-history-from-navigation-to-the-kalman-filter">1.2 简史：从航海到卡尔曼滤波 / A Brief History: From Navigation to the Kalman Filter<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-简史从航海到卡尔曼滤波--a-brief-history-from-navigation-to-the-kalman-filter" class="internal alias"> §</a></h2>
+<p><strong>中文</strong></p>
+<p>状态估计的需求远早于机器人时代。</p>
+<p><strong>4000 年前</strong>，早期航海者就面临着一个经典的状态估计问题：如何在茫茫大海上确定船的位置？他们依靠天体观测（恒星仰角→纬度）和简陋的罗盘来进行推算。<strong>纬度</strong>的测量相对直接，但<strong>经度</strong>问题困扰了人类数个世纪——直到 1764 年，英国钟表匠约翰·哈里森造出了第一块能在海上保持精确走时的便携时钟，经度才得以精确测量（误差约 10 海里）。</p>
+<blockquote>
+<p><strong>直觉</strong>：已知你出发的时间（格林威治时间）和当地正午时间，两者之差乘以地球自转速度，就得到经度。时钟精度→经度精度，这其实是一个状态估计问题：用时间测量来估计空间位置。</p>
+</blockquote>
+<p><strong>估计理论的数学根源</strong>来自天文学。1801 年，23 岁的高斯（Carl Friedrich Gauss）用<strong>最小二乘法</strong>，根据谷神星消失前的少量观测，准确预测了它在太阳背面消失 9 个月后重新出现的位置（误差不到半度）。这是人类历史上第一次用数学方法”从噪声数据中估计轨道”。1809 年，高斯证明：当测量误差服从正态分布时，最小二乘是最优估计器。</p>
+<p><strong>二十世纪的飞跃</strong>：计算机的出现把估计理论带进了现代。1960 年，卡尔曼（Rudolf Kálmán）发表了两篇奠基性论文：</p>
+<ol>
+<li>引入**可观测性（observability）**概念——什么时候状态可以被测量序列唯一确定？</li>
+<li>提出<strong>卡尔曼滤波器（Kalman filter）</strong>——线性高斯系统的最优递归估计算法。</li>
+</ol>
+<p>卡尔曼滤波很快被 NASA 采用于 Apollo 登月任务：阿波罗 11 号登月舱上的计算机，就是用卡尔曼滤波融合惯性传感器和雷达信号，估计飞船在月面上方的精确位置。</p>
+<hr/>
+<p><strong>English</strong></p>
+<p>State estimation has roots far older than robotics.</p>
+<p><strong>Early navigation.</strong> Four thousand years ago seafarers faced a classic estimation problem: determining a ship’s position at sea. Latitude was obtainable from celestial observations (angle of Polaris above horizon), but <strong>longitude</strong> remained elusive for centuries. The missing ingredient was an accurate portable timepiece. In 1764, John Harrison’s chronometer solved the problem: compare local noon time to the known Greenwich time, multiply the difference by Earth’s rotation rate, and you have longitude. Precision of the clock → precision of the longitude estimate.</p>
+<p><strong>Least squares and Gauss.</strong> Estimation theory’s mathematical roots lie in astronomy. In 1801, the 23-year-old Carl Friedrich Gauss applied his <strong>method of least squares</strong> to predict the re-emergence of the dwarf planet Ceres after it passed behind the Sun—accurate to within half a degree, nine months after last observation. In 1809 he proved least squares is optimal when measurement errors are Gaussian.</p>
+<p><strong>The Kalman revolution.</strong> The advent of digital computers catalysed a leap forward. In 1960 Rudolf Kálmán published two landmark papers: one introducing the concept of <strong>observability</strong> (when can a state be uniquely inferred from measurements?), and one introducing the <strong>Kalman filter</strong>—the optimal recursive estimator for linear systems with Gaussian noise. NASA adopted it almost immediately for the Apollo program; the onboard computer of Apollo 11’s Lunar Module used a Kalman filter to fuse noisy inertial and radar data into a reliable position estimate.</p>
+<p><strong>Historical milestones at a glance:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;">年份 / Year</th><th>事件 / Event</th></tr></thead><tbody><tr><td style="text-align:center;">1654</td><td>Pascal 与 Fermat 奠定概率论基础 / Pascal &amp; Fermat lay foundations of probability</td></tr><tr><td style="text-align:center;">1764</td><td>Bayes 定理 / Bayes’ rule</td></tr><tr><td style="text-align:center;">1801</td><td>高斯用最小二乘估计谷神星轨道 / Gauss estimates Ceres orbit with least squares</td></tr><tr><td style="text-align:center;">1960</td><td>卡尔曼滤波器 / Kalman (Bucy) filter</td></tr><tr><td style="text-align:center;">1965</td><td>Rauch–Tung–Striebel 平滑器 / RTS smoother</td></tr><tr><td style="text-align:center;">1970</td><td>Jazwinski 提出”贝叶斯滤波器”术语 / Jazwinski coins “Bayes filter”</td></tr></tbody></table></div>
+<hr/>
+<h2 id="13-传感器与测量--sensors-and-measurements">1.3 传感器与测量 / Sensors and Measurements<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#13-传感器与测量--sensors-and-measurements" class="internal alias"> §</a></h2>
+<p><strong>中文</strong></p>
+<p>理解状态估计，首先要理解传感器的本质：<strong>所有传感器都有有限精度，所有测量都含有不确定性。</strong> 状态估计就是把这些不确定的测量尽可能聪明地组合起来。</p>
+<p>传感器通常分为两类：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>类型</th><th>定义</th><th>典型例子</th></tr></thead><tbody><tr><td><strong>本体感知型</strong>（interoceptive）</td><td>感受来自机器人内部的信号</td><td>加速度计、陀螺仪、轮速计</td></tr><tr><td><strong>外感知型</strong>（exteroceptive）</td><td>感受来自外部环境的信号</td><td>摄像头、激光雷达、GPS</td></tr></tbody></table></div>
+<p>粗略地说：</p>
+<ul>
+<li>外感知传感器 → 测量位置/姿态（告诉你”在哪里”）</li>
+<li>本体感知传感器 → 测量速度/加速度（告诉你”移动有多快”）</li>
+</ul>
+<blockquote>
+<p><strong>直觉</strong>：只有外感知传感器会<strong>累积误差</strong>吗？不对！本体感知传感器（如 IMU）通过积分速度得到位置，误差会随时间累积（<strong>积分漂移</strong>）。外感知传感器（如 GPS）则能给出绝对位置，但受环境遮挡影响。二者融合才是鲁棒估计的关键。</p>
+</blockquote>
+<p>最优状态估计的思路就是：<strong>在考虑每个传感器的不确定性前提下，融合所有可用测量，得到对状态的最佳猜测，并量化该猜测的不确定性（协方差）。</strong></p>
+<hr/>
+<p><strong>English</strong></p>
+<p>All sensors have limited precision; all measurements carry uncertainty. State estimation is the art of combining uncertain measurements intelligently.</p>
+<p>Sensors are conveniently classified into two categories:</p>
+<ul>
+<li><strong>Interoceptive</strong> (proprioceptive): measure quantities internal to the robot — accelerometers (translational acceleration), gyroscopes (angular rate), wheel odometers.</li>
+<li><strong>Exteroceptive</strong>: measure quantities in the environment — cameras (bearing/range to landmarks), lidar, GPS.</li>
+</ul>
+<p>Roughly: exteroceptive sensors yield position/orientation information; interoceptive sensors yield velocity/acceleration. Neither alone is sufficient for robust estimation:</p>
+<ul>
+<li>Interoceptive sensors alone suffer from <strong>integration drift</strong> — small velocity errors accumulate over time into large position errors.</li>
+<li>Exteroceptive sensors alone are susceptible to occlusion, outliers, and data-association failures.</li>
+</ul>
+<p>Fusing both types—carefully accounting for each sensor’s uncertainty—is the cornerstone of practical state estimation.</p>
+<hr/>
+<h2 id="14-本书结构--how-this-book-is-organized">1.4 本书结构 / How This Book Is Organized<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#14-本书结构--how-this-book-is-organized" class="internal alias"> §</a></h2>
+<p><strong>中文</strong></p>
+<p>本书分为三个主要部分和附录，按逻辑递进顺序组织：</p>
+<p><strong>第一部分：估计机器（Estimation Machinery，第 2–6 章）</strong></p>
+<p>在不涉及三维旋转的情况下，系统地介绍估计理论。状态被抽象为普通向量，这使我们可以专注于估计方法本身。内容涵盖：</p>
+<ul>
+<li>第 2 章：概率论基础（高斯分布、贝叶斯推断）</li>
+<li>第 3 章：线性高斯估计（批量 MAP、卡尔曼滤波器、平滑器、连续时间估计）</li>
+<li>第 4 章：非线性非高斯估计（EKF、粒子滤波器、批量非线性 MAP）</li>
+<li>第 5 章：实际问题处理（估计器性能评估、偏差、离群值、协方差估计）</li>
+<li>第 6 章：变分推断（Variational Inference）</li>
+</ul>
+<p><strong>第二部分：三维机器（Three-Dimensional Machinery，第 7–8 章）</strong></p>
+<p>三维空间中的旋转不是普通向量——将机器人朝某方向旋转 90°再往另一方向旋转 90°，结果取决于顺序（旋转不可交换）。因此第一部分的方法不能直接应用于旋转状态。本部分介绍：</p>
+<ul>
+<li>第 7 章：三维几何基础（旋转矩阵、四元数、位姿变换、传感器模型）</li>
+<li>第 8 章：矩阵李群（SO(3)、SE(3)、李代数、扰动微积分）</li>
+</ul>
+<p><strong>第三部分：应用（Applications，第 9–11 章）</strong></p>
+<p>将前两部分融合，求解经典三维估计问题：</p>
+<ul>
+<li>第 9 章：位姿估计问题（点云对齐、位姿图优化、惯性导航）</li>
+<li>第 10 章：位姿-点联合估计（束调整、SLAM）</li>
+<li>第 11 章：连续时间估计</li>
+</ul>
+<p><strong>附录</strong>：矩阵代数与微积分速查。</p>
+<hr/>
+<p><strong>English</strong></p>
+<p>The book is organized into three main parts.</p>
+<p><strong>Part I — Estimation Machinery (Chapters 2–6):</strong> Estimation theory without the complication of three-dimensional rotations. The state is treated as a generic vector. Covers both recursive (filter/smoother) and batch methods, including Gaussian process trajectory estimation and variational inference.</p>
+<p><strong>Part II — Three-Dimensional Machinery (Chapters 7–8):</strong> Three-dimensional rotations are <em>not</em> vectors in the ordinary sense (rotation is non-commutative: the order matters). Part II develops the geometry, kinematics, and probability/statistics of rotations and poses using matrix Lie groups SO(3) and SE(3).</p>
+<p><strong>Part III — Applications (Chapters 9–11):</strong> Combines Parts I and II to solve classic robotics problems: point-cloud alignment, pose-graph relaxation, bundle adjustment, SLAM, inertial navigation, and continuous-time trajectory estimation.</p>
+<hr/>
+<h2 id="15-阅读建议--reading-notes">1.5 阅读建议 / Reading Notes<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#15-阅读建议--reading-notes" class="internal alias"> §</a></h2>
+<p><strong>中文</strong></p>
+<ul>
+<li>如果你只关心估计算法本身，可以只读第一部分（第 2–6 章），它是自成一体的。</li>
+<li>如果你对三维机器人应用感兴趣，第二部分（第 7–8 章）是前提，需要先读第一部分。</li>
+<li>第三部分（第 9–11 章）将前两部分融合为具体工程方法，是本书最有实践价值的部分。</li>
+<li>附录 A（矩阵基础）可作为参考随时查阅。</li>
+</ul>
+<p>全书采用<strong>贝叶斯观点</strong>：状态不是固定的未知量，而是随机变量，我们用概率分布来描述对它的知识。随着测量的加入，分布不断更新。这一视角将贯穿始终。</p>
+<hr/>
+<p><strong>English</strong></p>
+<ul>
+<li>Part I is self-contained and can be read independently for estimation methods without 3D geometry.</li>
+<li>Parts II and III require Part I as a prerequisite.</li>
+<li>Appendix A (matrix primer) can be consulted as a reference at any point.</li>
+</ul>
+<p>Throughout the book we adopt a <strong>Bayesian viewpoint</strong>: the state is treated as a random variable and our knowledge about it is represented as a probability distribution. As measurements arrive, the distribution is updated. This perspective unifies all the methods presented.</p>
+<hr/>
+<p><em>下一章将建立本书所需的全部概率论工具。/ The next chapter builds all the probability-theoretic tools required for the rest of the book.</em></p></article></div><div class="right sidebar"><div class="graph "><h3>Graph View</h3><div class="graph-outer"><div id="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[]}"></div><svg version="1.1" id="global-graph-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+	s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+	c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+	C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+	c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+	v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+	s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+	C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+	S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+	s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+	s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></div><div id="global-graph-outer"><div id="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[]}"></div></div></div><div class="toc desktop-only"><button type="button" id="toc" class><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="toc-content"><ul class="overflow"><li class="depth-0"><a href="#第一章状态估计导论" data-for="第一章状态估计导论">第一章　状态估计导论</a></li><li class="depth-0"><a href="#chapter-1--introduction-to-state-estimation" data-for="chapter-1--introduction-to-state-estimation">Chapter 1   Introduction to State Estimation</a></li><li class="depth-1"><a href="#11-什么是状态估计--what-is-state-estimation" data-for="11-什么是状态估计--what-is-state-estimation">1.1 什么是状态估计？ / What Is State Estimation?</a></li><li class="depth-1"><a href="#12-简史从航海到卡尔曼滤波--a-brief-history-from-navigation-to-the-kalman-filter" data-for="12-简史从航海到卡尔曼滤波--a-brief-history-from-navigation-to-the-kalman-filter">1.2 简史：从航海到卡尔曼滤波 / A Brief History: From Navigation to the Kalman Filter</a></li><li class="depth-1"><a href="#13-传感器与测量--sensors-and-measurements" data-for="13-传感器与测量--sensors-and-measurements">1.3 传感器与测量 / Sensors and Measurements</a></li><li class="depth-1"><a href="#14-本书结构--how-this-book-is-organized" data-for="14-本书结构--how-this-book-is-organized">1.4 本书结构 / How This Book Is Organized</a></li><li class="depth-1"><a href="#15-阅读建议--reading-notes" data-for="15-阅读建议--reading-notes">1.5 阅读建议 / Reading Notes</a></li></ul></div></div><div class="backlinks "><h3>Backlinks</h3><ul class="overflow"><li><a href="../../F-书籍/State-Estimation-for-Robotics/" class="internal">State Estimation for Robotics (2nd ed.)</a></li></ul></div></div></div><footer class><hr/><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.1.4</a>, © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></body><script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/copy-tex.min.js" type="application/javascript"></script><script type="application/javascript">// quartz/components/scripts/quartz/components/scripts/callout.inline.ts
+function toggleCallout() {
+  const outerBlock = this.parentElement;
+  outerBlock.classList.toggle(`is-collapsed`);
+  const collapsed = outerBlock.classList.contains(`is-collapsed`);
+  const height = collapsed ? this.scrollHeight : outerBlock.scrollHeight;
+  outerBlock.style.maxHeight = height + `px`;
+  let current = outerBlock;
+  let parent = outerBlock.parentElement;
+  while (parent) {
+    if (!parent.classList.contains(`callout`)) {
+      return;
+    }
+    const collapsed2 = parent.classList.contains(`is-collapsed`);
+    const height2 = collapsed2 ? parent.scrollHeight : parent.scrollHeight + current.scrollHeight;
+    parent.style.maxHeight = height2 + `px`;
+    current = parent;
+    parent = parent.parentElement;
+  }
+}
+function setupCallout() {
+  const collapsible = document.getElementsByClassName(
+    `callout is-collapsible`
+  );
+  for (const div of collapsible) {
+    const title = div.firstElementChild;
+    if (title) {
+      title.removeEventListener(`click`, toggleCallout);
+      title.addEventListener(`click`, toggleCallout);
+      const collapsed = div.classList.contains(`is-collapsed`);
+      const height = collapsed ? title.scrollHeight : div.scrollHeight;
+      div.style.maxHeight = height + `px`;
+    }
+  }
+}
+document.addEventListener(`nav`, setupCallout);
+window.addEventListener(`resize`, setupCallout);
+</script><script type="module">
+          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+          const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
+          mermaid.initialize({
+            startOnLoad: false,
+            securityLevel: 'loose',
+            theme: darkMode ? 'dark' : 'default'
+          });
+          document.addEventListener('nav', async () => {
+            await mermaid.run({
+              querySelector: '.mermaid'
+            })
+          });
+          </script><script src="../../postscript.js" type="module"></script></html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html><head><title>OpenClaw 架构深度解析：多通道 AI 网关的工作原理</title><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta property="og:title" content="OpenClaw 架构深度解析：多通道 AI 网关的工作原理"/><meta property="og:description" content="Kimi 2.5 生成."/><meta property="og:image" content="https://chunibyo-wly.github.io/static/og-image.png"/><meta property="og:width" content="1200"/><meta property="og:height" content="675"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="Kimi 2.5 生成."/><meta name="generator" content="Quartz"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link href="../index.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://fonts.googleapis.com/css2?family=IBM Plex Mono&amp;family=Noto Serif Georgian:wght@400;700&amp;family=Noto Serif Georgian:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet" type="text/css" spa-preserve/><script src="../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script></head><body data-slug="C-项目/OpenClaw-架构深度解析：多通道-AI-网关的工作原理"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h1 class="page-title "><a href="..">Chunibyo</a></h1><div class="spacer mobile-only"></div><div class="search "><div id="search-icon"><p>Search</p><div></div><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search</title><desc id="desc">Search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></div><div id="search-container"><div id="search-space"><input autocomplete="off" id="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div id="results-container"></div></div></div></div><div class="darkmode "><input class="toggle" id="darkmode-toggle" type="checkbox" tabindex="-1"/><label id="toggle-label-light" for="darkmode-toggle" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve"><title>Light mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg></label><label id="toggle-label-dark" for="darkmode-toggle" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve"><title>Dark mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></label></div><div class="explorer desktop-only"><button type="button" id="explorer" data-behavior="collapse" data-collapsed="collapsed" data-savestate="true" data-tree="[{&quot;path&quot;:&quot;A-论文&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;C-项目&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;D-HKU&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;E-通识&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;F-书籍&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;F-书籍/State-Estimation-for-Robotics&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/CodeWars&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/Linux&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/前端&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/数据库&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/语法&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/面试&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/A-工程项目/项目&quot;,&quot;collapsed&quot;:true},{&quot;path&quot;:&quot;Y-存档/B-计算机视觉&quot;,&quot;collapsed&quot;:true}]"><h1>Explorer</h1><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-content"><ul class="overflow" id="explorer-ul"><li><div class="folder-outer open"><ul style="padding-left:0;" class="content" data-folderul><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="A-论文"><button class="folder-button"><span class="folder-title">A-论文</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="A-论文"><li><a href="../A-论文/4PCS" data-for="A-论文/4PCS">4PCS</a></li><li><a href="../A-论文/A-robust-statistics-approach-for-plane-detection-in-unorganized-point-clouds" data-for="A-论文/A-robust-statistics-approach-for-plane-detection-in-unorganized-point-clouds">A robust statistics approach for plane detection in unorganized point clouds</a></li><li><a href="../A-论文/A-Survey-on-Data-Compression-Techniques-for-Automotive-LiDAR-Point-Clouds" data-for="A-论文/A-Survey-on-Data-Compression-Techniques-for-Automotive-LiDAR-Point-Clouds">A Survey on Data Compression Techniques for Automotive LiDAR Point Clouds</a></li><li><a href="../A-论文/3DLineDetection" data-for="A-论文/3DLineDetection">Fast 3D Line Segment Detection From Unorganized Point Cloud</a></li><li><a href="../A-论文/S4PCS" data-for="A-论文/S4PCS">Super Generalized 4PCS for 3D Registration</a></li><li><a href="../A-论文/Symmetry-Loss" data-for="A-论文/Symmetry-Loss">Symmetry Loss</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="C-项目"><button class="folder-button"><span class="folder-title">C-项目</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="C-项目"><li><a href="../C-项目/nanobot" data-for="C-项目/nanobot">AI Agent 框架深度解析：nanobot vs bub</a></li><li><a href="../C-项目/CGAL" data-for="C-项目/CGAL">CGAL</a></li><li><a href="../C-项目/Open3D" data-for="C-项目/Open3D">Open3D</a></li><li><a href="../C-项目/Open3D-issue" data-for="C-项目/Open3D-issue">Open3D issue</a></li><li><a href="../C-项目/OpenClaw-架构深度解析：多通道-AI-网关的工作原理" data-for="C-项目/OpenClaw-架构深度解析：多通道-AI-网关的工作原理">OpenClaw 架构深度解析：多通道 AI 网关的工作原理</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="D-HKU"><button class="folder-button"><span class="folder-title">D-HKU</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="D-HKU"><li><a href="../D-HKU/HPC-使用" data-for="D-HKU/HPC-使用">HPC</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="E-通识"><button class="folder-button"><span class="folder-title">E-通识</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="E-通识"><li><a href="../E-通识/CUDA" data-for="E-通识/CUDA">CUDA</a></li><li><a href="../E-通识/Llama" data-for="E-通识/Llama">Llama</a></li><li><a href="../E-通识/SVG" data-for="E-通识/SVG">SVG</a></li><li><a href="../E-通识/wsl" data-for="E-通识/wsl">wsl</a></li><li><a href="../E-通识/微积分" data-for="E-通识/微积分">微积分</a></li><li><a href="../E-通识/点云" data-for="E-通识/点云">点云</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="F-书籍"><button class="folder-button"><span class="folder-title">F-书籍</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="F-书籍"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="F-书籍/State-Estimation-for-Robotics"><button class="folder-button"><span class="folder-title">State Estimation for Robotics (2nd ed.)</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="F-书籍/State-Estimation-for-Robotics"><li><a href="../F-书籍/State-Estimation-for-Robotics/ch01_introduction" data-for="F-书籍/State-Estimation-for-Robotics/ch01_introduction">ch01_introduction</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch02_probability" data-for="F-书籍/State-Estimation-for-Robotics/ch02_probability">ch02_probability</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch03_linear_gaussian" data-for="F-书籍/State-Estimation-for-Robotics/ch03_linear_gaussian">ch03_linear_gaussian</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch03_linear_gaussian_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch03_linear_gaussian_optimized">ch03_linear_gaussian_optimized</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch04_nonlinear" data-for="F-书籍/State-Estimation-for-Robotics/ch04_nonlinear">ch04_nonlinear</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch04_nonlinear_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch04_nonlinear_optimized">ch04_nonlinear_optimized</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch05_nonidealities" data-for="F-书籍/State-Estimation-for-Robotics/ch05_nonidealities">ch05_nonidealities</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch06_variational" data-for="F-书籍/State-Estimation-for-Robotics/ch06_variational">ch06_variational</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch06_variational_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch06_variational_optimized">ch06_variational_optimized</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch07_3d_geometry" data-for="F-书籍/State-Estimation-for-Robotics/ch07_3d_geometry">ch07_3d_geometry</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch08_lie_groups" data-for="F-书籍/State-Estimation-for-Robotics/ch08_lie_groups">ch08_lie_groups</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch08_lie_groups_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch08_lie_groups_optimized">ch08_lie_groups_optimized</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch09_pose_estimation" data-for="F-书籍/State-Estimation-for-Robotics/ch09_pose_estimation">ch09_pose_estimation</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch09_pose_estimation_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch09_pose_estimation_optimized">ch09_pose_estimation_optimized</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch10_pose_point" data-for="F-书籍/State-Estimation-for-Robotics/ch10_pose_point">ch10_pose_point</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch10_pose_point_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch10_pose_point_optimized">ch10_pose_point_optimized</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch11_continuous_time" data-for="F-书籍/State-Estimation-for-Robotics/ch11_continuous_time">ch11_continuous_time</a></li><li><a href="../F-书籍/State-Estimation-for-Robotics/ch11_continuous_time_optimized" data-for="F-书籍/State-Estimation-for-Robotics/ch11_continuous_time_optimized">ch11_continuous_time_optimized</a></li></ul></div></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档"><button class="folder-button"><span class="folder-title">Y-存档</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目"><button class="folder-button"><span class="folder-title">A-工程项目</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/CodeWars"><button class="folder-button"><span class="folder-title">CodeWars</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/CodeWars"><li><a href="../Y-存档/A-工程项目/CodeWars/codewars-URLshortener" data-for="Y-存档/A-工程项目/CodeWars/codewars-URLshortener">codewars URLshortener</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/Linux"><button class="folder-button"><span class="folder-title">Linux</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/Linux"><li><a href="../Y-存档/A-工程项目/Linux/Linux" data-for="Y-存档/A-工程项目/Linux/Linux">Linux</a></li><li><a href="../Y-存档/A-工程项目/Linux/proc记录" data-for="Y-存档/A-工程项目/Linux/proc记录">proc记录</a></li><li><a href="../Y-存档/A-工程项目/Linux/Terraria" data-for="Y-存档/A-工程项目/Linux/Terraria">Terraria</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/前端"><button class="folder-button"><span class="folder-title">前端</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/前端"><li><a href="../Y-存档/A-工程项目/前端/js-request" data-for="Y-存档/A-工程项目/前端/js-request">Http请求</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/数据库"><button class="folder-button"><span class="folder-title">数据库</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/数据库"><li><a href="../Y-存档/A-工程项目/数据库/MySQL" data-for="Y-存档/A-工程项目/数据库/MySQL">MySQL复习</a></li><li><a href="../Y-存档/A-工程项目/数据库/Redis设计与实现" data-for="Y-存档/A-工程项目/数据库/Redis设计与实现">Redis设计与实现</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/语法"><button class="folder-button"><span class="folder-title">语法</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/语法"><li><a href="../Y-存档/A-工程项目/语法/cpp" data-for="Y-存档/A-工程项目/语法/cpp">c++复习</a></li><li><a href="../Y-存档/A-工程项目/语法/java" data-for="Y-存档/A-工程项目/语法/java">java基础</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/面试"><button class="folder-button"><span class="folder-title">面试</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/面试"><li><a href="../Y-存档/A-工程项目/面试/STL" data-for="Y-存档/A-工程项目/面试/STL">STL源码剖析</a></li><li><a href="../Y-存档/A-工程项目/面试/Vim" data-for="Y-存档/A-工程项目/面试/Vim">Vim</a></li><li><a href="../Y-存档/A-工程项目/面试/OperatingSystem" data-for="Y-存档/A-工程项目/面试/OperatingSystem">操作系统复习</a></li><li><a href="../Y-存档/A-工程项目/面试/面经" data-for="Y-存档/A-工程项目/面试/面经">春招记录</a></li><li><a href="../Y-存档/A-工程项目/面试/ComputerNetwork" data-for="Y-存档/A-工程项目/面试/ComputerNetwork">计算机网络复习</a></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/A-工程项目/项目"><button class="folder-button"><span class="folder-title">项目</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/A-工程项目/项目"><li><a href="../Y-存档/A-工程项目/项目/alicevision" data-for="Y-存档/A-工程项目/项目/alicevision">alicevision</a></li><li><a href="../Y-存档/A-工程项目/项目/deepin-screen-recorder" data-for="Y-存档/A-工程项目/项目/deepin-screen-recorder">deepin screen recorder</a></li><li><a href="../Y-存档/A-工程项目/项目/mmcv-CUDA-单元测试" data-for="Y-存档/A-工程项目/项目/mmcv-CUDA-单元测试">mmcv CUDA 单元测试</a></li><li><a href="../Y-存档/A-工程项目/项目/remark" data-for="Y-存档/A-工程项目/项目/remark">remark</a></li><li><a href="../Y-存档/A-工程项目/项目/设计模式" data-for="Y-存档/A-工程项目/项目/设计模式">设计模式</a></li></ul></div></li></ul></div></li><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div data-folderpath="Y-存档/B-计算机视觉"><button class="folder-button"><span class="folder-title">B-计算机视觉</span></button></div></div><div class="folder-outer "><ul style="padding-left:1.4rem;" class="content" data-folderul="Y-存档/B-计算机视觉"><li><a href="../Y-存档/B-计算机视觉/camera" data-for="Y-存档/B-计算机视觉/camera">Camera</a></li><li><a href="../Y-存档/B-计算机视觉/Open3D" data-for="Y-存档/B-计算机视觉/Open3D">Open3D Release v0.1.0</a></li><li><a href="../Y-存档/B-计算机视觉/点云" data-for="Y-存档/B-计算机视觉/点云">点云</a></li></ul></div></li></ul></div></li><li><a href="../测试" data-for="测试">测试</a></li></ul></div></li><li id="explorer-end"></li></ul></div></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container " aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../C-项目/">C 项目</a></div></nav><h1 class="article-title ">OpenClaw 架构深度解析：多通道 AI 网关的工作原理</h1><p class="content-meta ">Mar 23, 2026, 11 min read</p><ul class="tags "><li><a href="../tags/agent" class="internal tag-link">#agent</a></li><li><a href="../tags/llm" class="internal tag-link">#llm</a></li></ul></div></div><article class="popover-hint"><h1 id="openclaw-架构深度解析多通道-ai-网关的工作原理">OpenClaw 架构深度解析：多通道 AI 网关的工作原理<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#openclaw-架构深度解析多通道-ai-网关的工作原理" class="internal alias"> §</a></h1>
+<blockquote>
+<p>从 ReAct 理论到生产级 Agent 系统的实现之路</p>
+</blockquote>
+<hr/>
+<h2 id="1-引言什么是-openclaw">1. 引言：什么是 OpenClaw<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-引言什么是-openclaw" class="internal alias"> §</a></h2>
+<p><strong>OpenClaw</strong> 是一个<strong>个人 AI 助手网关</strong>，运行在你自己的设备上。它回答你在已有通讯工具（WhatsApp、Telegram、Slack、Discord、iMessage 等）上的消息，让 AI 助手感觉”本地、快速、始终在线”。</p>
+<p>与轻量级的 <a href="https://github.com/HKUDS/nanobot" class="external">nanobot<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> 不同，OpenClaw 是一个<strong>生产级、全功能</strong>的 TypeScript/Node.js 实现，强调：</p>
+<ul>
+<li><strong>多通道消息集成</strong>（20+ 聊天平台）</li>
+<li><strong>本地优先的 Gateway 控制平面</strong></li>
+<li><strong>可扩展的插件架构</strong>（Plugin SDK）</li>
+<li><strong>多平台原生应用</strong>（macOS/iOS/Android）</li>
+</ul>
+<p>本文将深入剖析 OpenClaw 的<strong>核心工作原理</strong>，并与 nanobot 进行对比，揭示生产级 Agent 系统的设计哲学。</p>
+<hr/>
+<h2 id="2-核心架构分层控制平面">2. 核心架构：分层控制平面<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-核心架构分层控制平面" class="internal alias"> §</a></h2>
+<p>OpenClaw 的架构可以用一个分层模型来理解：</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                        用户交互层                                │
+│  WhatsApp  Telegram  Slack  Discord  iMessage  WebChat  ...     │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      Gateway 控制平面                            │
+│                    ws://127.0.0.1:18789                         │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
+│  │   Channel    │  │   Session    │  │    Cron      │          │
+│  │   Manager    │  │   Manager    │  │   Service    │          │
+│  └──────────────┘  └──────────────┘  └──────────────┘          │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
+│  │   Routing    │  │   Presence   │  │   Skills     │          │
+│  │   Engine     │  │   Tracking   │  │   Registry   │          │
+│  └──────────────┘  └──────────────┘  └──────────────┘          │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+           ┌───────────────┼───────────────┐
+           ▼               ▼               ▼
+    ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+    │  Pi Agent   │  │    CLI      │  │   Web UI    │
+    │  (RPC Mode) │  │  (openclaw) │  │  (Control)  │
+    └─────────────┘  └─────────────┘  └─────────────┘
+</code></pre>
+<h3 id="21-入站消息处理流程">2.1 入站消息处理流程<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#21-入站消息处理流程" class="internal alias"> §</a></h3>
+<pre><code>用户消息 (Telegram/WhatsApp/...)
+    │
+    ▼
+Channel Adapter (extensions/&lt;channel>/)
+    │   • 协议转换（各平台 API → 内部格式）
+    │   • 身份验证（DM pairing、allowlist）
+    │   • 媒体下载（图片/音频/视频）
+    │
+    ▼
+MessageBus (src/channels/bus.ts)
+    │   • 统一消息队列
+    │   • 入站/出站分离
+    │
+    ▼
+Routing Engine (src/routing/)
+    │   • 根据 channel/account/peer 路由到对应 Agent
+    │   • 多 Agent 隔离（工作区 + 会话隔离）
+    │
+    ▼
+Agent Loop (Pi Runtime via RPC)
+    │   • LLM 调用（工具定义注入）
+    │   • Tool Call 执行循环
+    │   • 流式响应
+    │
+    ▼
+Outbound Pipeline → 回传给用户
+</code></pre>
+<hr/>
+<h2 id="3-agent-执行循环react-模式">3. Agent 执行循环：ReAct 模式<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-agent-执行循环react-模式" class="internal alias"> §</a></h2>
+<p>OpenClaw 和 nanobot 都基于 <strong>ReAct（Reasoning + Acting）</strong> 模式，但实现方式有本质区别。</p>
+<h3 id="31-nanobot-的实现">3.1 nanobot 的实现<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#31-nanobot-的实现" class="internal alias"> §</a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-dark github-light"><code data-language="python" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># nanobot/agent/loop.py:195</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">while</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> iteration </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">&lt;</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> self</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">.max_iterations:</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    response </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> await</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> provider.chat(messages, </span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">tools</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">tool_defs)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    if</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> response.has_tool_calls:</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">        result </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> await</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> tools.execute(tool_call.name, tool_call.arguments)</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">        messages </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> add_tool_result(messages, result)  </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># 追加到上下文</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    else</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">:</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">        final_content </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> response.content</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">        break</span></span></code></pre></figure>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>完全自研，代码直接可见</li>
+<li>显式操作 <code>messages</code> 数组</li>
+<li>简单的 callback 式流式处理</li>
+</ul>
+<h3 id="32-openclawpi-agent-的实现">3.2 OpenClaw/Pi Agent 的实现<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#32-openclawpi-agent-的实现" class="internal alias"> §</a></h3>
+<p>OpenClaw 不直接写 while 循环，而是通过 <strong>Pi Agent Runtime</strong>（<code>@mariozechner/pi-agent-core</code>）实现：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="typescript" data-theme="github-dark github-light"><code data-language="typescript" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">// 通过事件流订阅</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">session.</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">subscribe</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">({</span></span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">  onTextDelta</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: (</span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">delta</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">) </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=></span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> { </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">/* 流式文本 */</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> },</span></span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">  onToolUse</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: (</span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">tool</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">) </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=></span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> { </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">/* 工具调用 */</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> },</span></span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">  onToolResult</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: (</span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">result</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">) </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=></span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> { </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">/* 工具结果 */</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> },</span></span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">  onCompaction</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: (</span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">summary</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">) </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=></span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> { </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">/* 上下文压缩 */</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> }</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">});</span></span></code></pre></figure>
+<p><strong>Pi Agent 的核心循环</strong>（简化版）：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="typescript" data-theme="github-dark github-light"><code data-language="typescript" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">// 外层循环：处理 follow-up 消息</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">while</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> (</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">true</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">) {</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">  let</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> hasMoreToolCalls </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> true</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">  // 内层循环：处理工具调用和 steering 消息</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">  while</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> (hasMoreToolCalls </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">||</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> pendingMessages.</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">length</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> ></span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> 0</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">) {</span></span>
+<span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">    // 1. 执行 steering 消息（用户中断/修改指令）</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    if</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> (pendingMessages.</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">length</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> ></span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> 0</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">) { </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">...</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> }</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">    // 2. 流式获取 LLM 响应</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    const</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> message</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> =</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> await</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> streamAssistantResponse</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">...</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">);</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">    // 3. 检查并执行工具调用（支持并行/串行）</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    if</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> (hasMoreToolCalls) {</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">      toolResults.</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">push</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">...await</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> executeToolCalls</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">...</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">));</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    }</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">    // 4. 再次检查 steering 消息</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    pendingMessages </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> await</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> config.</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">getSteeringMessages</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">?.();</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">  }</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">  // 检查 follow-up 消息（任务完成后的延续）</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">  const</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> followUpMessages</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> =</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> await</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> config.</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">getFollowUpMessages</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">?.();</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">  if</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> (followUpMessages.</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">length</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> ></span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> 0</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">) </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">continue</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">  break</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">; </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">// 真正结束</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span></code></pre></figure>
+<p><strong>关键创新</strong>：</p>
+<ul>
+<li><strong>Steering（方向控制）</strong>：运行中注入新指令</li>
+<li><strong>Follow-up（任务延续）</strong>：完成后的自动继续</li>
+<li><strong>并行工具执行</strong>：<code>toolExecution: &quot;parallel&quot;</code> 模式</li>
+</ul>
+<hr/>
+<h2 id="4-pi-agent-详解底层的-react-运行时">4. Pi Agent 详解：底层的 ReAct 运行时<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-pi-agent-详解底层的-react-运行时" class="internal alias"> §</a></h2>
+<p><strong>Pi Agent</strong> 是 OpenClaw 的底层 Agent 引擎，由 Mario Zechner 开发的一组 npm 包：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>包名</th><th>职责</th></tr></thead><tbody><tr><td><code>@mariozechner/pi-agent-core</code></td><td><strong>核心运行时</strong> — Agent 循环、Session 管理、工具调用</td></tr><tr><td><code>@mariozechner/pi-ai</code></td><td><strong>LLM 提供商抽象</strong> — 统一接口调用各平台 API</td></tr><tr><td><code>@mariozechner/pi-coding-agent</code></td><td><strong>编码 Agent 实现</strong> — 代码编辑、项目理解</td></tr><tr><td><code>@mariozechner/pi-tui</code></td><td><strong>终端 UI</strong> — TUI 界面组件</td></tr></tbody></table></div>
+<h3 id="41-事件驱动的架构">4.1 事件驱动的架构<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#41-事件驱动的架构" class="internal alias"> §</a></h3>
+<p>Pi Agent 将一切都抽象为<strong>事件流</strong>：</p>
+<pre><code>agent_start
+├─ turn_start
+│  ├─ message_start (user)
+│  ├─ message_end
+│  ├─ message_start (assistant)
+│  ├─ message_update (text_delta/toolcall_delta) ← 流式
+│  ├─ message_end
+│  ├─ tool_execution_start
+│  ├─ tool_execution_update (可选，工具流式)
+│  ├─ tool_execution_end
+│  ├─ message_start/end (toolResult)
+│  └─ turn_end
+├─ turn_start (如果有更多工具调用)
+└─ agent_end
+</code></pre>
+<p>这种设计的优势：</p>
+<ol>
+<li><strong>解耦</strong>：Agent 逻辑与 UI 渲染完全分离</li>
+<li><strong>可观测</strong>：每个状态变化都有对应事件</li>
+<li><strong>可干预</strong>：通过 steering 机制可在运行中改变方向</li>
+</ol>
+<h3 id="42-消息模型的灵活性">4.2 消息模型的灵活性<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#42-消息模型的灵活性" class="internal alias"> §</a></h3>
+<p>Pi Agent 引入了 <code>AgentMessage</code> 抽象，支持声明式扩展：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="typescript" data-theme="github-dark github-light"><code data-language="typescript" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">// 基础消息</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">type</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> AgentMessage</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> =</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">  |</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> { </span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">role</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">:</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> &quot;user&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">; </span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">content</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">:</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> ... }</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">  |</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> { </span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">role</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">:</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> &quot;assistant&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">; </span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">content</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">:</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> ...; </span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">stopReason</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">:</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> ... }</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">  |</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> { </span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">role</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">:</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> &quot;toolResult&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">; </span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">toolCallId</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">:</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> ... }</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">  |</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> CustomAgentMessages</span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">  // ← 可扩展！</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">// OpenClaw 扩展示例</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">declare</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> module</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> &quot;@mariozechner/pi-agent-core&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> {</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">  interface</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> CustomAgentMessages</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> {</span></span>
+<span data-line><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">    compactionSummary</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">:</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> {</span></span>
+<span data-line><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">      role</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">:</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> &quot;compactionSummary&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">      summary</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">:</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> string</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">      tokensBefore</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">:</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> number</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">;</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">    };</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">  }</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span></code></pre></figure>
+<p><strong>上下文转换管道</strong>：</p>
+<pre><code>AgentMessage[] ──[transformContext]──► AgentMessage[] ──[convertToLlm]──► Message[]
+     ↑                    ↑                           ↓
+  原始状态          应用级转换               LLM 兼容格式
+                 (剪枝/压缩/注入)
+</code></pre>
+<h3 id="43-工具执行模型">4.3 工具执行模型<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#43-工具执行模型" class="internal alias"> §</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>特性</th><th>nanobot</th><th>Pi Agent</th></tr></thead><tbody><tr><td><strong>执行模式</strong></td><td>串行</td><td>串行 / <strong>并行</strong></td></tr><tr><td><strong>Hook 机制</strong></td><td>无</td><td><code>beforeToolCall</code> / <code>afterToolCall</code></td></tr><tr><td><strong>流式结果</strong></td><td>不支持</td><td><code>tool_execution_update</code></td></tr><tr><td><strong>工具阻断</strong></td><td>不支持</td><td>✅ 可在 beforeHook 中阻断</td></tr></tbody></table></div>
+<p><strong>Pi Agent 的 Hook 示例</strong>：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="typescript" data-theme="github-dark github-light"><code data-language="typescript" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">beforeToolCall</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">async</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> ({ </span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">toolCall</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">, </span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">args</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">, </span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">context</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> }) </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=></span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> {</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">  if</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> (toolCall.name </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">===</span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;"> &quot;bash&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">) {</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    return</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> { block: </span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">true</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">, reason: </span><span style="--shiki-dark:#9ECBFF;--shiki-light:#032F62;">&quot;bash is disabled&quot;</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> };</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">  }</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">},</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">afterToolCall</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">async</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> ({ </span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">result</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">, </span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">isError</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> }) </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=></span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> {</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">  return</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> { details: { </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">...</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">result.details, audited: </span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">true</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> } };</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">}</span></span></code></pre></figure>
+<hr/>
+<h2 id="5-openclaw-与-nanobot-的深度对比">5. OpenClaw 与 nanobot 的深度对比<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-openclaw-与-nanobot-的深度对比" class="internal alias"> §</a></h2>
+<h3 id="51-架构哲学">5.1 架构哲学<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#51-架构哲学" class="internal alias"> §</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>维度</th><th>nanobot</th><th>OpenClaw</th></tr></thead><tbody><tr><td><strong>代码规模</strong></td><td>~3,000 行（极简）</td><td>~200,000+ 行（生产级）</td></tr><tr><td><strong>循环实现</strong></td><td>自己实现 (<code>_run_agent_loop</code>)</td><td>委托给 Pi Agent (<code>subscribeEmbeddedPiSession</code>)</td></tr><tr><td><strong>状态管理</strong></td><td>显式 <code>messages</code> 数组</td><td>封装 <code>AgentContext</code></td></tr><tr><td><strong>流式处理</strong></td><td>简单 callback</td><td>Block-level 复杂流式</td></tr><tr><td><strong>上下文压缩</strong></td><td>Token 触发总结 → MEMORY.md</td><td><strong>Compaction</strong>：智能保留/丢弃消息</td></tr><tr><td><strong>错误恢复</strong></td><td>简单 retry</td><td>Auth profile rotation + failover</td></tr></tbody></table></div>
+<h3 id="52-核心差异详解">5.2 核心差异详解<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#52-核心差异详解" class="internal alias"> §</a></h3>
+<h4 id="差异-1循环实现位置">差异 1：循环实现位置<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#差异-1循环实现位置" class="internal alias"> §</a></h4>
+<p><strong>nanobot</strong>：完全可见的 while 循环</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-dark github-light"><code data-language="python" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">async</span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;"> def</span><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;"> _run_agent_loop</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(...):</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    while</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> iteration </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">&lt;</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> self</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">.max_iterations:</span></span>
+<span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">        # 直接可见的循环逻辑</span></span>
+<span data-line><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;">        ...</span></span></code></pre></figure>
+<p><strong>OpenClaw</strong>：封装在 Pi Agent 中</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="typescript" data-theme="github-dark github-light"><code data-language="typescript" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">// 通过订阅事件流交互</span></span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">subscribeEmbeddedPiSession</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">(params, {</span></span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">  onBlockReply</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: (</span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">payload</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">) </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=></span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> { </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">...</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> },</span></span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">  onReasoningStream</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: (</span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">chunk</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">) </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=></span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> { </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">...</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> },</span></span>
+<span data-line><span style="--shiki-dark:#B392F0;--shiki-light:#6F42C1;">  onCompaction</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">: (</span><span style="--shiki-dark:#FFAB70;--shiki-light:#E36209;">summary</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">) </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">=></span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> { </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">...</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> }</span></span>
+<span data-line><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">});</span></span></code></pre></figure>
+<h4 id="差异-2token上下文管理">差异 2：Token/上下文管理<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#差异-2token上下文管理" class="internal alias"> §</a></h4>
+<p><strong>nanobot</strong>：简单的 Token 超限检测</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-dark github-light"><code data-language="python" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">if</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> total_tokens </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">></span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> context_window:</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    await</span><span style="--shiki-dark:#79B8FF;--shiki-light:#005CC5;"> self</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;">.memory_consolidator.consolidate()  </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># 总结为 MEMORY.md</span></span></code></pre></figure>
+<p><strong>OpenClaw</strong>：多层次的上下文管理</p>
+<ul>
+<li><strong>Warning threshold</strong>：提前预警</li>
+<li><strong>Hard limit</strong>：硬性截断</li>
+<li><strong>Compaction</strong>：智能选择保留的消息</li>
+<li><strong>Overflow retry</strong>：上下文溢出时的重试机制</li>
+</ul>
+<h4 id="差异-3streaming-架构">差异 3：Streaming 架构<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#差异-3streaming-架构" class="internal alias"> §</a></h4>
+<p><strong>nanobot</strong>：简单的 progress callback</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-dark github-light"><code data-language="python" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">if</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> on_progress:</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">    await</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> on_progress(thought)  </span><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;"># 只通知思考内容</span></span></code></pre></figure>
+<p><strong>OpenClaw</strong>：复杂的 Block Streaming</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="typescript" data-theme="github-dark github-light"><code data-language="typescript" data-theme="github-dark github-light" style="display:grid;"><span data-line><span style="--shiki-dark:#6A737D;--shiki-light:#6A737D;">// 支持多种块类型：</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">-</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> text_delta </span><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">/</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> text</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">-</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> tool_use</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">-</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> thinking（推理内容分离）</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">-</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> canvas（视觉渲染）</span></span>
+<span data-line><span style="--shiki-dark:#F97583;--shiki-light:#D73A49;">-</span><span style="--shiki-dark:#E1E4E8;--shiki-light:#24292E;"> 代码块感知（避免分割 fenced blocks）</span></span></code></pre></figure>
+<h3 id="53-功能特性对比">5.3 功能特性对比<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#53-功能特性对比" class="internal alias"> §</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>能力</th><th>nanobot</th><th>OpenClaw/Pi Agent</th></tr></thead><tbody><tr><td><strong>ReAct 基础循环</strong></td><td>✅</td><td>✅</td></tr><tr><td><strong>Steering（运行中干预）</strong></td><td>❌</td><td>✅</td></tr><tr><td><strong>Follow-up（任务延续）</strong></td><td>❌</td><td>✅</td></tr><tr><td><strong>并行工具执行</strong></td><td>❌</td><td>✅</td></tr><tr><td><strong>工具 Hook 机制</strong></td><td>❌</td><td>✅ before/after</td></tr><tr><td><strong>自定义消息类型</strong></td><td>❌</td><td>✅ 声明式扩展</td></tr><tr><td><strong>流式工具结果</strong></td><td>❌</td><td>✅</td></tr><tr><td><strong>模型故障转移</strong></td><td>❌</td><td>✅ auth profile rotation</td></tr><tr><td><strong>上下文压缩</strong></td><td>简单总结</td><td>智能 compaction</td></tr></tbody></table></div>
+<hr/>
+<h2 id="6-三者关系总结">6. 三者关系总结<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-三者关系总结" class="internal alias"> §</a></h2>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                         nanobot                                 │
+│  • 极简 Python 实现                                             │
+│  • 教学/研究友好                                                │
+│  • 完全自研 ReAct 循环                                          │
+│  • ~3,000 行代码                                                │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+                    简化版 ReAct 原理
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                      @mariozechner/pi-*                         │
+│  • 生产级 TypeScript 运行时                                     │
+│  • 事件驱动架构                                                 │
+│  • Steering / Follow-up / 并行工具                              │
+│  • 封装核心循环，通过 EventStream 交互                           │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+                    生产级 Agent 运行时
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                         OpenClaw                                │
+│  • 多通道网关（20+ 平台）                                        │
+│  • Gateway 控制平面                                             │
+│  • Plugin SDK 扩展系统                                          │
+│  • 在 Pi Agent 上构建工程复杂性                                   │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="一句话总结">一句话总结<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#一句话总结" class="internal alias"> §</a></h3>
+<blockquote>
+<p><strong>nanobot</strong> = 教学演示级的 ReAct 实现（简单、透明、易理解）
+<strong>Pi Agent</strong> = 生产级的 ReAct 运行时（事件驱动、可扩展、支持复杂交互）
+<strong>OpenClaw</strong> = 基于 Pi Agent 构建的多通道 AI 网关（工程化、多平台、企业级）</p>
+</blockquote>
+<p>OpenClaw 选择 Pi Agent 而不是自研循环，是为了获得 <strong>steering/follow-up</strong> 等高级交互能力，以及<strong>并行工具执行</strong>和<strong>流式事件系统</strong>的生产级架构。这种分层设计让 OpenClaw 可以专注于”多通道网关”这一核心定位，而将 Agent 循环的复杂性交给专业的运行时处理。</p>
+<hr/>
+<h2 id="7-延伸阅读">7. 延伸阅读<a aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-延伸阅读" class="internal alias"> §</a></h2>
+<ul>
+<li><a href="https://github.com/HKUDS/nanobot" class="external">nanobot GitHub<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+<li><a href="https://github.com/openclaw/openclaw" class="external">OpenClaw GitHub<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+<li><a href="https://github.com/badlogic/pi-mono" class="external">Pi Mono Repository<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+<li><a href="https://arxiv.org/abs/2210.03629" class="external">ReAct Paper<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+<li><a href="https://arxiv.org/abs/2302.04761" class="external">Toolformer Paper<svg class="external-icon" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+</ul>
+<hr/>
+<p><em>本文基于 OpenClaw v2026.3.22、nanobot v0.1.4 和 @mariozechner/pi-agent-core v0.61.1 分析整理。</em></p></article></div><div class="right sidebar"><div class="graph "><h3>Graph View</h3><div class="graph-outer"><div id="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[]}"></div><svg version="1.1" id="global-graph-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+	s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+	c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+	C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+	c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+	v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+	s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+	C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+	S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+	s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+	s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></div><div id="global-graph-outer"><div id="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[]}"></div></div></div><div class="toc desktop-only"><button type="button" id="toc" class><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="toc-content"><ul class="overflow"><li class="depth-0"><a href="#openclaw-架构深度解析多通道-ai-网关的工作原理" data-for="openclaw-架构深度解析多通道-ai-网关的工作原理">OpenClaw 架构深度解析：多通道 AI 网关的工作原理</a></li><li class="depth-1"><a href="#1-引言什么是-openclaw" data-for="1-引言什么是-openclaw">1. 引言：什么是 OpenClaw</a></li><li class="depth-1"><a href="#2-核心架构分层控制平面" data-for="2-核心架构分层控制平面">2. 核心架构：分层控制平面</a></li><li class="depth-2"><a href="#21-入站消息处理流程" data-for="21-入站消息处理流程">2.1 入站消息处理流程</a></li><li class="depth-1"><a href="#3-agent-执行循环react-模式" data-for="3-agent-执行循环react-模式">3. Agent 执行循环：ReAct 模式</a></li><li class="depth-2"><a href="#31-nanobot-的实现" data-for="31-nanobot-的实现">3.1 nanobot 的实现</a></li><li class="depth-2"><a href="#32-openclawpi-agent-的实现" data-for="32-openclawpi-agent-的实现">3.2 OpenClaw/Pi Agent 的实现</a></li><li class="depth-1"><a href="#4-pi-agent-详解底层的-react-运行时" data-for="4-pi-agent-详解底层的-react-运行时">4. Pi Agent 详解：底层的 ReAct 运行时</a></li><li class="depth-2"><a href="#41-事件驱动的架构" data-for="41-事件驱动的架构">4.1 事件驱动的架构</a></li><li class="depth-2"><a href="#42-消息模型的灵活性" data-for="42-消息模型的灵活性">4.2 消息模型的灵活性</a></li><li class="depth-2"><a href="#43-工具执行模型" data-for="43-工具执行模型">4.3 工具执行模型</a></li><li class="depth-1"><a href="#5-openclaw-与-nanobot-的深度对比" data-for="5-openclaw-与-nanobot-的深度对比">5. OpenClaw 与 nanobot 的深度对比</a></li><li class="depth-2"><a href="#51-架构哲学" data-for="51-架构哲学">5.1 架构哲学</a></li><li class="depth-2"><a href="#52-核心差异详解" data-for="52-核心差异详解">5.2 核心差异详解</a></li><li class="depth-2"><a href="#53-功能特性对比" data-for="53-功能特性对比">5.3 功能特性对比</a></li><li class="depth-1"><a href="#6-三者关系总结" data-for="6-三者关系总结">6. 三者关系总结</a></li><li class="depth-2"><a href="#一句话总结" data-for="一句话总结">一句话总结</a></li><li class="depth-1"><a href="#7-延伸阅读" data-for="7-延伸阅读">7. 延伸阅读</a></li></ul></div></div><div class="backlinks "><h3>Backlinks</h3><ul class="overflow"><li>No backlinks found</li></ul></div></div></div><footer class><hr/><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.1.4</a>, © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></body><script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/copy-tex.min.js" type="application/javascript"></script><script type="application/javascript">// quartz/components/scripts/quartz/components/scripts/callout.inline.ts
+function toggleCallout() {
+  const outerBlock = this.parentElement;
+  outerBlock.classList.toggle(`is-collapsed`);
+  const collapsed = outerBlock.classList.contains(`is-collapsed`);
+  const height = collapsed ? this.scrollHeight : outerBlock.scrollHeight;
+  outerBlock.style.maxHeight = height + `px`;
+  let current = outerBlock;
+  let parent = outerBlock.parentElement;
+  while (parent) {
+    if (!parent.classList.contains(`callout`)) {
+      return;
+    }
+    const collapsed2 = parent.classList.contains(`is-collapsed`);
+    const height2 = collapsed2 ? parent.scrollHeight : parent.scrollHeight + current.scrollHeight;
+    parent.style.maxHeight = height2 + `px`;
+    current = parent;
+    parent = parent.parentElement;
+  }
+}
+function setupCallout() {
+  const collapsible = document.getElementsByClassName(
+    `callout is-collapsible`
+  );
+  for (const div of collapsible) {
+    const title = div.firstElementChild;
+    if (title) {
+      title.removeEventListener(`click`, toggleCallout);
+      title.addEventListener(`click`, toggleCallout);
+      const collapsed = div.classList.contains(`is-collapsed`);
+      const height = collapsed ? title.scrollHeight : div.scrollHeight;
+      div.style.maxHeight = height + `px`;
+    }
+  }
+}
+document.addEventListener(`nav`, setupCallout);
+window.addEventListener(`resize`, setupCallout);
+</script><script type="module">
+          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+          const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
+          mermaid.initialize({
+            startOnLoad: false,
+            securityLevel: 'loose',
+            theme: darkMode ? 'dark' : 'default'
+          });
+          document.addEventListener('nav', async () => {
+            await mermaid.run({
+              querySelector: '.mermaid'
+            })
+          });
+          </script><script src="../postscript.js" type="module"></script></html>
